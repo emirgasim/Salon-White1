@@ -34,51 +34,67 @@ let slide = 0;
 function getPath(obj,key){ return key.split(".").reduce((o,k)=>o?.[k],obj); }
 
 function renderServices(){
-  const grid=document.getElementById("serviceGrid");
+  const grid=document.getElementById("serviceGrid"); if(!grid)return;
   const items=services[mode];
-  grid.innerHTML=items.map(([n,title,desc])=>`
-    <article class="service-card reveal">
-      <span class="service-index">${n}</span>
-      <div><h3>${title}</h3><p>${desc}</p></div>
-    </article>`).join("");
-  document.getElementById("modeLabel").textContent=(mode==="woman"?"WOMAN":"MAN")+" EXPERIENCE";
+  grid.innerHTML=items.map(([n,title,desc])=>`<article class="service-card reveal"><span class="service-index">${n}</span><div><h3>${title}</h3><p>${desc}</p></div></article>`).join("");
+  const label=document.getElementById("modeLabel"); if(label) label.textContent=(mode==="woman"?"WOMAN":"MAN")+" EXPERIENCE";
   observeReveals();
 }
 
 function applyLanguage(){
-  const t=translations[lang];
+  const t=translations[lang]||translations.en;
   document.documentElement.lang=lang;
   document.documentElement.dir=lang==="ar"?"rtl":"ltr";
   document.querySelectorAll("[data-i18n]").forEach(el=>{
     const value=getPath(t,el.dataset.i18n);
     if(value) el.innerHTML=value;
   });
-  document.getElementById("langButton").textContent=lang.toUpperCase();
+  const lb=document.getElementById("langButton"); if(lb) lb.textContent=lang.toUpperCase();
   localStorage.setItem("salonWhiteLang",lang);
+  const subtitle=document.getElementById("heroSubtitle");
+  if(subtitle) subtitle.textContent=mode==="woman" ? t.hero.subtitle : ({tr:"Erkek Deneyimi",en:"Man Experience",de:"Herren-Erlebnis",fr:"Expérience Homme",es:"Experiencia Hombre",ru:"Мужской опыт",ar:"تجربة رجالية"}[lang]||"Man Experience");
+  const title=document.getElementById("heroTitle");
+  if(title) title.innerHTML=mode==="woman" ? "<span>Salon</span> White<br><em>Sirkeci</em>" : "<span>Salon</span> White<br><em>Men</em>";
 }
 
 function setMode(next){
-  if(next===mode) return;
+  if(next!=="woman"&&next!=="man")return;
   mode=next;
   document.body.dataset.mode=mode;
-  document.querySelectorAll(".mode-option").forEach(b=>b.classList.toggle("active",b.dataset.modeSwitch===mode));
+  document.querySelectorAll(".mode-option").forEach(b=>{
+    const active=b.dataset.modeSwitch===mode;
+    b.classList.toggle("active",active);
+    b.setAttribute("aria-pressed",active?"true":"false");
+  });
   localStorage.setItem("salonWhiteMode",mode);
+  applyLanguage();
   renderServices();
+}
+window.setMode=setMode;
+
+function setupMobileMenu(){
+  const button=document.getElementById("menuButton"),nav=document.querySelector(".desktop-nav");
+  if(!button||!nav)return;
+  const menu=document.createElement("div");
+  menu.id="mobileMenu"; menu.className="mobile-menu glass-panel";
+  menu.innerHTML=nav.innerHTML+'<a class="mobile-menu-whatsapp" href="https://wa.me/905441548262" target="_blank" rel="noopener" data-i18n="nav.whatsapp">WhatsApp</a>';
+  document.body.appendChild(menu);
+  const close=()=>{menu.classList.remove("open");button.setAttribute("aria-expanded","false");document.body.classList.remove("menu-open");};
+  button.setAttribute("aria-expanded","false");
+  button.addEventListener("click",e=>{e.stopPropagation();const open=!menu.classList.contains("open");menu.classList.toggle("open",open);button.setAttribute("aria-expanded",open?"true":"false");document.body.classList.toggle("menu-open",open);});
+  menu.querySelectorAll("a").forEach(a=>a.addEventListener("click",close));
+  document.addEventListener("click",e=>{if(!e.target.closest("#mobileMenu")&&!e.target.closest("#menuButton"))close();});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")close();});
+}
+
+function setupLanguage(){
+  const button=document.getElementById("langButton"),menu=document.getElementById("langMenu"); if(!button||!menu)return;
+  button.addEventListener("click",e=>{e.stopPropagation();const open=!menu.classList.contains("open");menu.classList.toggle("open",open);button.setAttribute("aria-expanded",open?"true":"false");});
+  menu.querySelectorAll("[data-lang]").forEach(b=>b.addEventListener("click",()=>{lang=b.dataset.lang;applyLanguage();renderServices();menu.classList.remove("open");button.setAttribute("aria-expanded","false");}));
+  document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap")){menu.classList.remove("open");button.setAttribute("aria-expanded","false");}});
 }
 
 document.querySelectorAll("[data-mode-switch]").forEach(btn=>btn.addEventListener("click",()=>setMode(btn.dataset.modeSwitch)));
-
-document.getElementById("langButton").addEventListener("click",()=>{
-  document.getElementById("langMenu").classList.toggle("open");
-});
-document.querySelectorAll("[data-lang]").forEach(btn=>btn.addEventListener("click",()=>{
-  lang=btn.dataset.lang;
-  applyLanguage();
-  document.getElementById("langMenu").classList.remove("open");
-}));
-document.addEventListener("click",e=>{
-  if(!e.target.closest(".lang-wrap")) document.getElementById("langMenu").classList.remove("open");
-});
 
 function nextSlide(){
   const slides=[...document.querySelectorAll(".hero-slide")];
@@ -95,9 +111,15 @@ function observeReveals(){
   document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 }
 
-document.getElementById("year").textContent=new Date().getFullYear();
-document.body.dataset.mode=mode;
-document.querySelectorAll(".mode-option").forEach(b=>b.classList.toggle("active",b.dataset.modeSwitch===mode));
-applyLanguage();
-renderServices();
-observeReveals();
+function init(){
+  const y=document.getElementById("year");if(y)y.textContent=new Date().getFullYear();
+  document.body.dataset.mode=mode;
+  document.querySelectorAll(".mode-option").forEach(b=>{const active=b.dataset.modeSwitch===mode;b.classList.toggle("active",active);b.setAttribute("aria-pressed",active?"true":"false");});
+  setupMobileMenu();
+  setupLanguage();
+  applyLanguage();
+  renderServices();
+  observeReveals();
+  setInterval(nextSlide,6500);
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
