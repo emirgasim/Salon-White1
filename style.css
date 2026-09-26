@@ -101,3 +101,81 @@ html[dir=rtl] .hero-content{left:auto;right:6vw}html[dir=rtl] .scroll-cue{left:a
   .hero-content{top:42%}
   .mode-switch{bottom:100px}
 }
+
+/* Liquid Glass interaction + navigation refinement */
+.glass-nav,.glass-panel,.lang-button,.menu-button,.nav-whatsapp,.glass-cta,.mode-switch,.mobile-action-bar a{
+  -webkit-tap-highlight-color:transparent;
+}
+.brand img{width:54px;height:54px}
+.brand b{font-size:15px;letter-spacing:.18em}
+.brand small{font-size:9px;letter-spacing:.2em}
+.glass-nav{height:78px;padding-left:20px}
+.lang-menu{
+  opacity:0;visibility:hidden;display:grid;
+  transform:translateY(-10px) scale(.96);
+  transform-origin:top right;
+  transition:opacity .38s var(--ease),transform .48s var(--ease),visibility .38s;
+  overflow:hidden;
+}
+.lang-menu.open{opacity:1;visibility:visible;transform:none}
+.lang-menu button,.mobile-menu a{
+  transition:background .28s var(--ease),transform .28s var(--ease),color .28s var(--ease);
+}
+.lang-menu button:active,.mobile-menu a:active{transform:scale(.97);background:rgba(255,255,255,.2)}
+.menu-button,.lang-button,.nav-whatsapp,.glass-cta,.mode-option,.mobile-action-bar a{
+  transition:transform .35s var(--ease),background .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);
+}
+.menu-button:active,.lang-button:active,.nav-whatsapp:active,.glass-cta:active,.mode-option:active,.mobile-action-bar a:active{
+  transform:scale(.94);
+}
+.menu-button::after,.lang-button::after,.nav-whatsapp::after,.glass-cta::after,.mode-switch::after,.mobile-action-bar a::after{
+  content:"";position:absolute;inset:1px;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(115deg,transparent 20%,rgba(255,255,255,.34) 48%,transparent 72%);
+  transform:translateX(-130%);opacity:0;
+}
+.menu-button,.lang-button,.nav-whatsapp,.glass-cta,.mode-switch,.mobile-action-bar a{position:relative;overflow:hidden}
+.menu-button:active::after,.lang-button:active::after,.nav-whatsapp:active::after,.glass-cta:active::after,.mode-switch:active::after,.mobile-action-bar a:active::after{
+  opacity:1;animation:glassTap .62s var(--ease);
+}
+@keyframes glassTap{0%{transform:translateX(-130%)}100%{transform:translateX(130%)}}
+.mode-switch{top:102px;bottom:auto;right:5vw}
+.mode-indicator{transition:transform .85s var(--ease),background .7s var(--ease),box-shadow .7s var(--ease)}
+.mobile-action-bar a{color:#fff}
+.mobile-action-bar .action-icon{width:22px;height:22px;display:grid;place-items:center;color:#fff}
+.mobile-action-bar .action-icon svg{width:22px;height:22px;display:block}
+.mobile-action-bar a:first-child .whatsapp-icon{
+  filter:drop-shadow(0 0 8px rgba(255,255,255,.5));
+  animation:whatsappPulse 2.1s ease-in-out infinite;
+}
+@keyframes whatsappPulse{
+  0%,100%{opacity:1;transform:scale(1);filter:drop-shadow(0 0 2px rgba(255,255,255,.2))}
+  50%{opacity:.62;transform:scale(1.09);filter:drop-shadow(0 0 10px rgba(255,255,255,.65))}
+}
+body.experience-switching .hero-slider{opacity:.72;transform:scale(1.018);filter:none!important}
+body.experience-switching .hero-content{opacity:.25;transform:translateY(calc(-38% + 8px));filter:none!important}
+body.experience-switching .hero-meta,body.experience-switching .mode-switch,body.experience-switching .service-grid{filter:none!important}
+body.experience-switching .service-card{opacity:.55;transform:translateY(6px) scale(.99)}
+@media(max-width:900px){
+  .glass-nav{height:70px;padding-left:14px}
+  .brand img{width:48px;height:48px}
+  .brand b{font-size:13px}
+  .brand small{font-size:8px}
+  .lang-menu{left:0;right:0;top:calc(100% + 10px);width:auto;border-radius:22px;padding:10px;transform:translateY(-12px) scale(.98);transform-origin:top center}
+  .lang-menu.open{transform:none}
+  .lang-menu button{padding:14px;font-size:12px}
+  .mode-switch{top:92px;right:7vw;bottom:auto}
+}
+@media(max-width:560px){
+  .glass-nav{height:64px;left:12px;right:12px;width:auto;padding:7px 9px 7px 12px}
+  .brand{gap:9px}
+  .brand img{width:44px;height:44px}
+  .brand b{font-size:12px;letter-spacing:.13em}
+  .brand small{font-size:7px;letter-spacing:.13em}
+  .lang-button,.menu-button{height:38px}
+  .lang-menu{top:calc(100% + 9px);border-radius:21px}
+  .mode-switch{top:84px;right:5vw;bottom:auto;transform:scale(.94);transform-origin:right top}
+  .mobile-action-bar a:active{transform:scale(.94) translateY(-1px)}
+}
+@media(prefers-reduced-motion:reduce){
+  .mobile-action-bar a:first-child .whatsapp-icon{animation:none}
+}
