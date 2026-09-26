@@ -9,7 +9,7 @@
   <meta property="og:title" content="Salon White Sirkeci | Man & Woman Coiffeur">
   <meta property="og:description" content="Hair & beauty in the heart of Istanbul.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/images/banner-03-collage.webp">
+  <meta property="og:image" content="assets/images/banner-03-collage.png">
   <title>Salon White Sirkeci | Man & Woman Coiffeur</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,10 +19,11 @@
 <body data-mode="woman">
   <div class="noise"></div>
   <div class="page-glow"></div>
+  <div class="experience-transition" id="experienceTransition" aria-hidden="true"><div class="transition-glass"></div><div class="transition-shimmer"></div><div class="transition-orb transition-orb-a"></div><div class="transition-orb transition-orb-b"></div><div class="transition-vignette"></div></div>
 
   <header class="glass-nav" id="top">
     <a class="brand" href="#top" aria-label="Salon White Sirkeci">
-      <img src="assets/logo/salon-white-logo.webp" alt="Salon White logo">
+      <img src="assets/logo/salon-white-logo.png" alt="Salon White logo">
       <span><b>SALON WHITE</b><small>SİRKECİ · ISTANBUL</small></span>
     </a>
 
@@ -55,16 +56,16 @@
   <main>
     <section class="hero" id="hero">
       <div class="hero-slider" aria-hidden="true">
-        <div class="hero-slide active" style="background-image:url('assets/images/banner-01-exterior.webp')"></div>
-        <div class="hero-slide" style="background-image:url('assets/images/banner-02-interior.webp')"></div>
-        <div class="hero-slide" style="background-image:url('assets/images/banner-03-collage.webp')"></div>
+        <div class="hero-slide active" style="background-image:url('assets/images/banner-01-exterior.png')"></div>
+        <div class="hero-slide" style="background-image:url('assets/images/banner-02-interior.png')"></div>
+        <div class="hero-slide" style="background-image:url('assets/images/banner-03-collage.png')"></div>
       </div>
       <div class="hero-overlay"></div>
 
       <div class="hero-content">
         <div class="eyebrow" data-i18n="hero.eyebrow">HAIR & BEAUTY · SİRKECİ / İSTANBUL</div>
-        <h1><span>Salon</span> White<br><em>Sirkeci</em></h1>
-        <p class="hero-sub" data-i18n="hero.subtitle">Man & Woman Coiffeur</p>
+        <h1 id="heroTitle"><span>Salon</span> White<br><em>Sirkeci</em></h1>
+        <p class="hero-sub" id="heroSubtitle" data-i18n="hero.subtitle">Woman Experience</p>
         <p class="hero-copy" data-i18n="hero.copy">İstanbul'un tarihi merkezinde saç ve bakım deneyimi.</p>
 
         <div class="hero-actions">
@@ -119,8 +120,8 @@
       <div class="service-grid" id="serviceGrid"></div>
     </section>
 
-    <section class="feature-image">
-      <div class="feature-image-inner" style="background-image:url('assets/images/banner-02-interior.webp')">
+    <section class="feature-image" id="salon">
+      <div class="feature-image-inner" style="background-image:url('assets/images/banner-02-interior.png')">
         <div class="feature-glass">
           <span class="section-kicker">03 / SALON</span>
           <h2 data-i18n="feature.title">İçeri gir.<br><em>Atmosferi hisset.</em></h2>
@@ -138,9 +139,9 @@
         <a class="text-link" href="https://instagram.com/salonwhitesirkeci" target="_blank" rel="noopener">@salonwhitesirkeci →</a>
       </div>
       <div class="gallery-grid">
-        <figure class="gallery-card tall"><img src="assets/images/banner-03-collage.webp" alt="Salon White Sirkeci collage"></figure>
-        <figure class="gallery-card"><img src="assets/images/banner-01-exterior.webp" alt="Salon White Sirkeci exterior"></figure>
-        <figure class="gallery-card"><img src="assets/images/banner-02-interior.webp" alt="Salon White Sirkeci interior"></figure>
+        <figure class="gallery-card tall"><img src="assets/images/banner-03-collage.png" alt="Salon White Sirkeci collage"></figure>
+        <figure class="gallery-card"><img src="assets/images/banner-01-exterior.png" alt="Salon White Sirkeci exterior"></figure>
+        <figure class="gallery-card"><img src="assets/images/banner-02-interior.png" alt="Salon White Sirkeci interior"></figure>
       </div>
     </section>
 
@@ -183,7 +184,7 @@
   <footer>
     <div class="footer-top">
       <div class="brand footer-brand">
-        <img src="assets/logo/salon-white-logo.webp" alt="Salon White logo">
+        <img src="assets/logo/salon-white-logo.png" alt="Salon White logo">
         <span><b>SALON WHITE</b><small>SİRKECİ · ISTANBUL</small></span>
       </div>
       <div class="footer-links">
@@ -199,6 +200,8 @@
     </div>
   </footer>
 
+  <link rel="stylesheet" href="experience-2.css">
   <script src="app.js"></script>
+  <script src="experience-2.js"></script>
 </body>
 </html>
