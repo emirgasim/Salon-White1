@@ -294,3 +294,57 @@ body.experience-switching .service-card{opacity:.55;transform:translateY(6px) sc
   .mobile-action-bar .action-icon,.mobile-action-bar .action-icon svg{width:23px!important;height:23px!important}
   .mobile-action-bar a:first-child .whatsapp-icon{color:#fff!important}
 }
+
+/* Final mobile readability + real menu entrance */
+@media(max-width:900px){
+  .mobile-menu{
+    opacity:0!important;
+    visibility:hidden!important;
+    transform:translateY(-16px) scale(.965)!important;
+    transform-origin:top center!important;
+    transition:opacity .42s var(--ease),transform .52s var(--ease),visibility .42s!important;
+  }
+  .mobile-menu.open{
+    opacity:1!important;
+    visibility:visible!important;
+    transform:translateY(0) scale(1)!important;
+  }
+  .mobile-menu a{
+    opacity:0;
+    transform:translateY(-7px);
+    transition:opacity .32s var(--ease),transform .42s var(--ease),background .28s var(--ease)!important;
+  }
+  .mobile-menu.open a{opacity:1;transform:none}
+  .mobile-menu.open a:nth-child(1){transition-delay:.04s!important}
+  .mobile-menu.open a:nth-child(2){transition-delay:.08s!important}
+  .mobile-menu.open a:nth-child(3){transition-delay:.12s!important}
+  .mobile-menu.open a:nth-child(4){transition-delay:.16s!important}
+  .mobile-menu.open a:nth-child(5){transition-delay:.20s!important}
+  .mobile-menu.open a:nth-child(6){transition-delay:.24s!important}
+
+  .mobile-action-bar{
+    background:linear-gradient(135deg,rgba(28,28,30,.28),rgba(28,28,30,.16) 50%,rgba(255,255,255,.28));
+    border-color:rgba(255,255,255,.5);
+    box-shadow:0 14px 38px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.62),inset 0 -1px 0 rgba(0,0,0,.10);
+  }
+  .mobile-action-bar a{
+    color:#fff!important;
+    text-shadow:0 1px 5px rgba(0,0,0,.72);
+    position:relative;
+  }
+  .mobile-action-bar a::before{
+    content:"";
+    position:absolute;
+    inset:3px 8px;
+    border-radius:13px;
+    background:rgba(10,10,12,.16);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.22);
+    z-index:-1;
+    transition:.3s var(--ease);
+  }
+  .mobile-action-bar a:active::before,
+  .mobile-action-bar a:first-child::before{background:rgba(10,10,12,.24)}
+  .mobile-action-bar .action-icon,
+  .mobile-action-bar .action-icon svg{color:#fff!important;filter:drop-shadow(0 1px 4px rgba(0,0,0,.68))}
+  .mobile-action-bar b{color:#fff!important;font-weight:600;letter-spacing:.01em}
+}
