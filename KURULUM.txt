@@ -1,0 +1,33 @@
+
+SALON WHITE — EXPERIENCE 2.0
+
+Bu ZIP mevcut siteyi bozmadan Woman/Man geçişini geliştiren 3 ek dosya içerir.
+
+Dosyalar:
+1. index-additions.html
+2. experience-2.css
+3. experience-2.js
+
+UYGULAMA:
+1) GitHub > emirgasim/Salon-White1 > main
+2) index.html içinde:
+   <div class="page-glow"></div>
+   satırının hemen altına index-additions.html içindeki İLK HTML BLOĞUNU ekle.
+3) index.html içinde </body> etiketinden hemen önce:
+   <link rel="stylesheet" href="experience-2.css">
+   <script src="experience-2.js"></script>
+   satırlarını ekle.
+4) experience-2.css ve experience-2.js dosyalarını repository köküne yükle.
+5) Commit changes.
+6) Cloudflare GitHub build'i otomatik başlatacaktır.
+
+ÖNEMLİ:
+- Mevcut app.js DEĞİŞTİRİLMEZ.
+- Mevcut style.css DEĞİŞTİRİLMEZ.
+- Mevcut çeviri sistemi, hizmet sistemi ve localStorage korunur.
+- Geçiş mevcut setMode() fonksiyonunu görsel geçişin ortasında çağırır.
+- Scroll pozisyonu korunur.
+- Mobilde blur azaltılır.
+- prefers-reduced-motion desteklenir.
+
+Bu yaklaşım mevcut çalışan siteye minimum müdahale ile Experience 2.0 efektini ekler.
