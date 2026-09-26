@@ -179,3 +179,26 @@ body.experience-switching .service-card{opacity:.55;transform:translateY(6px) sc
 @media(prefers-reduced-motion:reduce){
   .mobile-action-bar a:first-child .whatsapp-icon{animation:none}
 }
+
+/* Final mobile UX corrections */
+@media(max-width:900px){
+  .mode-switch{bottom:150px!important;top:auto!important;z-index:130}
+  .mobile-action-bar{
+    transition:transform .55s var(--ease),opacity .4s var(--ease),visibility .4s;
+  }
+  body.hero-past .mobile-action-bar{
+    transform:translateY(calc(100% + 24px));
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+  }
+}
+@media(max-width:560px){
+  .mode-switch{
+    bottom:150px!important;
+    right:5vw;
+    transform:scale(.94);
+    transform-origin:right bottom;
+  }
+  .mobile-action-bar .whatsapp-icon svg{width:23px;height:23px}
+}
