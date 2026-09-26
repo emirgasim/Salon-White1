@@ -7,4 +7,4 @@ body.experience-switching .service-card{opacity:.2;transform:translateY(10px) sc
 
 body.mode-dragging .hero-slider{transition:opacity .2s linear,transform .12s linear!important;transform:translateX(calc(var(--sw-drag,0) * 8px)) scale(1.012);opacity:.82}
 body.mode-dragging .hero-content{transition:opacity .18s linear,transform .12s linear!important;opacity:calc(.86 - abs(var(--sw-drag,0)) * .12)}
-body.mode-dragging .mode-indicator{transition:transform .12s linear!important;transform:translateX(calc(max(0px, min(100%, (var(--sw-drag,0) + 1) * 50%))))}
+body.mode-dragging.drag-man .mode-indicator{transition:transform .12s linear!important;transform:translateX(100%)}body.mode-dragging.drag-woman .mode-indicator{transition:transform .12s linear!important;transform:translateX(0)}
