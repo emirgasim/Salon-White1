@@ -348,3 +348,31 @@ body.experience-switching .service-card{opacity:.55;transform:translateY(6px) sc
   .mobile-action-bar .action-icon svg{color:#fff!important;filter:drop-shadow(0 1px 4px rgba(0,0,0,.68))}
   .mobile-action-bar b{color:#fff!important;font-weight:600;letter-spacing:.01em}
 }
+
+/* Restore visible Woman / Man control */
+@media(max-width:900px){
+  .hero .mode-switch{
+    display:flex!important;
+    position:absolute!important;
+    visibility:visible!important;
+    opacity:1!important;
+    z-index:150!important;
+    right:7vw!important;
+    bottom:148px!important;
+    top:auto!important;
+    min-width:150px;
+    min-height:42px;
+    background:rgba(255,255,255,.18)!important;
+    border:1px solid rgba(255,255,255,.48)!important;
+    box-shadow:0 10px 35px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.55)!important;
+    backdrop-filter:blur(18px) saturate(150%)!important;
+    -webkit-backdrop-filter:blur(18px) saturate(150%)!important;
+  }
+}
+@media(max-width:560px){
+  .hero .mode-switch{
+    right:5vw!important;
+    bottom:145px!important;
+    min-width:148px;
+  }
+}
