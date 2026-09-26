@@ -241,3 +241,56 @@ body.experience-switching .service-card{opacity:.55;transform:translateY(6px) sc
     text-transform:uppercase;
   }
 }
+
+/* FINAL CONSOLIDATED MOBILE LIQUID GLASS */
+@media(max-width:900px){
+  .glass-nav{overflow:visible}
+  .mode-switch{
+    display:flex!important;
+    visibility:visible!important;
+    opacity:1!important;
+    right:5vw!important;
+    bottom:145px!important;
+    top:auto!important;
+    z-index:135!important;
+  }
+  .mobile-action-bar{z-index:120!important}
+  .lang-menu,.mobile-menu{
+    left:0!important;
+    right:0!important;
+    width:auto!important;
+    max-width:none!important;
+    top:calc(100% + 10px)!important;
+    border-radius:22px!important;
+    padding:10px!important;
+    gap:3px!important;
+    background:var(--surface-strong)!important;
+    border:1px solid var(--line)!important;
+    box-shadow:var(--shadow)!important;
+    backdrop-filter:blur(22px) saturate(145%)!important;
+    -webkit-backdrop-filter:blur(22px) saturate(145%)!important;
+  }
+  .lang-menu{
+    display:grid!important;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-8px) scale(.98)!important;
+    transform-origin:top center!important;
+    transition:opacity .34s var(--ease),transform .48s var(--ease),visibility .34s!important;
+  }
+  .lang-menu.open{opacity:1!important;visibility:visible!important;transform:none!important}
+  .mobile-menu{transition:opacity .34s var(--ease),transform .48s var(--ease),visibility .34s!important}
+  .mobile-menu[hidden]{display:none!important}
+  .mobile-menu.open{display:grid!important}
+}
+@media(max-width:560px){
+  .glass-nav{height:64px!important}
+  .brand img{width:46px!important;height:46px!important}
+  .brand b{font-size:12px!important;letter-spacing:.14em!important}
+  .brand small{font-size:7px!important;letter-spacing:.14em!important}
+  .mode-switch{right:5vw!important;bottom:142px!important;transform:none!important}
+  .mode-option{padding:10px 15px!important;font-size:9px!important}
+  .mobile-action-bar{bottom:max(8px,env(safe-area-inset-bottom))!important}
+  .mobile-action-bar .action-icon,.mobile-action-bar .action-icon svg{width:23px!important;height:23px!important}
+  .mobile-action-bar a:first-child .whatsapp-icon{color:#fff!important}
+}
