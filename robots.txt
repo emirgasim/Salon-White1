@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://YOUR-DOMAIN.example/sitemap.xml
+# Add the final public site URL to the Sitemap line when the production domain is confirmed.
