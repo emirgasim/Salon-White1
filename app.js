@@ -39,62 +39,13 @@ ru:{kicker:"ЧАСЫ РАБОТЫ",title:"Часы работы",note:"Буде�
 ar:{kicker:"ساعات العمل",title:"ساعات العمل",note:"يسعدنا استقبالكم كل يوم.",days:{mon:"الاثنين",tue:"الثلاثاء",wed:"الأربعاء",thu:"الخميس",fri:"الجمعة",sat:"السبت",sun:"الأحد"}},
 az:{kicker:"İŞ SAATLARI",title:"İş Saatları",note:"Sizi hər gün qarşılamaqdan məmnun olarıq.",days:{mon:"Bazar ertəsi",tue:"Çərşənbə axşamı",wed:"Çərşənbə",thu:"Cümə axşamı",fri:"Cümə",sat:"Şənbə",sun:"Bazar"}}
 };
-const servicePreviewTranslations={
-tr:{title:"Kadın & Erkek Kuaför Hizmetleri",lead:"Saç | Renk | Kaynak | Bakım | Güzellik",items:[
-{name:"Saç",desc:"Kesim, fön, şekillendirme, maşa ve örgü uygulamaları.",image:"assets/images/banner-02-interior.png"},
-{name:"Renk",desc:"Dip boya, komple boya, ombre, balayage ve renk uygulamaları.",image:"assets/images/banner-03-collage.png"},
-{name:"Kaynak",desc:"Mikro, boncuk, bant ve tres kaynak uygulamaları.",image:"assets/images/banner-01-exterior.png"},
-{name:"Bakım",desc:"Keratin, botox, saç tedavileri ve profesyonel bakım.",image:"assets/images/banner-02-interior.png"},
-{name:"Güzellik",desc:"Manikür, pedikür, makyaj, kaş ve cilt bakımı.",image:"assets/images/banner-03-collage.png"}]},
-en:{title:"Women & Men Hair & Beauty Services",lead:"Hair | Color | Extensions | Care | Beauty",items:[
-{name:"Hair",desc:"Haircuts, blow-dry, styling, curls and braids.",image:"assets/images/banner-02-interior.png"},
-{name:"Color",desc:"Root color, full color, ombre, balayage and color services.",image:"assets/images/banner-03-collage.png"},
-{name:"Extensions",desc:"Micro, beaded, tape and weft hair extensions.",image:"assets/images/banner-01-exterior.png"},
-{name:"Care",desc:"Keratin, hair botox, treatments and professional care.",image:"assets/images/banner-02-interior.png"},
-{name:"Beauty",desc:"Manicure, pedicure, make-up, brows and skin care.",image:"assets/images/banner-03-collage.png"}]},
-de:{title:"Friseurleistungen für Damen & Herren",lead:"Haare | Farbe | Extensions | Pflege | Beauty",items:[
-{name:"Haare",desc:"Haarschnitt, Föhnen, Styling, Locken und Flechtfrisuren.",image:"assets/images/banner-02-interior.png"},
-{name:"Farbe",desc:"Ansatz, Komplettfarbe, Ombré, Balayage und Farbservices.",image:"assets/images/banner-03-collage.png"},
-{name:"Extensions",desc:"Mikro-, Bonding-, Tape- und Weft-Extensions.",image:"assets/images/banner-01-exterior.png"},
-{name:"Pflege",desc:"Keratin, Haar-Botox, Behandlungen und professionelle Pflege.",image:"assets/images/banner-02-interior.png"},
-{name:"Beauty",desc:"Maniküre, Pediküre, Make-up, Augenbrauen und Hautpflege.",image:"assets/images/banner-03-collage.png"}]},
-fr:{title:"Services de coiffure pour femmes & hommes",lead:"Cheveux | Couleur | Extensions | Soin | Beauté",items:[
-{name:"Cheveux",desc:"Coupe, brushing, coiffage, boucles et tresses.",image:"assets/images/banner-02-interior.png"},
-{name:"Couleur",desc:"Racines, couleur complète, ombré, balayage et coloration.",image:"assets/images/banner-03-collage.png"},
-{name:"Extensions",desc:"Extensions micro, à anneaux, adhésives et weft.",image:"assets/images/banner-01-exterior.png"},
-{name:"Soin",desc:"Kératine, botox capillaire, traitements et soins professionnels.",image:"assets/images/banner-02-interior.png"},
-{name:"Beauté",desc:"Manucure, pédicure, maquillage, sourcils et soins de la peau.",image:"assets/images/banner-03-collage.png"}]},
-es:{title:"Servicios de peluquería para mujeres y hombres",lead:"Cabello | Color | Extensiones | Cuidado | Belleza",items:[
-{name:"Cabello",desc:"Corte, secado, peinado, ondas y trenzas.",image:"assets/images/banner-02-interior.png"},
-{name:"Color",desc:"Raíces, color completo, ombré, balayage y coloración.",image:"assets/images/banner-03-collage.png"},
-{name:"Extensiones",desc:"Extensiones micro, con microperlas, cinta y weft.",image:"assets/images/banner-01-exterior.png"},
-{name:"Cuidado",desc:"Queratina, botox capilar, tratamientos y cuidado profesional.",image:"assets/images/banner-02-interior.png"},
-{name:"Belleza",desc:"Manicura, pedicura, maquillaje, cejas y cuidado de la piel.",image:"assets/images/banner-03-collage.png"}]},
-ru:{title:"Парикмахерские услуги для женщин и мужчин",lead:"Волосы | Окрашивание | Наращивание | Уход | Красота",items:[
-{name:"Волосы",desc:"Стрижка, укладка, фен, локоны и косы.",image:"assets/images/banner-02-interior.png"},
-{name:"Окрашивание",desc:"Корни, полное окрашивание, омбре, балаяж и цветовые услуги.",image:"assets/images/banner-03-collage.png"},
-{name:"Наращивание",desc:"Микро-, микрокольца, ленточное и тресс-наращивание.",image:"assets/images/banner-01-exterior.png"},
-{name:"Уход",desc:"Кератин, ботокс, лечение и профессиональный уход.",image:"assets/images/banner-02-interior.png"},
-{name:"Красота",desc:"Маникюр, педикюр, макияж, брови и уход за кожей.",image:"assets/images/banner-03-collage.png"}]},
-ar:{title:"خدمات تصفيف الشعر للنساء والرجال",lead:"الشعر | الصبغة | وصلات الشعر | العناية | الجمال",items:[
-{name:"الشعر",desc:"قص الشعر والتصفيف والسشوار والتموجات والضفائر.",image:"assets/images/banner-02-interior.png"},
-{name:"الصبغة",desc:"صبغة الجذور واللون الكامل والأومبريه والبالياج.",image:"assets/images/banner-03-collage.png"},
-{name:"وصلات الشعر",desc:"وصلات ميكرو وبالخرز والشريط والتريس.",image:"assets/images/banner-01-exterior.png"},
-{name:"العناية",desc:"الكيراتين وبوتوكس الشعر والعلاجات والعناية الاحترافية.",image:"assets/images/banner-02-interior.png"},
-{name:"الجمال",desc:"مانيكير وباديكير ومكياج وحواجب والعناية بالبشرة.",image:"assets/images/banner-03-collage.png"}]},
-az:{title:"Qadın və kişi saç xidmətləri",lead:"Saç | Rəng | Saç qaynağı | Qulluq | Gözəllik",items:[
-{name:"Saç",desc:"Saç kəsimi, fen, düzüm, maşa və hörük.",image:"assets/images/banner-02-interior.png"},
-{name:"Rəng",desc:"Dip boyası, tam boya, ombre, balayaj və rəng xidmətləri.",image:"assets/images/banner-03-collage.png"},
-{name:"Saç qaynağı",desc:"Mikro, muncuqlu, lent və tres saç qaynağı.",image:"assets/images/banner-01-exterior.png"},
-{name:"Qulluq",desc:"Keratin, saç botoksu, müalicə və peşəkar qulluq.",image:"assets/images/banner-02-interior.png"},
-{name:"Gözəllik",desc:"Manikür, pedikür, makiyaj, qaş və dəri baxımı.",image:"assets/images/banner-03-collage.png"}]}
-};
 function renderServicePreview(){
  const root=document.getElementById("servicePreviewGrid");if(!root)return;
- const x=servicePreviewTranslations[lang]||servicePreviewTranslations.en;
- const title=document.querySelector("[data-i18n=\"servicePreview.title\"]");if(title)title.textContent=x.title;
- const lead=document.querySelector("[data-i18n=\"servicePreview.lead\"]");if(lead)lead.textContent=x.lead;
- root.innerHTML=x.items.map((item,i)=>`<article class="service-preview-card glass-panel"><div class="service-preview-image"><img src="${item.image}" alt="${item.name}" loading="lazy" decoding="async"></div><div class="service-preview-glass"><span class="service-preview-index">0${i+1}</span><div><h3>${item.name}</h3><p>${item.desc}</p></div></div></article>`).join("");
+ const catalog=serviceCatalog[lang]||serviceCatalog.en,group=catalog[mode]||catalog.woman;
+ const title=document.querySelector("[data-i18n=\"servicePreview.title\"]");if(title)title.textContent=group.title;
+ const lead=document.querySelector("[data-i18n=\"servicePreview.lead\"]");if(lead)lead.textContent=group.lead;
+ const fallback=mode==="man"?"assets/images/banner-01-exterior.png":"assets/images/banner-02-interior.png";
+ root.innerHTML=group.categories.map((cat,i)=>`<article class="service-preview-card glass-panel"><div class="service-preview-image"><img src="${cat.image}" alt="${cat.title}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${fallback}'"></div><div class="service-preview-glass"><span class="service-preview-index">0${i+1}</span><div><h3>${cat.title}</h3><p>${cat.items.length} ${({tr:"hizmet",en:"services",de:"Leistungen",fr:"services",es:"servicios",ru:"услуг",ar:"خدمات",az:"xidmət"})[lang]||"services"}</p></div></div></article>`).join("");
 }
 const serviceTitles={tr:{woman:"Kadınlara Özel Hizmetlerimiz",man:"Erkeklere Özel Hizmetlerimiz"},en:{woman:"Our Services for Women",man:"Our Services for Men"},de:{woman:"Unsere Leistungen für Frauen",man:"Unsere Leistungen für Männer"},fr:{woman:"Nos services pour femmes",man:"Nos services pour hommes"},es:{woman:"Nuestros servicios para mujeres",man:"Nuestros servicios para hombres"},ru:{woman:"Наши услуги для женщин",man:"Наши услуги для мужчин"},ar:{woman:"خدماتنا الخاصة للنساء",man:"خدماتنا الخاصة للرجال"},az:{woman:"Qadınlar üçün xüsusi xidmətlərimiz",man:"Kişilər üçün xüsusi xidmətlərimiz"}};
 const modeWords={tr:{woman:"KADIN",man:"ERKEK"},en:{woman:"WOMAN",man:"MAN"},de:{woman:"FRAU",man:"MANN"},fr:{woman:"FEMME",man:"HOMME"},es:{woman:"MUJER",man:"HOMBRE"},ru:{woman:"ЖЕНЩИНА",man:"МУЖЧИНА"},ar:{woman:"امرأة",man:"رجل"},az:{woman:"QADIN",man:"KİŞİ"}};const getPath=(o,k)=>k.split(".").reduce((v,x)=>v?.[x],o);
