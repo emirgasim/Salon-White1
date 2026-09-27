@@ -89,7 +89,18 @@ export default {
     if (url.pathname === "/admin" || url.pathname === "/admin/") {
       return env.ASSETS ? env.ASSETS.fetch(new Request(new URL("/admin.html", url), request)) : new Response("ASSETS binding bulunamadı.", {status:503});
     }
-    if (env.ASSETS) return env.ASSETS.fetch(request);
+    if (env.ASSETS) {
+      const assetResponse = await env.ASSETS.fetch(request);
+      const contentType = assetResponse.headers.get("content-type") || "";
+      if (contentType.includes("text/html")) {
+        const headers = new Headers(assetResponse.headers);
+        headers.set("cache-control", "no-store, no-cache, must-revalidate, max-age=0");
+        headers.set("pragma", "no-cache");
+        headers.set("expires", "0");
+        return new Response(assetResponse.body, {status: assetResponse.status, statusText: assetResponse.statusText, headers});
+      }
+      return assetResponse;
+    }
     return new Response("Salon White Worker hazır. ASSETS binding bulunamadı.",{status:503,headers:{"content-type":"text/plain;charset=UTF-8"}});
   }
 };
