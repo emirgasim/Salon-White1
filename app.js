@@ -336,7 +336,7 @@ async function syncManagedImages(){
       const file=files.get(slot.file);
       const baseUrl="/assets/images/"+encodeURIComponent(slot.file);
       const source=file?.url||baseUrl;
-      el.src=source+(source.includes("?")?"&":"?")+"live="+Date.now();
+      el.src=source;
     });
     for(const [target,selector] of Object.entries(targets)){
       const slot=byTarget[target];
@@ -344,7 +344,7 @@ async function syncManagedImages(){
       const file=files.get(slot.file);
       const baseUrl="/assets/images/"+encodeURIComponent(slot.file);
       const source=(file?.url||baseUrl);
-      const live=source+(source.includes("?")?"&":"?")+"live="+Date.now();
+      const live=source;
       const el=document.querySelector(selector);
       if(!el)continue;
       if(el.tagName==="IMG")el.src=live;
