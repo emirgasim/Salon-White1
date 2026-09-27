@@ -8,3 +8,15 @@ body.experience-switching .service-card{opacity:.2;transform:translateY(10px) sc
 body.mode-dragging .hero-slider{transition:opacity .2s linear,transform .12s linear!important;transform:translateX(calc(var(--sw-drag,0) * 8px)) scale(1.012);opacity:.82}
 body.mode-dragging .hero-content{transition:opacity .18s linear,transform .12s linear!important;opacity:calc(.86 - abs(var(--sw-drag,0)) * .12)}
 body.mode-dragging.drag-man .mode-indicator{transition:transform .12s linear!important;transform:translateX(100%)}body.mode-dragging.drag-woman .mode-indicator{transition:transform .12s linear!important;transform:translateX(0)}
+
+/* Smooth, non-blurring mode change */
+body.experience-switching .hero-slider{filter:none!important;opacity:1!important;transform:scale(1.008)!important;transition:opacity .42s var(--sw-ease),transform .52s var(--sw-ease)!important}
+body.experience-switching .hero-content{filter:none!important;opacity:.72!important;transform:translateY(calc(-42% - 2px))!important;transition:opacity .28s var(--sw-ease),transform .42s var(--sw-ease)!important}
+body.experience-switching .service-card{filter:none!important}
+.experience-transition .transition-glass{backdrop-filter:blur(3px) saturate(118%)!important;-webkit-backdrop-filter:blur(3px) saturate(118%)!important}
+@keyframes swGlass{0%{opacity:0;transform:scale(1.015)}35%{opacity:.42}65%{opacity:.22}100%{opacity:0;transform:scale(1.005)}}
+@media(max-width:900px){
+ .experience-transition .transition-glass{backdrop-filter:blur(2px) saturate(112%)!important;-webkit-backdrop-filter:blur(2px) saturate(112%)!important}
+ body.experience-switching .hero-slider{opacity:1!important;transform:scale(1.006)!important}
+ body.experience-switching .hero-content{opacity:.78!important;transform:translateY(calc(-42% - 1px))!important}
+}
