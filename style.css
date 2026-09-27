@@ -186,7 +186,7 @@ body.experience-switching .service-card{opacity:.55;transform:translateY(6px) sc
   .mobile-action-bar{
     transition:transform .55s var(--ease),opacity .4s var(--ease),visibility .4s;
   }
-  body.hero-past .mobile-action-bar{
+  body.page-end .mobile-action-bar{
     transform:translateY(calc(100% + 24px));
     opacity:0;
     visibility:hidden;
