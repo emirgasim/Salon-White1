@@ -882,3 +882,22 @@ body[data-mode=man] .landmark-modal-card{background:linear-gradient(145deg,rgba(
   .hero h1 .hero-location-main{line-height:1.03;}
   .hero h1 .hero-location-second{font-size:.76em;margin-top:.04em;}
 }
+
+
+/* Touch devices: service cards must never keep a hover/zoom state after tapping. */
+@media (hover:none), (pointer:coarse){
+  .service-preview-card,
+  .service-preview-card:hover,
+  .service-preview-card:active{
+    transform:none!important;
+  }
+  .service-preview-card .service-preview-image img,
+  .service-preview-card:hover .service-preview-image img,
+  .service-preview-card:active .service-preview-image img{
+    transform:none!important;
+  }
+  .service-preview-card{
+    -webkit-tap-highlight-color:transparent;
+    touch-action:manipulation;
+  }
+}
