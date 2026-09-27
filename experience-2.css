@@ -49,3 +49,5 @@ body[data-mode=man].mode-scrolled .mode-switch .mode-option.active{color:#111!im
 
 /* Reliable horizontal mode swipe on touch devices; vertical page scrolling remains native. */
 html,body{touch-action:pan-y;}
+
+html,body{touch-action:pan-y}
