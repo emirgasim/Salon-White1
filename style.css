@@ -833,3 +833,5 @@ body[data-mode=man] .hours-panel{background:linear-gradient(135deg,rgba(255,255,
 .about-preview-card>.preview-icon img{display:block;width:42px;height:42px;object-fit:contain}
 body[data-mode=man] .about-preview-card>.preview-icon{background:rgba(255,255,255,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 10px 28px rgba(0,0,0,.22)}
 body[data-mode=man] .about-preview-card>.preview-icon img{filter:brightness(0) invert(1);opacity:.9}
+
+.hero h1 .hero-location-sub{display:inline-block;margin-top:.10em}.hero h1 .hero-location-main{display:inline-block}
