@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <filter id="liquidGlassFilter" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.018 0.028" numOctaves="2" seed="17" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G" result="distorted"/>
+    <feGaussianBlur in="distorted" stdDeviation="0.55" result="soft"/>
+    <feColorMatrix in="soft" type="saturate" values="1.12" result="sat"/>
+    <feBlend in="sat" in2="SourceGraphic" mode="screen"/>
+  </filter>
+</svg>
