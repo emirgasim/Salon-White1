@@ -280,6 +280,17 @@ export default {
     if (url.pathname === "/api/reel-cover" && request.method === "GET") return reelCover(request, env);
     if (url.pathname === "/api/upload" && request.method === "POST") return upload(request, env);
     if (request.method === "GET" && url.pathname.startsWith("/assets/images/")) {
+      // Önce Cloudflare Assets/CDN: mevcut site görselleri GitHub API'ye gitmeden hızlıca sunulur.
+      if (env.ASSETS) {
+        const assetResponse = await env.ASSETS.fetch(request);
+        if (assetResponse.ok) {
+          const headers = new Headers(assetResponse.headers);
+          headers.set("cache-control","public, max-age=86400, s-maxage=604800");
+          headers.set("x-salon-image-source","cloudflare-assets");
+          return new Response(assetResponse.body,{status:assetResponse.status,statusText:assetResponse.statusText,headers});
+        }
+      }
+      // Yalnızca deploy edilmiş Assets'ta bulunmayan yeni admin görsellerinde GitHub fallback.
       const imageResponse = await liveImage(request, env);
       if (imageResponse) return imageResponse;
     }
