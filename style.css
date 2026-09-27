@@ -376,3 +376,45 @@ body.experience-switching .service-card{opacity:.55;transform:translateY(6px) sc
     min-width:148px;
   }
 }
+
+/* Balanced Liquid Glass action bar — visually matched to the header */
+@media(max-width:900px){
+  .mobile-action-bar{
+    background:var(--surface)!important;
+    border:1px solid var(--line)!important;
+    box-shadow:0 18px 50px rgba(0,0,0,.16),inset 0 1px 0 rgba(255,255,255,.52),inset 0 -1px 0 rgba(0,0,0,.06)!important;
+    backdrop-filter:blur(22px) saturate(145%)!important;
+    -webkit-backdrop-filter:blur(22px) saturate(145%)!important;
+  }
+  .mobile-action-bar a{
+    color:var(--text)!important;
+    text-shadow:none!important;
+  }
+  .mobile-action-bar a::before{
+    background:rgba(255,255,255,.10)!important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.30)!important;
+  }
+  .mobile-action-bar a:first-child::before{background:rgba(255,255,255,.18)!important}
+  .mobile-action-bar .action-icon,
+  .mobile-action-bar .action-icon svg{
+    color:var(--text)!important;
+    filter:drop-shadow(0 1px 3px rgba(0,0,0,.16))!important;
+  }
+  .mobile-action-bar b{color:var(--text)!important;text-shadow:none!important}
+}
+body[data-mode=man]{
+  --surface:rgba(54,56,60,.62);
+  --surface-strong:rgba(62,64,68,.76);
+  --line:rgba(255,255,255,.16);
+  --shadow:0 24px 70px rgba(0,0,0,.32);
+}
+body[data-mode=man] .mobile-action-bar{
+  background:linear-gradient(135deg,rgba(70,72,76,.64),rgba(44,46,50,.58))!important;
+  box-shadow:0 18px 50px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.30),inset 0 -1px 0 rgba(0,0,0,.10)!important;
+}
+body[data-mode=man] .mobile-action-bar a,
+body[data-mode=man] .mobile-action-bar b,
+body[data-mode=man] .mobile-action-bar .action-icon,
+body[data-mode=man] .mobile-action-bar .action-icon svg{color:#f7f7f5!important}
+body[data-mode=man] .mobile-action-bar a::before{background:rgba(255,255,255,.08)!important}
+body[data-mode=man] .mobile-action-bar a:first-child::before{background:rgba(255,255,255,.14)!important}
