@@ -91,10 +91,20 @@ az:{kicker:"İŞ SAATLARI",title:"İş Saatları",note:"Sizi hər gün qarşıla
 function renderServicePreview(){
  const root=document.getElementById("servicePreviewGrid");if(!root)return;
  const catalog=serviceCatalog[lang]||serviceCatalog.en,group=catalog[mode]||catalog.woman;
- const title=document.querySelector("[data-i18n=\"servicePreview.title\"]");if(title)title.textContent=group.title;
- const lead=document.querySelector("[data-i18n=\"servicePreview.lead\"]");if(lead)lead.textContent=group.lead;
- const fallback=mode==="man"?"assets/images/banner-01-exterior.png":"assets/images/banner-02-interior.png";
- root.innerHTML=group.categories.map((cat,i)=>`<article class="service-preview-card glass-panel" id="service-preview-${cat.key}"><div class="service-preview-image"><img src="${cat.image}" alt="${cat.title}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${fallback}'"></div><div class="service-preview-glass"><div><h3>${cat.title}</h3><p>${cat.items.length} ${({tr:"hizmet",en:"services",de:"Leistungen",fr:"services",es:"servicios",ru:"услуг",ar:"خدمات",az:"xidmət"})[lang]||"services"}</p></div><a class="service-arrow-link" href="hizmetler.html#service-${cat.key}" aria-label="${cat.title} hizmetlerini görüntüle"><img src="assets/icons/service-arrow-circle.svg" alt="" aria-hidden="true"></a></div></article>`).join("");
+ const title=document.querySelector("[data-i18n="servicePreview.title"]");if(title)title.textContent=group.title;
+ const lead=document.querySelector("[data-i18n="servicePreview.lead"]");if(lead)lead.textContent=group.lead;
+ const prefix=mode==="woman"?"service-woman":"service-man";
+ const slotFiles=(window.SALON_IMAGE_SLOTS||[]).filter(s=>s.target&&s.target.startsWith(prefix+"-")).map(s=>s.file);
+ root.innerHTML=group.categories.map((cat,i)=>{
+   const managed=slotFiles[i];
+   const fallback=cat.image.startsWith("assets/")?cat.image:"assets/images/"+cat.image;
+   const src=managed?"assets/images/"+managed:fallback;
+   return `<article class="service-preview-card glass-panel" id="service-preview-${cat.key}">
+     <div class="service-preview-image"><img data-managed-service-image="${managed||""}" src="${src}" alt="${cat.title}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${fallback}'"></div>
+     <div class="service-preview-glass"><div><h3>${cat.title}</h3><p>${cat.items.length} ${({tr:"hizmet",en:"services",de:"Leistungen",fr:"services",es:"servicios",ru:"услуг",ar:"خدمات",az:"xidmət"})[lang]||"services"}</p></div><a class="service-arrow-link" href="hizmetler.html#service-${cat.key}" aria-label="${cat.title} hizmetlerini görüntüle"><img src="assets/icons/service-arrow-circle.svg" alt="" aria-hidden="true"></a></div>
+   </article>`;
+ }).join("");
+ syncManagedImages();
 }
 const serviceTitles={tr:{woman:"Kadınlara Özel Hizmetlerimiz",man:"Erkeklere Özel Hizmetlerimiz"},en:{woman:"Our Services for Women",man:"Our Services for Men"},de:{woman:"Unsere Leistungen für Frauen",man:"Unsere Leistungen für Männer"},fr:{woman:"Nos services pour femmes",man:"Nos services pour hommes"},es:{woman:"Nuestros servicios para mujeres",man:"Nuestros servicios para hombres"},ru:{woman:"Наши услуги для женщин",man:"Наши услуги для мужчин"},ar:{woman:"خدماتنا الخاصة للنساء",man:"خدماتنا الخاصة للرجال"},az:{woman:"Qadınlar üçün xüsusi xidmətlərimiz",man:"Kişilər üçün xüsusi xidmətlərimiz"}};
 const modeWords={tr:{woman:"KADIN",man:"ERKEK"},en:{woman:"WOMAN",man:"MAN"},de:{woman:"FRAU",man:"MANN"},fr:{woman:"FEMME",man:"HOMME"},es:{woman:"MUJER",man:"HOMBRE"},ru:{woman:"ЖЕНЩИНА",man:"МУЖЧИНА"},ar:{woman:"امرأة",man:"رجل"},az:{woman:"QADIN",man:"KİŞİ"}};const getPath=(o,k)=>k.split(".").reduce((v,x)=>v?.[x],o);
@@ -267,27 +277,32 @@ async function syncManagedImages(){
     if(!r.ok)return;
     const d=await r.json();
     const files=new Map((d.files||[]).map(x=>[x.name,x]));
+    const slots=window.SALON_IMAGE_SLOTS||[];
+    const byTarget=Object.fromEntries(slots.map(s=>[s.target,s]));
+    const resolve=(id)=>files.get(id)?.url||null;
     const targets={
-      "admin-slider-01-exterior.png":".hero-slider .hero-slide:nth-child(1)",
-      "admin-slider-02-interior.png":".hero-slider .hero-slide:nth-child(2)",
-      "admin-slider-03-collage.png":".hero-slider .hero-slide:nth-child(3)",
-      "admin-atmosphere-01.png":".feature-image-inner",
-      "admin-gallery-01-collage.png":".gallery-grid .gallery-card:nth-child(1) img",
-      "admin-gallery-02-exterior.png":".gallery-grid .gallery-card:nth-child(2) img",
-      "admin-gallery-03-interior.png":".gallery-grid .gallery-card:nth-child(3) img",
-      "admin-istanbul-01.png":".istanbul-bg"
+      "hero-slider-1":".hero-slider .hero-slide:nth-child(1)",
+      "hero-slider-2":".hero-slider .hero-slide:nth-child(2)",
+      "hero-slider-3":".hero-slider .hero-slide:nth-child(3)",
+      "atmosphere":".feature-image-inner",
+      "gallery-1":".gallery-grid .gallery-card:nth-child(1) img",
+      "gallery-2":".gallery-grid .gallery-card:nth-child(2) img",
+      "gallery-3":".gallery-grid .gallery-card:nth-child(3) img",
+      "istanbul":".istanbul-bg"
     };
-    const slots=Object.keys(targets);
-    const resolve=(name)=>files.get(name)?.url||null;
-    for(const [slot,selector] of Object.entries(targets)){
-      const file=files.get(slot);
+    for(const [target,selector] of Object.entries(targets)){
+      const slot=byTarget[target],file=slot&&files.get(slot.file);
       if(!file?.url)continue;
       const el=document.querySelector(selector);
       if(!el)continue;
       if(el.tagName==="IMG")el.src=file.url;
       else el.style.backgroundImage="url('"+file.url+"')";
     }
-    window.SALON_WHITE_MANAGED_IMAGES={files,targets,resolve};
+    document.querySelectorAll("[data-managed-service-image]").forEach(img=>{
+      const name=img.getAttribute("data-managed-service-image"),file=name&&files.get(name);
+      if(file?.url)img.src=file.url;
+    });
+    window.SALON_WHITE_MANAGED_IMAGES={files,slots,resolve};
   }catch(e){}
 }
 function observeReveals(){if(!revealObserver)revealObserver=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");revealObserver.unobserve(e.target);}}),{threshold:.12});document.querySelectorAll(".reveal:not(.visible)").forEach(e=>revealObserver.observe(e));}
