@@ -909,3 +909,8 @@ body[data-mode=man] .landmark-modal-card{background:linear-gradient(145deg,rgba(
 
 /* Universal media fitting for every uploaded/content photo — preserve aspect ratio, fill the frame, crop overflow. */
 img[src*="/assets/images/"]{object-fit:cover;object-position:center center}
+
+/* Woman / Man switch on inner pages */
+.page-mode-switch{position:fixed!important;right:5vw;bottom:28px;top:auto;z-index:140}
+@media(max-width:900px){.page-mode-switch{right:5vw;bottom:92px!important;transform:none!important}}
+@media(max-width:560px){.page-mode-switch{right:5vw;bottom:92px!important;transform:scale(.94)!important;transform-origin:right bottom}}
