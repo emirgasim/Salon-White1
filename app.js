@@ -295,12 +295,12 @@ async function syncManagedImages(){
       if(!file?.url)continue;
       const el=document.querySelector(selector);
       if(!el)continue;
-      if(el.tagName==="IMG")el.src=file.url;
+      if(el.tagName==="IMG")el.src=file.url+(file.url.includes("?")?"&":"?")+"live="+Date.now();
       else el.style.backgroundImage="url('"+file.url+"')";
     }
     document.querySelectorAll("[data-managed-service-image]").forEach(img=>{
       const name=img.getAttribute("data-managed-service-image"),file=name&&files.get(name);
-      if(file?.url)img.src=file.url;
+      if(file?.url)img.src=file.url+(file.url.includes("?")?"&":"?")+"live="+Date.now();
     });
     window.SALON_WHITE_MANAGED_IMAGES={files,slots,resolve};
   }catch(e){}
