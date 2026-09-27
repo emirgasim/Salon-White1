@@ -736,3 +736,7 @@ body[data-mode=man] .about-stat{
   border-color:rgba(255,255,255,.18) !important;
   box-shadow:inset 0 0 2px 1px rgba(255,255,255,.13),inset 0 0 16px rgba(255,255,255,.04),0 24px 70px rgba(0,0,0,.24) !important;
 }
+
+
+/* Keep the liquid-glass highlight clipped to each card */
+.review-card,.about-preview-card,.about-card,.about-stat{position:relative;overflow:hidden}
