@@ -505,3 +505,17 @@ body[data-mode=man] .hero::after{
 
 /* Eighth language stagger: Azerbaijani */
 .lang-menu.open button:nth-child(8){transition-delay:.32s!important}
+
+
+/* Woman / Man switch — centered divider stays clear of both glass halves */
+.mode-switch{isolation:isolate}
+.mode-switch>span{position:absolute;left:50%;top:50%;z-index:3;width:1px;height:18px;margin:0;transform:translate(-50%,-50%);background:rgba(255,255,255,.42);pointer-events:none}
+.mode-indicator{z-index:1!important;width:calc(50% - 14px)!important;transition:transform .32s cubic-bezier(.22,1,.36,1)!important}
+body[data-mode=man] .mode-indicator{transform:translateX(calc(100% + 16px))!important}
+.mode-option{z-index:4!important}
+.mode-switch.dragging .mode-indicator{transition:none!important}
+@media(max-width:900px){
+  .mode-switch>span{height:17px}
+  .mode-indicator{width:calc(50% - 14px)!important}
+  body[data-mode=man] .mode-indicator{transform:translateX(calc(100% + 16px))!important}
+}
