@@ -87,7 +87,7 @@ async function upload(request, env) {
   const path = cleanPath(form.get("path"));
   if (!(file instanceof File) || !path) return json({error:"Dosya veya hedef yol eksik."},400);
   if (file.size > MAX) return json({error:"Dosya 12 MB sınırını aşıyor."},413);
-  if (!ALLOWED.has(ext(path))) return json({error:"Desteklenmeyen görsel formatı."},415);
+  if (ext(path) !== "png") return json({error:"Yalnızca PNG görseller kabul edilir. Admin paneli yüklenen görseli otomatik olarak PNG'ye dönüştürür."},415);
   const repo = env.GITHUB_REPO || REPO;
   const branch = env.GITHUB_BRANCH || BRANCH;
   const api = "https://api.github.com/repos/"+repo+"/contents/"+path.split("/").map(encodeURIComponent).join("/");
