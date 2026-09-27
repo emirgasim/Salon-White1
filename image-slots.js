@@ -1,6 +1,6 @@
 /* Salon White — single source of truth for every editable image slot. */
 window.SALON_IMAGE_SLOTS=[
- {id:"01",label:"Slider 1 · Dış Cephe",file:"admin-slider-01-exterior.png",section:"Ana slider",legacy:"banner-01-exterior.png",target:"hero-slider-1"},
+ {id:"01",label:"Slider 1 · Dış Cephe",file:"admin-slider-01-exterior.png",section:"Ana slider",legacy:"banner-01-exterior.png",target:"hero-slider-1-disabled"},
  {id:"02",label:"Slider 2 · İç Mekân",file:"admin-slider-02-interior.png",section:"Ana slider",legacy:"banner-02-interior.png",target:"hero-slider-2"},
  {id:"03",label:"Slider 3 · Kolaj",file:"admin-slider-03-collage.png",section:"Ana slider",legacy:"banner-03-collage.png",target:"hero-slider-3"},
  {id:"04",label:"Salon Atmosferi",file:"admin-atmosphere-01.png",section:"Salon bölümü",legacy:"banner-02-interior.png",target:"atmosphere"},
