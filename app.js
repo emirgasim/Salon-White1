@@ -295,6 +295,11 @@ async function syncManagedImages(){
       if(!file)return;
       el.style.backgroundImage="url('"+file.url+"')";
     });
+    const istanbulFile=files.get("admin-istanbul-01.png");
+    if(istanbulFile?.url){
+      const bg=document.querySelector(".istanbul-bg");
+      if(bg)bg.style.backgroundImage="url('"+istanbulFile.url+"')";
+    }
     document.querySelectorAll("img[src*='assets/images/']").forEach(img=>{
       const m=(img.getAttribute("src")||"").match(/assets\/images\/([^?#]+)/);
       if(!m)return;
