@@ -857,6 +857,7 @@ body[data-mode=man] .about-preview-card>.preview-icon img{filter:brightness(0) i
 .landmark-modal-card h3{margin:5px 46px 11px 0;font-size:clamp(29px,7vw,42px);line-height:1;letter-spacing:-.045em;color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.16)}.landmark-modal-card p{margin:0;color:rgba(255,255,255,.96);font-size:13px;line-height:1.65;text-shadow:0 1px 12px rgba(0,0,0,.24)}.landmark-fact{margin-top:16px;padding:10px 13px;border-radius:14px;background:rgba(255,255,255,.20);border:1px solid rgba(255,255,255,.55);color:rgba(255,255,255,.96);font-size:9.5px;line-height:1.4;letter-spacing:.08em;text-transform:uppercase}
 .landmark-close{position:absolute;right:13px;top:13px;width:36px;height:36px;border:1px solid rgba(255,255,255,.72);border-radius:50%;background:rgba(255,255,255,.22);color:#fff;font-size:21px;line-height:1;cursor:pointer;z-index:2;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 8px 22px rgba(0,0,0,.10)}.landmark-open{overflow:hidden}
 .landmark-open .hero-content,
+.landmark-open .istanbul-content,
 .landmark-open .hero-meta,
 .landmark-open .scroll-cue,
 .landmark-open .mode-switch,
