@@ -914,3 +914,6 @@ img[src*="/assets/images/"]{object-fit:cover;object-position:center center}
 .page-mode-switch{position:fixed!important;right:5vw;bottom:28px;top:auto;z-index:140}
 @media(max-width:900px){.page-mode-switch{right:5vw;bottom:92px!important;transform:none!important}}
 @media(max-width:560px){.page-mode-switch{right:5vw;bottom:92px!important;transform:scale(.94)!important;transform-origin:right bottom}}
+
+/* Four quick actions stay in one row on every mobile page */
+@media(max-width:900px){.mobile-action-bar{grid-template-columns:repeat(4,minmax(0,1fr))!important;align-items:stretch!important}.mobile-action-bar a{min-width:0!important;white-space:nowrap!important}.mobile-action-bar b{font-size:clamp(8px,2.3vw,10px)!important}}
