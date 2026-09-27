@@ -519,3 +519,9 @@ body[data-mode=man] .mode-indicator{transform:translateX(calc(100% + 16px))!impo
   .mode-indicator{width:calc(50% - 14px)!important}
   body[data-mode=man] .mode-indicator{transform:translateX(calc(100% + 16px))!important}
 }
+
+
+/* Woman / Man labels centered inside their glass halves */
+.mode-switch{display:flex!important;align-items:stretch!important}
+.mode-switch .mode-option{flex:1 1 0!important;min-width:0!important;text-align:center!important;padding-left:10px!important;padding-right:10px!important;display:flex!important;align-items:center!important;justify-content:center!important}
+.mode-switch>span{left:50%!important;transform:translate(-50%,-50%)!important}
