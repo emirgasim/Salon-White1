@@ -111,15 +111,15 @@ const modeWords={tr:{woman:"KADIN",man:"ERKEK"},en:{woman:"WOMAN",man:"MAN"},de:
 const serviceCatalog={
 tr:{
  woman:{title:"Kadın Kuaför Hizmetleri",lead:"Saç, renk, kaynak, bakım ve güzellik hizmetlerimizi keşfedin.",categories:[
-  {key:"hair",title:"Saç Kesimi & Şekillendirme",image:"banner-02-interior.png",items:["Saç Kesimi","Düz Fön","Dalgalı Fön","Maşa","Örgü"]},
+  {key:"hair",title:"Saç & Şekillendirme",image:"banner-02-interior.png",items:["Saç Kesimi","Düz Fön","Dalgalı Fön","Maşa","Örgü"]},
   {key:"colour",title:"Saç Renklendirme",image:"banner-03-collage.png",items:["Dip Boya","Komple Boya","Ombre","Balayage","Renk Açma & Boyama"]},
-  {key:"extensions",title:"Saç Kaynak & Uzatma",image:"banner-03-collage.png",items:[
+  {key:"extensions",title:"Saç Kaynak & Extensions",image:"banner-03-collage.png",items:[
    {name:"Mikro Kaynak",desc:"Doğal görünüm ve hacim için ince bağlantılı saç kaynak uygulaması."},
    {name:"Boncuk Kaynak",desc:"Saça mekanik bağlantı yöntemiyle uygulanan, pratik ve doğal görünümlü kaynak sistemi."},
    {name:"Bant Kaynak",desc:"İnce bantlarla uygulanan, hafif ve doğal görünüm sağlayan kaynak yöntemi."},
    {name:"Tres Kaynak",desc:"Saç yoğunluğunu ve uzunluğunu artırmaya yönelik klasik kaynak uygulaması."}]},
-  {key:"care",title:"Saç Bakım & Onarım",image:"banner-02-interior.png",items:["Keratin Bakımı","Botox Bakımı","Saç Tedavisi","Saç Maskesi","Perma"]},
-  {key:"beauty",title:"Güzellik & Kişisel Bakım",image:"hizmet-06-kadin-treatment.png",items:["Manikür","Pedikür","Makyaj","Kaş Tasarımı","Yüz & Kaş Ağda","Cilt Bakımı"]}]},
+  {key:"care",title:"Saç Bakımı",image:"banner-02-interior.png",items:["Keratin Bakımı","Botox Bakımı","Saç Tedavisi","Saç Maskesi","Perma"]},
+  {key:"beauty",title:"Güzellik & Bakım",image:"hizmet-06-kadin-treatment.png",items:["Manikür","Pedikür","Makyaj","Kaş Tasarımı","Yüz & Kaş Ağda","Cilt Bakımı"]}]},
  man:{title:"Erkek Kuaför & Bakım Hizmetleri",lead:"Saç, sakal, renk, bakım ve kişisel bakım hizmetlerimizi keşfedin.",categories:[
   {key:"hair",title:"Saç & Sakal",image:"banner-01-exterior.png",items:["Saç Kesimi","Sakal Tıraşı","Sakal Tasarımı","Yıkama & Fön","Saç & Sakal Yıkama"]},
   {key:"colour",title:"Saç Renklendirme",image:"banner-01-exterior.png",items:["Saç Boyama","Keratin"]},
