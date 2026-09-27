@@ -101,147 +101,147 @@ const modeWords={tr:{woman:"KADIN",man:"ERKEK"},en:{woman:"WOMAN",man:"MAN"},de:
 const serviceCatalog={
 tr:{
  woman:{title:"Kadın Kuaför Hizmetleri",lead:"Saç, renk, kaynak, bakım ve güzellik hizmetlerimizi keşfedin.",categories:[
-  {key:"hair",title:"Saç & Şekillendirme",image:"hizmet-01-kadin-sac-kesimi.jpg",items:["Saç Kesimi","Düz Fön","Dalgalı Fön","Maşa","Örgü"]},
-  {key:"colour",title:"Saç Renk",image:"hizmet-02-kadin-balayage.jpg",items:["Dip Boya","Komple Boya","Ombre","Balayage","Renk Açma & Boyama"]},
-  {key:"extensions",title:"Saç Kaynak & Extensions",image:"hizmet-04-kadin-extensions.jpg",items:[
+  {key:"hair",title:"Saç & Şekillendirme",image:"banner-02-interior.png",items:["Saç Kesimi","Düz Fön","Dalgalı Fön","Maşa","Örgü"]},
+  {key:"colour",title:"Saç Renk",image:"banner-03-collage.png",items:["Dip Boya","Komple Boya","Ombre","Balayage","Renk Açma & Boyama"]},
+  {key:"extensions",title:"Saç Kaynak & Extensions",image:"banner-03-collage.png",items:[
    {name:"Mikro Kaynak",desc:"Doğal görünüm ve hacim için ince bağlantılı saç kaynak uygulaması."},
    {name:"Boncuk Kaynak",desc:"Saça mekanik bağlantı yöntemiyle uygulanan, pratik ve doğal görünümlü kaynak sistemi."},
    {name:"Bant Kaynak",desc:"İnce bantlarla uygulanan, hafif ve doğal görünüm sağlayan kaynak yöntemi."},
    {name:"Tres Kaynak",desc:"Saç yoğunluğunu ve uzunluğunu artırmaya yönelik klasik kaynak uygulaması."}]},
-  {key:"care",title:"Saç Bakımı",image:"hizmet-05-kadin-keratin.jpg",items:["Keratin Bakımı","Botox Bakımı","Saç Tedavisi","Saç Maskesi","Perma"]},
-  {key:"beauty",title:"Güzellik & Bakım",image:"hizmet-06-kadin-treatment.jpg",items:["Manikür","Pedikür","Makyaj","Kaş Tasarımı","Yüz & Kaş Ağda","Cilt Bakımı"]}]},
+  {key:"care",title:"Saç Bakımı",image:"banner-02-interior.png",items:["Keratin Bakımı","Botox Bakımı","Saç Tedavisi","Saç Maskesi","Perma"]},
+  {key:"beauty",title:"Güzellik & Bakım",image:"banner-03-collage.png",items:["Manikür","Pedikür","Makyaj","Kaş Tasarımı","Yüz & Kaş Ağda","Cilt Bakımı"]}]},
  man:{title:"Erkek Kuaför & Bakım Hizmetleri",lead:"Saç, sakal, renk, bakım ve kişisel bakım hizmetlerimizi keşfedin.",categories:[
-  {key:"hair",title:"Saç & Sakal",image:"hizmet-07-erkek-sac-kesimi.jpg",items:["Saç Kesimi","Sakal Tıraşı","Sakal Tasarımı","Yıkama & Fön","Saç & Sakal Yıkama"]},
-  {key:"colour",title:"Saç Renk",image:"hizmet-08-erkek-sac-sakal.jpg",items:["Saç Boyama","Keratin"]},
-  {key:"care",title:"Saç Bakımı",image:"hizmet-11-erkek-treatment.jpg",items:["Keratin","Saç Bakımı","Saç Tedavisi"]},
-  {key:"grooming",title:"Erkek Bakım",image:"hizmet-12-erkek-grooming.jpg",items:["Kaş Alma","Ağda","Manikür","Pedikür"]},
-  {key:"skin",title:"Cilt & Güzellik",image:"hizmet-11-erkek-treatment.jpg",items:["Cilt Temizleme","Full Cilt Bakımı"]}]}
+  {key:"hair",title:"Saç & Sakal",image:"banner-01-exterior.png",items:["Saç Kesimi","Sakal Tıraşı","Sakal Tasarımı","Yıkama & Fön","Saç & Sakal Yıkama"]},
+  {key:"colour",title:"Saç Renk",image:"banner-01-exterior.png",items:["Saç Boyama","Keratin"]},
+  {key:"care",title:"Saç Bakımı",image:"banner-02-interior.png",items:["Keratin","Saç Bakımı","Saç Tedavisi"]},
+  {key:"grooming",title:"Erkek Bakım",image:"banner-03-collage.png",items:["Kaş Alma","Ağda","Manikür","Pedikür"]},
+  {key:"skin",title:"Cilt & Güzellik",image:"banner-02-interior.png",items:["Cilt Temizleme","Full Cilt Bakımı"]}]}
 },
 en:{
  woman:{title:"Women's Hair & Beauty Services",lead:"Discover our hair, colour, extensions, care and beauty services.",categories:[
-  {key:"hair",title:"Hair & Styling",image:"hizmet-01-kadin-sac-kesimi.jpg",items:["Haircut","Blow Dry","Wavy Blow Dry","Curling","Braids"]},
-  {key:"colour",title:"Hair Colour",image:"hizmet-02-kadin-balayage.jpg",items:["Root Colour","Complete Colour","Ombre","Balayage","Colour Lightening & Dyeing"]},
-  {key:"extensions",title:"Hair Extensions",image:"hizmet-04-kadin-extensions.jpg",items:[
+  {key:"hair",title:"Hair & Styling",image:"banner-02-interior.png",items:["Haircut","Blow Dry","Wavy Blow Dry","Curling","Braids"]},
+  {key:"colour",title:"Hair Colour",image:"banner-03-collage.png",items:["Root Colour","Complete Colour","Ombre","Balayage","Colour Lightening & Dyeing"]},
+  {key:"extensions",title:"Hair Extensions",image:"banner-03-collage.png",items:[
    {name:"Micro Hair Extensions",desc:"Fine-bonded extensions designed for natural-looking length and volume."},
    {name:"Beaded Hair Extensions",desc:"A practical extension method attached mechanically with small beads for a natural finish."},
    {name:"Tape Hair Extensions",desc:"Lightweight extensions applied with slim tape sections for a natural look."},
    {name:"Weft / Tres Extensions",desc:"A classic extension method designed to add hair density and length."}]},
-  {key:"care",title:"Hair Care",image:"hizmet-05-kadin-keratin.jpg",items:["Keratin Care","Hair Botox Care","Hair Treatment","Restorative Hair Mask","Permanent Wave"]},
-  {key:"beauty",title:"Beauty & Care",image:"hizmet-06-kadin-treatment.jpg",items:["Manicure","Pedicure","Make-up","Eyebrow Design","Face & Eyebrow Wax","Skin Care"]}]},
+  {key:"care",title:"Hair Care",image:"banner-02-interior.png",items:["Keratin Care","Hair Botox Care","Hair Treatment","Restorative Hair Mask","Permanent Wave"]},
+  {key:"beauty",title:"Beauty & Care",image:"banner-03-collage.png",items:["Manicure","Pedicure","Make-up","Eyebrow Design","Face & Eyebrow Wax","Skin Care"]}]},
  man:{title:"Men's Hair & Grooming Services",lead:"Discover our hair, beard, colour, care and grooming services.",categories:[
-  {key:"hair",title:"Hair & Beard",image:"hizmet-07-erkek-sac-kesimi.jpg",items:["Haircut","Shave","Beard Styling","Wash + Blow Dry","Hair & Beard Wash"]},
-  {key:"colour",title:"Hair Colour",image:"hizmet-08-erkek-sac-sakal.jpg",items:["Hair Colour","Keratin"]},
-  {key:"care",title:"Hair Care",image:"hizmet-11-erkek-treatment.jpg",items:["Keratin","Hair Care","Hair Treatment"]},
-  {key:"grooming",title:"Men's Grooming",image:"hizmet-12-erkek-grooming.jpg",items:["Eyebrow Plucking","Waxing","Manicure","Pedicure"]},
-  {key:"skin",title:"Skin & Beauty",image:"hizmet-11-erkek-treatment.jpg",items:["Skin Cleansing","Full Skin Care"]}]}
+  {key:"hair",title:"Hair & Beard",image:"banner-01-exterior.png",items:["Haircut","Shave","Beard Styling","Wash + Blow Dry","Hair & Beard Wash"]},
+  {key:"colour",title:"Hair Colour",image:"banner-01-exterior.png",items:["Hair Colour","Keratin"]},
+  {key:"care",title:"Hair Care",image:"banner-02-interior.png",items:["Keratin","Hair Care","Hair Treatment"]},
+  {key:"grooming",title:"Men's Grooming",image:"banner-03-collage.png",items:["Eyebrow Plucking","Waxing","Manicure","Pedicure"]},
+  {key:"skin",title:"Skin & Beauty",image:"banner-02-interior.png",items:["Skin Cleansing","Full Skin Care"]}]}
 },
 de:{
  woman:{title:"Damen – Haare & Beauty",lead:"Entdecken Sie unsere Leistungen für Haare, Farbe, Extensions, Pflege und Beauty.",categories:[
-  {key:"hair",title:"Haare & Styling",image:"hizmet-01-kadin-sac-kesimi.jpg",items:["Haarschnitt","Föhnen","Wellen-Föhnen","Lockenstab","Flechten"]},
-  {key:"colour",title:"Haarfarbe",image:"hizmet-02-kadin-balayage.jpg",items:["Ansatzfärbung","Komplettfärbung","Ombré","Balayage","Aufhellen & Färben"]},
-  {key:"extensions",title:"Haarverlängerung",image:"hizmet-04-kadin-extensions.jpg",items:[
+  {key:"hair",title:"Haare & Styling",image:"banner-02-interior.png",items:["Haarschnitt","Föhnen","Wellen-Föhnen","Lockenstab","Flechten"]},
+  {key:"colour",title:"Haarfarbe",image:"banner-03-collage.png",items:["Ansatzfärbung","Komplettfärbung","Ombré","Balayage","Aufhellen & Färben"]},
+  {key:"extensions",title:"Haarverlängerung",image:"banner-03-collage.png",items:[
    {name:"Mikro-Haarverlängerung",desc:"Feine Verbindungen für eine natürliche Verlängerung und mehr Haarfülle."},
    {name:"Bonding mit Perlen",desc:"Mechanisch befestigte Extensions mit kleinen Perlen für einen natürlichen Look."},
    {name:"Tape-Extensions",desc:"Leichte Extensions mit schmalen Klebestreifen für ein natürliches Ergebnis."},
    {name:"Weft / Tres Extensions",desc:"Klassische Methode für mehr Haarfülle und Länge."}]},
-  {key:"care",title:"Haarpflege",image:"hizmet-05-kadin-keratin.jpg",items:["Keratinpflege","Haar-Botox-Pflege","Haarbehandlung","Aufbauende Haarmaske","Dauerwelle"]},
-  {key:"beauty",title:"Beauty & Pflege",image:"hizmet-06-kadin-treatment.jpg",items:["Maniküre","Pediküre","Make-up","Augenbrauen-Design","Gesichts- & Augenbrauenwax","Hautpflege"]}]},
+  {key:"care",title:"Haarpflege",image:"banner-02-interior.png",items:["Keratinpflege","Haar-Botox-Pflege","Haarbehandlung","Aufbauende Haarmaske","Dauerwelle"]},
+  {key:"beauty",title:"Beauty & Pflege",image:"banner-03-collage.png",items:["Maniküre","Pediküre","Make-up","Augenbrauen-Design","Gesichts- & Augenbrauenwax","Hautpflege"]}]},
  man:{title:"Herren – Haare & Pflege",lead:"Entdecken Sie unsere Leistungen für Haare, Bart, Farbe, Pflege und Grooming.",categories:[
-  {key:"hair",title:"Haare & Bart",image:"hizmet-07-erkek-sac-kesimi.jpg",items:["Haarschnitt","Rasur","Bartstyling","Waschen & Föhnen","Haar- & Bartwäsche"]},
-  {key:"colour",title:"Haarfarbe",image:"hizmet-08-erkek-sac-sakal.jpg",items:["Haarfarbe","Keratin"]},
-  {key:"care",title:"Haarpflege",image:"hizmet-11-erkek-treatment.jpg",items:["Keratin","Haarpflege","Haarbehandlung"]},
-  {key:"grooming",title:"Herrenpflege",image:"hizmet-12-erkek-grooming.jpg",items:["Augenbrauen zupfen","Waxing","Maniküre","Pediküre"]},
-  {key:"skin",title:"Haut & Beauty",image:"hizmet-11-erkek-treatment.jpg",items:["Hautreinigung","Ganzheitliche Gesichtspflege"]}]}
+  {key:"hair",title:"Haare & Bart",image:"banner-01-exterior.png",items:["Haarschnitt","Rasur","Bartstyling","Waschen & Föhnen","Haar- & Bartwäsche"]},
+  {key:"colour",title:"Haarfarbe",image:"banner-01-exterior.png",items:["Haarfarbe","Keratin"]},
+  {key:"care",title:"Haarpflege",image:"banner-02-interior.png",items:["Keratin","Haarpflege","Haarbehandlung"]},
+  {key:"grooming",title:"Herrenpflege",image:"banner-03-collage.png",items:["Augenbrauen zupfen","Waxing","Maniküre","Pediküre"]},
+  {key:"skin",title:"Haut & Beauty",image:"banner-02-interior.png",items:["Hautreinigung","Ganzheitliche Gesichtspflege"]}]}
 },
 fr:{
  woman:{title:"Services Coiffure & Beauté Femme",lead:"Découvrez nos services de coiffure, couleur, extensions, soins et beauté.",categories:[
-  {key:"hair",title:"Cheveux & Coiffage",image:"hizmet-01-kadin-sac-kesimi.jpg",items:["Coupe de Cheveux","Brushing","Brushing Ondulé","Boucles au Fer","Tresses"]},
-  {key:"colour",title:"Couleur des Cheveux",image:"hizmet-02-kadin-balayage.jpg",items:["Coloration des Racines","Coloration Complète","Ombré","Balayage","Éclaircissement & Coloration"]},
-  {key:"extensions",title:"Extensions de Cheveux",image:"hizmet-04-kadin-extensions.jpg",items:[
+  {key:"hair",title:"Cheveux & Coiffage",image:"banner-02-interior.png",items:["Coupe de Cheveux","Brushing","Brushing Ondulé","Boucles au Fer","Tresses"]},
+  {key:"colour",title:"Couleur des Cheveux",image:"banner-03-collage.png",items:["Coloration des Racines","Coloration Complète","Ombré","Balayage","Éclaircissement & Coloration"]},
+  {key:"extensions",title:"Extensions de Cheveux",image:"banner-03-collage.png",items:[
    {name:"Extensions Micro",desc:"Des extensions à fixation fine pour un résultat naturel et plus de volume."},
    {name:"Extensions à Anneaux",desc:"Une méthode de fixation mécanique avec de petits anneaux pour un résultat naturel."},
    {name:"Extensions Adhésives",desc:"Des extensions légères posées avec de fines bandes adhésives."},
    {name:"Extensions Weft / Tres",desc:"Une méthode classique pour augmenter la densité et la longueur des cheveux."}]},
-  {key:"care",title:"Soins des Cheveux",image:"hizmet-05-kadin-keratin.jpg",items:["Soin à la Kératine","Soin Botox Capillaire","Traitement Capillaire","Masque Réparateur","Permanente"]},
-  {key:"beauty",title:"Beauté & Soins",image:"hizmet-06-kadin-treatment.jpg",items:["Manucure","Pédicure","Maquillage","Design des Sourcils","Épilation Visage & Sourcils","Soin de la Peau"]}]},
+  {key:"care",title:"Soins des Cheveux",image:"banner-02-interior.png",items:["Soin à la Kératine","Soin Botox Capillaire","Traitement Capillaire","Masque Réparateur","Permanente"]},
+  {key:"beauty",title:"Beauté & Soins",image:"banner-03-collage.png",items:["Manucure","Pédicure","Maquillage","Design des Sourcils","Épilation Visage & Sourcils","Soin de la Peau"]}]},
  man:{title:"Services Coiffure & Soins Homme",lead:"Découvrez nos services pour cheveux, barbe, couleur, soins et grooming.",categories:[
-  {key:"hair",title:"Cheveux & Barbe",image:"hizmet-07-erkek-sac-kesimi.jpg",items:["Coupe Homme","Rasage","Taille & Styling de Barbe","Shampoing & Brushing","Lavage Cheveux & Barbe"]},
-  {key:"colour",title:"Couleur Homme",image:"hizmet-08-erkek-sac-sakal.jpg",items:["Couleur Homme","Kératine"]},
-  {key:"care",title:"Soins des Cheveux",image:"hizmet-11-erkek-treatment.jpg",items:["Kératine","Soin des Cheveux","Traitement Capillaire"]},
-  {key:"grooming",title:"Soins Homme",image:"hizmet-12-erkek-grooming.jpg",items:["Épilation des Sourcils","Épilation","Manucure","Pédicure"]},
-  {key:"skin",title:"Peau & Beauté",image:"hizmet-11-erkek-treatment.jpg",items:["Nettoyage de la Peau","Soin Complet de la Peau"]}]}
+  {key:"hair",title:"Cheveux & Barbe",image:"banner-01-exterior.png",items:["Coupe Homme","Rasage","Taille & Styling de Barbe","Shampoing & Brushing","Lavage Cheveux & Barbe"]},
+  {key:"colour",title:"Couleur Homme",image:"banner-01-exterior.png",items:["Couleur Homme","Kératine"]},
+  {key:"care",title:"Soins des Cheveux",image:"banner-02-interior.png",items:["Kératine","Soin des Cheveux","Traitement Capillaire"]},
+  {key:"grooming",title:"Soins Homme",image:"banner-03-collage.png",items:["Épilation des Sourcils","Épilation","Manucure","Pédicure"]},
+  {key:"skin",title:"Peau & Beauté",image:"banner-02-interior.png",items:["Nettoyage de la Peau","Soin Complet de la Peau"]}]}
 },
 es:{
  woman:{title:"Servicios de Peluquería y Belleza para Mujer",lead:"Descubre nuestros servicios de cabello, color, extensiones, cuidado y belleza.",categories:[
-  {key:"hair",title:"Cabello & Peinado",image:"hizmet-01-kadin-sac-kesimi.jpg",items:["Corte de Pelo","Secado con Cepillo","Brushing Ondulado","Ondulado con Tenacilla","Trenzas"]},
-  {key:"colour",title:"Coloración",image:"hizmet-02-kadin-balayage.jpg",items:["Coloración de Raíces","Coloración Completa","Ombré","Balayage","Decoloración & Coloración"]},
-  {key:"extensions",title:"Extensiones de Cabello",image:"hizmet-04-kadin-extensions.jpg",items:[
+  {key:"hair",title:"Cabello & Peinado",image:"banner-02-interior.png",items:["Corte de Pelo","Secado con Cepillo","Brushing Ondulado","Ondulado con Tenacilla","Trenzas"]},
+  {key:"colour",title:"Coloración",image:"banner-03-collage.png",items:["Coloración de Raíces","Coloración Completa","Ombré","Balayage","Decoloración & Coloración"]},
+  {key:"extensions",title:"Extensiones de Cabello",image:"banner-03-collage.png",items:[
    {name:"Extensiones Micro",desc:"Extensiones de fijación fina para aportar longitud y volumen con un resultado natural."},
    {name:"Extensiones con Microperlas",desc:"Sistema de fijación mecánica con pequeñas perlas para un acabado natural."},
    {name:"Extensiones de Cinta",desc:"Extensiones ligeras aplicadas con finas bandas adhesivas para un resultado natural."},
    {name:"Extensiones Weft / Tres",desc:"Método clásico para aumentar la densidad y longitud del cabello."}]},
-  {key:"care",title:"Cuidado Capilar",image:"hizmet-05-kadin-keratin.jpg",items:["Tratamiento de Queratina","Botox Capilar","Tratamiento Capilar","Mascarilla Reparadora","Permanente"]},
-  {key:"beauty",title:"Belleza & Cuidado",image:"hizmet-06-kadin-treatment.jpg",items:["Manicura","Pedicura","Maquillaje","Diseño de Cejas","Depilación de Rostro & Cejas","Cuidado de la Piel"]}]},
+  {key:"care",title:"Cuidado Capilar",image:"banner-02-interior.png",items:["Tratamiento de Queratina","Botox Capilar","Tratamiento Capilar","Mascarilla Reparadora","Permanente"]},
+  {key:"beauty",title:"Belleza & Cuidado",image:"banner-03-collage.png",items:["Manicura","Pedicura","Maquillaje","Diseño de Cejas","Depilación de Rostro & Cejas","Cuidado de la Piel"]}]},
  man:{title:"Servicios de Peluquería y Cuidado Masculino",lead:"Descubre nuestros servicios de cabello, barba, color, cuidado y grooming.",categories:[
-  {key:"hair",title:"Cabello & Barba",image:"hizmet-07-erkek-sac-kesimi.jpg",items:["Corte de Hombre","Afeitado","Diseño y Styling de Barba","Lavado & Secado","Lavado de Cabello & Barba"]},
-  {key:"colour",title:"Color Masculino",image:"hizmet-08-erkek-sac-sakal.jpg",items:["Coloración Masculina","Queratina"]},
-  {key:"care",title:"Cuidado Capilar",image:"hizmet-11-erkek-treatment.jpg",items:["Queratina","Cuidado Capilar","Tratamiento Capilar"]},
-  {key:"grooming",title:"Cuidado Masculino",image:"hizmet-12-erkek-grooming.jpg",items:["Perfilado de Cejas","Depilación","Manicura","Pedicura"]},
-  {key:"skin",title:"Piel & Belleza",image:"hizmet-11-erkek-treatment.jpg",items:["Limpieza Facial","Cuidado Facial Completo"]}]}
+  {key:"hair",title:"Cabello & Barba",image:"banner-01-exterior.png",items:["Corte de Hombre","Afeitado","Diseño y Styling de Barba","Lavado & Secado","Lavado de Cabello & Barba"]},
+  {key:"colour",title:"Color Masculino",image:"banner-01-exterior.png",items:["Coloración Masculina","Queratina"]},
+  {key:"care",title:"Cuidado Capilar",image:"banner-02-interior.png",items:["Queratina","Cuidado Capilar","Tratamiento Capilar"]},
+  {key:"grooming",title:"Cuidado Masculino",image:"banner-03-collage.png",items:["Perfilado de Cejas","Depilación","Manicura","Pedicura"]},
+  {key:"skin",title:"Piel & Belleza",image:"banner-02-interior.png",items:["Limpieza Facial","Cuidado Facial Completo"]}]}
 },
 ru:{
  woman:{title:"Женские услуги красоты и волос",lead:"Ознакомьтесь с услугами по волосам, окрашиванию, наращиванию, уходу и красоте.",categories:[
-  {key:"hair",title:"Стрижка и укладка",image:"hizmet-01-kadin-sac-kesimi.jpg",items:["Стрижка","Укладка феном","Волнистая укладка","Укладка плойкой","Косы"]},
-  {key:"colour",title:"Окрашивание",image:"hizmet-02-kadin-balayage.jpg",items:["Окрашивание корней","Полное окрашивание","Омбре","Балаяж","Осветление и окрашивание"]},
-  {key:"extensions",title:"Наращивание волос",image:"hizmet-04-kadin-extensions.jpg",items:[
+  {key:"hair",title:"Стрижка и укладка",image:"banner-02-interior.png",items:["Стрижка","Укладка феном","Волнистая укладка","Укладка плойкой","Косы"]},
+  {key:"colour",title:"Окрашивание",image:"banner-03-collage.png",items:["Окрашивание корней","Полное окрашивание","Омбре","Балаяж","Осветление и окрашивание"]},
+  {key:"extensions",title:"Наращивание волос",image:"banner-03-collage.png",items:[
    {name:"Микро-наращивание",desc:"Тонкое наращивание для естественного вида, длины и объёма."},
    {name:"Наращивание на микрокольца",desc:"Механическая система крепления с маленькими кольцами для естественного результата."},
    {name:"Ленточное наращивание",desc:"Лёгкие пряди на тонкой ленте для естественного и комфортного результата."},
    {name:"Тресс / Weft-наращивание",desc:"Классическая техника для увеличения густоты и длины волос."}]},
-  {key:"care",title:"Уход за волосами",image:"hizmet-05-kadin-keratin.jpg",items:["Кератиновый уход","Ботокс-уход для волос","Лечение волос","Восстанавливающая маска","Химическая завивка"]},
-  {key:"beauty",title:"Красота и уход",image:"hizmet-06-kadin-treatment.jpg",items:["Маникюр","Педикюр","Макияж","Оформление бровей","Воск для лица и бровей","Уход за кожей"]}]},
+  {key:"care",title:"Уход за волосами",image:"banner-02-interior.png",items:["Кератиновый уход","Ботокс-уход для волос","Лечение волос","Восстанавливающая маска","Химическая завивка"]},
+  {key:"beauty",title:"Красота и уход",image:"banner-03-collage.png",items:["Маникюр","Педикюр","Макияж","Оформление бровей","Воск для лица и бровей","Уход за кожей"]}]},
  man:{title:"Мужские услуги и уход",lead:"Ознакомьтесь с услугами для волос, бороды, окрашивания, ухода и grooming.",categories:[
-  {key:"hair",title:"Волосы и борода",image:"hizmet-07-erkek-sac-kesimi.jpg",items:["Мужская стрижка","Бритьё","Моделирование бороды","Мытьё и укладка","Мытьё волос и бороды"]},
-  {key:"colour",title:"Мужское окрашивание",image:"hizmet-08-erkek-sac-sakal.jpg",items:["Мужское окрашивание","Кератин"]},
-  {key:"care",title:"Уход за волосами",image:"hizmet-11-erkek-treatment.jpg",items:["Кератин","Уход за волосами","Лечение волос"]},
-  {key:"grooming",title:"Мужской уход",image:"hizmet-12-erkek-grooming.jpg",items:["Коррекция бровей","Воск","Маникюр","Педикюр"]},
-  {key:"skin",title:"Кожа и красота",image:"hizmet-11-erkek-treatment.jpg",items:["Очищение кожи","Комплексный уход за кожей"]}]}
+  {key:"hair",title:"Волосы и борода",image:"banner-01-exterior.png",items:["Мужская стрижка","Бритьё","Моделирование бороды","Мытьё и укладка","Мытьё волос и бороды"]},
+  {key:"colour",title:"Мужское окрашивание",image:"banner-01-exterior.png",items:["Мужское окрашивание","Кератин"]},
+  {key:"care",title:"Уход за волосами",image:"banner-02-interior.png",items:["Кератин","Уход за волосами","Лечение волос"]},
+  {key:"grooming",title:"Мужской уход",image:"banner-03-collage.png",items:["Коррекция бровей","Воск","Маникюр","Педикюр"]},
+  {key:"skin",title:"Кожа и красота",image:"banner-02-interior.png",items:["Очищение кожи","Комплексный уход за кожей"]}]}
 },
 ar:{
  woman:{title:"خدمات الشعر والجمال للنساء",lead:"اكتشفوا خدمات الشعر واللون والوصلات والعناية والجمال لدينا.",categories:[
-  {key:"hair",title:"الشعر والتصفيف",image:"hizmet-01-kadin-sac-kesimi.jpg",items:["قص الشعر","تصفيف بالسشوار","تصفيف مموج","تصفيف بالفير","ضفائر"]},
-  {key:"colour",title:"صبغة ولون الشعر",image:"hizmet-02-kadin-balayage.jpg",items:["صبغة الجذور","صبغة كاملة","أومبريه","بالياج","تفتيح وصبغ الشعر"]},
-  {key:"extensions",title:"وصلات الشعر",image:"hizmet-04-kadin-extensions.jpg",items:[
+  {key:"hair",title:"الشعر والتصفيف",image:"banner-02-interior.png",items:["قص الشعر","تصفيف بالسشوار","تصفيف مموج","تصفيف بالفير","ضفائر"]},
+  {key:"colour",title:"صبغة ولون الشعر",image:"banner-03-collage.png",items:["صبغة الجذور","صبغة كاملة","أومبريه","بالياج","تفتيح وصبغ الشعر"]},
+  {key:"extensions",title:"وصلات الشعر",image:"banner-03-collage.png",items:[
    {name:"وصلات ميكرو",desc:"وصلات دقيقة للحصول على طول وكثافة بمظهر طبيعي."},
    {name:"وصلات بالخرز",desc:"نظام وصل ميكانيكي باستخدام خرز صغير لمظهر طبيعي."},
    {name:"وصلات شريطية",desc:"وصلات خفيفة باستخدام شرائط رفيعة لمظهر طبيعي ومريح."},
    {name:"وصلات تريس / Weft",desc:"طريقة كلاسيكية لزيادة كثافة الشعر وطوله."}]},
-  {key:"care",title:"العناية بالشعر",image:"hizmet-05-kadin-keratin.jpg",items:["عناية بالكيراتين","بوتوكس الشعر","علاج الشعر","ماسك ترميم الشعر","بيرم"]},
-  {key:"beauty",title:"الجمال والعناية",image:"hizmet-06-kadin-treatment.jpg",items:["مانيكير","باديكير","مكياج","تصميم الحواجب","واكس للوجه والحواجب","العناية بالبشرة"]}]},
+  {key:"care",title:"العناية بالشعر",image:"banner-02-interior.png",items:["عناية بالكيراتين","بوتوكس الشعر","علاج الشعر","ماسك ترميم الشعر","بيرم"]},
+  {key:"beauty",title:"الجمال والعناية",image:"banner-03-collage.png",items:["مانيكير","باديكير","مكياج","تصميم الحواجب","واكس للوجه والحواجب","العناية بالبشرة"]}]},
  man:{title:"خدمات الشعر والعناية للرجال",lead:"اكتشفوا خدمات الشعر واللحية واللون والعناية الشخصية لدينا.",categories:[
-  {key:"hair",title:"الشعر واللحية",image:"hizmet-07-erkek-sac-kesimi.jpg",items:["قص شعر للرجال","حلاقة","تشكيل وتصفيف اللحية","غسيل وتصفيف","غسيل الشعر واللحية"]},
-  {key:"colour",title:"صبغة شعر للرجال",image:"hizmet-08-erkek-sac-sakal.jpg",items:["صبغة شعر للرجال","كيراتين"]},
-  {key:"care",title:"العناية بالشعر",image:"hizmet-11-erkek-treatment.jpg",items:["كيراتين","العناية بالشعر","علاج الشعر"]},
-  {key:"grooming",title:"العناية الرجالية",image:"hizmet-12-erkek-grooming.jpg",items:["تنظيف الحواجب","واكس","مانيكير","باديكير"]},
-  {key:"skin",title:"البشرة والجمال",image:"hizmet-11-erkek-treatment.jpg",items:["تنظيف البشرة","العناية الكاملة بالبشرة"]}]}
+  {key:"hair",title:"الشعر واللحية",image:"banner-01-exterior.png",items:["قص شعر للرجال","حلاقة","تشكيل وتصفيف اللحية","غسيل وتصفيف","غسيل الشعر واللحية"]},
+  {key:"colour",title:"صبغة شعر للرجال",image:"banner-01-exterior.png",items:["صبغة شعر للرجال","كيراتين"]},
+  {key:"care",title:"العناية بالشعر",image:"banner-02-interior.png",items:["كيراتين","العناية بالشعر","علاج الشعر"]},
+  {key:"grooming",title:"العناية الرجالية",image:"banner-03-collage.png",items:["تنظيف الحواجب","واكس","مانيكير","باديكير"]},
+  {key:"skin",title:"البشرة والجمال",image:"banner-02-interior.png",items:["تنظيف البشرة","العناية الكاملة بالبشرة"]}]}
 },
 az:{
  woman:{title:"Qadın saç və gözəllik xidmətləri",lead:"Saç, rəng, qaynaq, baxım və gözəllik xidmətlərimizi kəşf edin.",categories:[
-  {key:"hair",title:"Saç və düzüm",image:"hizmet-01-kadin-sac-kesimi.jpg",items:["Saç kəsimi","Düz fen","Dalğalı fen","Maşa","Hörük"]},
-  {key:"colour",title:"Saç rəngi",image:"hizmet-02-kadin-balayage.jpg",items:["Dip boyası","Tam saç boyası","Ombre","Balayaj","Rəng açma və boyama"]},
-  {key:"extensions",title:"Saç qaynağı & Extensions",image:"hizmet-04-kadin-extensions.jpg",items:[
+  {key:"hair",title:"Saç və düzüm",image:"banner-02-interior.png",items:["Saç kəsimi","Düz fen","Dalğalı fen","Maşa","Hörük"]},
+  {key:"colour",title:"Saç rəngi",image:"banner-03-collage.png",items:["Dip boyası","Tam saç boyası","Ombre","Balayaj","Rəng açma və boyama"]},
+  {key:"extensions",title:"Saç qaynağı & Extensions",image:"banner-03-collage.png",items:[
    {name:"Mikro qaynaq",desc:"Təbii görünüş, uzunluq və həcm üçün incə bağlantılı saç qaynağı."},
    {name:"Muncuqlu qaynaq",desc:"Kiçik muncuqlarla mexaniki bərkidilən, təbii görünüşlü qaynaq sistemi."},
    {name:"Lent qaynaq",desc:"Nazik lentlərlə tətbiq olunan, yüngül və təbii görünüşlü qaynaq üsulu."},
    {name:"Tres qaynaq",desc:"Saçın sıxlığını və uzunluğunu artırmaq üçün klassik qaynaq üsulu."}]},
-  {key:"care",title:"Saç baxımı",image:"hizmet-05-kadin-keratin.jpg",items:["Keratin baxımı","Saç botoksu baxımı","Saç müalicəsi","Bərpaedici saç maskası","Permanent"]},
-  {key:"beauty",title:"Gözəllik və baxım",image:"hizmet-06-kadin-treatment.jpg",items:["Manikür","Pedikür","Makiyaj","Qaş dizaynı","Üz və qaş ağdası","Dəri baxımı"]}]},
+  {key:"care",title:"Saç baxımı",image:"banner-02-interior.png",items:["Keratin baxımı","Saç botoksu baxımı","Saç müalicəsi","Bərpaedici saç maskası","Permanent"]},
+  {key:"beauty",title:"Gözəllik və baxım",image:"banner-03-collage.png",items:["Manikür","Pedikür","Makiyaj","Qaş dizaynı","Üz və qaş ağdası","Dəri baxımı"]}]},
  man:{title:"Kişi saç və baxım xidmətləri",lead:"Saç, saqqal, rəng, baxım və şəxsi qulluq xidmətlərimizi kəşf edin.",categories:[
-  {key:"hair",title:"Saç və saqqal",image:"hizmet-07-erkek-sac-kesimi.jpg",items:["Kişi saç kəsimi","Saqqal qırxımı","Model saqqal və düzüm","Yuma və fen","Saç və saqqal yuma"]},
-  {key:"colour",title:"Saç rəngi",image:"hizmet-08-erkek-sac-sakal.jpg",items:["Saç boyası","Keratin"]},
-  {key:"care",title:"Saç baxımı",image:"hizmet-11-erkek-treatment.jpg",items:["Keratin","Saç baxımı","Saç müalicəsi"]},
-  {key:"grooming",title:"Kişi baxımı",image:"hizmet-12-erkek-grooming.jpg",items:["Qaş alma","Ağda","Manikür","Pedikür"]},
-  {key:"skin",title:"Dəri və gözəllik",image:"hizmet-11-erkek-treatment.jpg",items:["Dəri təmizlənməsi","Tam dəri baxımı"]}]}
+  {key:"hair",title:"Saç və saqqal",image:"banner-01-exterior.png",items:["Kişi saç kəsimi","Saqqal qırxımı","Model saqqal və düzüm","Yuma və fen","Saç və saqqal yuma"]},
+  {key:"colour",title:"Saç rəngi",image:"banner-01-exterior.png",items:["Saç boyası","Keratin"]},
+  {key:"care",title:"Saç baxımı",image:"banner-02-interior.png",items:["Keratin","Saç baxımı","Saç müalicəsi"]},
+  {key:"grooming",title:"Kişi baxımı",image:"banner-03-collage.png",items:["Qaş alma","Ağda","Manikür","Pedikür"]},
+  {key:"skin",title:"Dəri və gözəllik",image:"banner-02-interior.png",items:["Dəri təmizlənməsi","Tam dəri baxımı"]}]}
 }};
 const serviceUi={tr:{detail:"HİZMET DETAYI",close:"Kapat"},en:{detail:"SERVICE DETAILS",close:"Close"},de:{detail:"LEISTUNGSDETAILS",close:"Schließen"},fr:{detail:"DÉTAILS DU SERVICE",close:"Fermer"},es:{detail:"DETALLES DEL SERVICIO",close:"Cerrar"},ru:{detail:"ПОДРОБНОСТИ УСЛУГ",close:"Закрыть"},ar:{detail:"تفاصيل الخدمة",close:"إغلاق"},az:{detail:"XİDMƏT DETALLARI",close:"Bağla"}};
 function renderServices(){
