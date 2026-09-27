@@ -827,3 +827,9 @@ body[data-mode=man] .service-card:after{background:linear-gradient(120deg,rgba(2
 .hours-panel h2{margin:10px 0 8px;font-size:clamp(38px,6vw,64px);letter-spacing:-.055em}.hours-note{margin:0 0 26px;color:var(--muted);font-size:14px}.hours-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.hours-grid>div{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 18px;border-radius:18px;background:rgba(255,255,255,.20);border:1px solid rgba(255,255,255,.38);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}.hours-grid span{color:var(--muted)}.hours-grid b{font-weight:600;white-space:nowrap}
 body[data-mode=man] .hours-panel{background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.04) 52%,rgba(255,255,255,.09));border-color:rgba(255,255,255,.24);box-shadow:inset 0 1px 0 rgba(255,255,255,.20),0 22px 65px rgba(0,0,0,.22)}body[data-mode=man] .hours-grid>div{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.18)}
 @media(max-width:620px){.hours-grid{grid-template-columns:1fr}.hours-grid>div{padding:15px 16px}.hours-panel{border-radius:30px}}
+
+/* Premium about preview SVG icons */
+.about-preview-card>.preview-icon{display:flex;align-items:center;justify-content:center;width:58px;height:58px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.46);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 10px 28px rgba(70,52,32,.08);color:var(--accent);font-size:0}
+.about-preview-card>.preview-icon img{display:block;width:42px;height:42px;object-fit:contain}
+body[data-mode=man] .about-preview-card>.preview-icon{background:rgba(255,255,255,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 10px 28px rgba(0,0,0,.22)}
+body[data-mode=man] .about-preview-card>.preview-icon img{filter:brightness(0) invert(1);opacity:.9}
