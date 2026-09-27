@@ -51,3 +51,16 @@ body[data-mode=man].mode-scrolled .mode-switch .mode-option.active{color:#111!im
 html,body{touch-action:pan-y;}
 
 html,body{touch-action:pan-y}
+
+
+/* Hizmetler sayfasinda ana sayfadaki gezen Woman / Man kontrolunun ayni gorunumu */
+.services-page .service-mode-switch{background:rgba(255,255,255,.62)!important;border:1px solid rgba(255,255,255,.78)!important;box-shadow:0 14px 38px rgba(35,30,24,.14),inset 0 1px 0 rgba(255,255,255,.9)!important;backdrop-filter:blur(24px) saturate(165%)!important;-webkit-backdrop-filter:blur(24px) saturate(165%)!important;color:#171717!important}
+.services-page .service-mode-switch .mode-option{color:#171717!important;text-shadow:0 1px 8px rgba(255,255,255,.45)!important}
+.services-page .service-mode-switch>span{background:rgba(20,20,20,.18)!important}
+.services-page .service-mode-switch .mode-indicator{background:rgba(255,255,255,.9)!important;box-shadow:0 5px 18px rgba(0,0,0,.13),inset 0 1px 0 rgba(255,255,255,1)!important}
+.services-page .service-mode-switch .mode-option.active{color:#111!important;text-shadow:none!important}
+body[data-mode=man] .services-page .service-mode-switch{background:rgba(22,24,27,.72)!important;border-color:rgba(255,255,255,.22)!important;box-shadow:0 16px 42px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.12)!important;color:#fff!important}
+body[data-mode=man] .services-page .service-mode-switch .mode-option{color:#f5f5f3!important;text-shadow:0 1px 9px rgba(0,0,0,.4)!important}
+body[data-mode=man] .services-page .service-mode-switch>span{background:rgba(255,255,255,.3)!important}
+body[data-mode=man] .services-page .service-mode-switch .mode-indicator{background:rgba(255,255,255,.94)!important}
+body[data-mode=man] .services-page .service-mode-switch .mode-option.active{color:#111!important;text-shadow:none!important}
