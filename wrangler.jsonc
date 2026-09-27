@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "salon-white1",
+  "main": "./_worker.js",
+  "compatibility_date": "2026-09-27",
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "."
+  },
+  "observability": {
+    "enabled": true
+  }
+}
