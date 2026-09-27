@@ -681,7 +681,7 @@ body[data-mode=man] .mobile-action-bar{
 }
 @media(max-width:900px){
   .glass-nav{border-radius:0 0 26px 26px !important}
-  .mobile-action-bar{border-radius:26px 26px 0 0 !important}
+  .mobile-action-bar{border-radius:9999px !important;bottom:max(8px,env(safe-area-inset-bottom)) !important;}
 }
 
 
