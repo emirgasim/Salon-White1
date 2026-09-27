@@ -86,6 +86,9 @@ export default {
     const url = new URL(request.url);
     if (url.pathname === "/api/images" && request.method === "GET") return images(request, env);
     if (url.pathname === "/api/upload" && request.method === "POST") return upload(request, env);
+    if (url.pathname === "/admin" || url.pathname === "/admin/") {
+      return env.ASSETS ? env.ASSETS.fetch(new Request(new URL("/admin.html", url), request)) : new Response("ASSETS binding bulunamadı.", {status:503});
+    }
     if (env.ASSETS) return env.ASSETS.fetch(request);
     return new Response("Salon White Worker hazır. ASSETS binding bulunamadı.",{status:503,headers:{"content-type":"text/plain;charset=UTF-8"}});
   }
