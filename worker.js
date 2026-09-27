@@ -86,8 +86,11 @@ export default {
     const url = new URL(request.url);
     if (url.pathname === "/api/images" && request.method === "GET") return images(request, env);
     if (url.pathname === "/api/upload" && request.method === "POST") return upload(request, env);
-    if (url.pathname === "/admin" || url.pathname === "/admin/") {
-      return env.ASSETS ? env.ASSETS.fetch(new Request(new URL("/admin.html", url), request)) : new Response("ASSETS binding bulunamadı.", {status:503});
+    if (url.pathname === "/admin" || url.pathname === "/admin/" || url.pathname === "/admin.html") {
+      if (!env.ASSETS) return new Response("ASSETS binding bulunamadı.", {status:503});
+      const adminUrl = new URL("/admin-panel.html", url);
+      const adminRequest = new Request(adminUrl, {method:"GET", headers:request.headers});
+      return env.ASSETS.fetch(adminRequest);
     }
     if (env.ASSETS) {
       const assetResponse = await env.ASSETS.fetch(request);
