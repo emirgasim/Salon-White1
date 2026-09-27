@@ -984,3 +984,37 @@ body[data-mode="man"] .reel-card{border-color:rgba(255,255,255,.18);box-shadow:0
 .instagram-reels .reels-intro-title{min-width:0}
 .instagram-reels .reels-intro-title .section-kicker,
 .instagram-reels .reels-intro-title h2{margin-left:0}
+
+
+/* Reels: finger swipe / native horizontal carousel on touch screens. */
+@media (max-width:560px){
+  .reels-stage{
+    justify-content:flex-start;
+    overflow-x:auto;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x proximity;
+    scrollbar-width:none;
+    overscroll-behavior-x:contain;
+    touch-action:pan-x pan-y;
+    padding:0 2px 6px;
+  }
+  .reels-stage::-webkit-scrollbar{display:none}
+  .reel-card{
+    scroll-snap-align:center;
+    flex-shrink:0;
+  }
+}
+@media (min-width:561px) and (max-width:900px){
+  .reels-stage{
+    overflow-x:auto;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x proximity;
+    scrollbar-width:none;
+    overscroll-behavior-x:contain;
+    touch-action:pan-x pan-y;
+  }
+  .reels-stage::-webkit-scrollbar{display:none}
+  .reel-card{scroll-snap-align:center;flex-shrink:0}
+}
