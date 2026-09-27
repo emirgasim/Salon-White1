@@ -81,7 +81,22 @@ async function liveImage(request, env) {
     }
   }, token);
   if (!response.ok) return null;
-  const data = await response.json().catch(()=>null);
+  let data = await response.json().catch(()=>null);
+  // GitHub Contents API may omit base64 content for larger binary files.
+  // In that case read the exact Git blob by SHA so gallery images load reliably.
+  if (!data?.content || data.encoding !== "base64") {
+    if (!data?.sha) return null;
+    const blobUrl = "https://api.github.com/repos/"+repo+"/git/blobs/"+encodeURIComponent(data.sha)+"?v="+Date.now();
+    const blobResponse = await github(blobUrl, {
+      method:"GET",
+      headers:{
+        "Cache-Control":"no-cache, no-store",
+        "Pragma":"no-cache"
+      }
+    }, token);
+    if (!blobResponse.ok) return null;
+    data = await blobResponse.json().catch(()=>null);
+  }
   if (!data?.content || data.encoding !== "base64") return null;
   const clean = String(data.content).replace(/\s/g,"");
   const binary = atob(clean);
