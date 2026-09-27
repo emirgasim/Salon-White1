@@ -563,3 +563,84 @@ body[data-mode=man] .glass-cta.call-cta{color:#fff;background:rgba(35,37,41,.72)
 
 /* About preview final layout: title only + symbolic cards + reviews above */
 .about-preview{padding-top:58px}.about-preview-head{margin-bottom:30px}.about-preview-head .section-head{margin-bottom:0}.about-preview-grid{margin-top:0}.preview-icon{width:46px;height:46px;display:inline-flex;align-items:center;justify-content:center;border-radius:16px;background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.88);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 8px 22px rgba(50,40,30,.07);color:#171717}.preview-icon svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.45;stroke-linecap:round;stroke-linejoin:round}.about-preview-card h3{margin:20px 0 14px}.reviews-before-about{padding-bottom:35px}.reviews-before-about .reviews-track{padding-bottom:10px}.reviews-before-about .review-card{min-height:185px}.reviews-before-about .reviews-hint{margin-top:0}@media(max-width:560px){.about-preview{padding-top:30px}.about-preview-head{margin-bottom:24px}.preview-icon{width:42px;height:42px;border-radius:14px}.preview-icon svg{width:21px;height:21px}.about-preview-card h3{margin-top:17px}.reviews-before-about{padding-top:55px;padding-bottom:20px}.reviews-before-about .review-card{min-height:185px}}
+
+
+/* Liquid Glass — experimental layer
+   Uses the supplied displacement-map concept on the translucent backdrop only.
+   Text/content stays sharp because the effect is applied with backdrop-filter. */
+.liquid-glass-surface,
+.glass-nav,
+.glass-panel,
+.lang-button,
+.menu-button,
+.nav-whatsapp,
+.glass-cta,
+.mode-switch,
+.mobile-action-bar,
+.service-card,
+.feature-glass,
+.nearby span,
+.about-card,
+.about-stat,
+.review-score,
+.about-lang select{
+  -webkit-backdrop-filter:blur(22px) saturate(155%);
+  backdrop-filter:url("./liquid-glass.svg#liquidGlassFilter") blur(22px) saturate(155%);
+}
+.glass-nav,
+.glass-panel,
+.service-card,
+.feature-glass,
+.about-card,
+.about-stat,
+.review-score{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.38),
+    inset 0 -1px 0 rgba(255,255,255,.08),
+    var(--shadow);
+}
+.glass-cta,
+.mode-switch,
+.mobile-action-bar,
+.lang-button,
+.menu-button,
+.nav-whatsapp,
+.nearby span,
+.about-lang select{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.42),
+    0 10px 32px rgba(35,25,15,.08);
+}
+body[data-mode=man] .glass-nav,
+body[data-mode=man] .glass-panel,
+body[data-mode=man] .service-card,
+body[data-mode=man] .feature-glass,
+body[data-mode=man] .about-card,
+body[data-mode=man] .about-stat,
+body[data-mode=man] .review-score{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.14),
+    inset 0 -1px 0 rgba(255,255,255,.04),
+    var(--shadow);
+}
+@media(prefers-reduced-motion:reduce){
+  .liquid-glass-surface,
+  .glass-nav,
+  .glass-panel,
+  .lang-button,
+  .menu-button,
+  .nav-whatsapp,
+  .glass-cta,
+  .mode-switch,
+  .mobile-action-bar,
+  .service-card,
+  .feature-glass,
+  .nearby span,
+  .about-card,
+  .about-stat,
+  .review-score,
+  .about-lang select{
+    backdrop-filter:blur(18px) saturate(145%);
+    -webkit-backdrop-filter:blur(18px) saturate(145%);
+  }
+}
