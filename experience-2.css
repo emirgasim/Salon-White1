@@ -27,3 +27,10 @@ body.mode-scrolled .mode-switch{position:fixed!important;right:5vw!important;bot
 body.mode-scrolled .mode-switch{background:var(--surface-strong)!important;box-shadow:0 18px 45px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.18)}
 @media(max-width:900px){body.mode-scrolled .mode-switch{right:14px!important;bottom:88px!important;z-index:160!important}}
 @media(max-width:560px){body.mode-scrolled .mode-switch{right:12px!important;bottom:88px!important;transform:none!important}}
+
+/* Strong contrast for the floating Woman / Man control */
+body.mode-scrolled .mode-switch{background:rgba(24,24,26,.94)!important;border:1px solid rgba(255,255,255,.28)!important;box-shadow:0 12px 35px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.14)!important;color:#fff!important;backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px)!important}
+body.mode-scrolled .mode-switch .mode-option{color:#fff!important;text-shadow:0 1px 8px rgba(0,0,0,.35)!important}
+body.mode-scrolled .mode-switch>span{background:rgba(255,255,255,.38)!important}
+body.mode-scrolled .mode-switch .mode-indicator{background:#fff!important;box-shadow:0 4px 16px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.9)!important}
+body.mode-scrolled .mode-switch .mode-option.active{color:#111!important;text-shadow:none!important}
