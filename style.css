@@ -971,19 +971,6 @@ body[data-mode="man"] .reel-card{border-color:rgba(255,255,255,.18);box-shadow:0
 @media(prefers-reduced-motion:reduce){.reel-card{transition:none}}
 
 
-/* Unified section alignment: numbered kickers and headings share the same left grid. */
-.istanbul-content{padding-left:0;padding-right:80px}
-@media(max-width:900px){
-  .istanbul-content{padding-left:0;padding-right:34px}
-}
-@media(max-width:560px){
-  .istanbul-content{padding-left:0;padding-right:27px}
-}
-
-/* Keep the Reels heading stack on the exact same section grid as the surrounding sections. */
-.instagram-reels .reels-intro-title{min-width:0}
-.instagram-reels .reels-intro-title .section-kicker,
-.instagram-reels .reels-intro-title h2{margin-left:0}
 
 
 /* Reels: finger swipe / native horizontal carousel on touch screens. */
