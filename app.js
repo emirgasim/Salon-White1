@@ -288,8 +288,19 @@ async function renderInstagramReels(){
   const cards=[...stage.querySelectorAll("[data-reel-card]")];
   cards.forEach((card,i)=>{
     const item=reels[i]||{url:fallback};
-    card.href=item.url||fallback;
-    card.dataset.reelUrl=item.url||fallback;
+    const url=item.url||fallback;
+    card.href=url;
+    card.dataset.reelUrl=url;
+    const img=card.querySelector("img");
+    if(img){
+      img.dataset.reelUrl=url;
+      img.src="/api/reel-cover?url="+encodeURIComponent(url)+"&ts="+Date.now();
+      img.onerror=()=>{
+        img.onerror=null;
+        img.src=img.dataset.fallback||"assets/images/admin-slider-03-collage.png";
+      };
+      img.dataset.fallback=img.getAttribute("src")||"assets/images/admin-slider-03-collage.png";
+    }
   });
   if(stage.dataset.bound==="1")return;
   stage.dataset.bound="1";
