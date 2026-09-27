@@ -38,6 +38,7 @@ async function github(url, options, token) {
       Accept: "application/vnd.github+json",
       Authorization: "Bearer " + token,
       "X-GitHub-Api-Version": "2022-11-28",
+      "User-Agent": "Salon-White-Admin",
       ...(options?.headers || {})
     }
   });
@@ -50,7 +51,10 @@ async function images(request, env) {
   const repo = env.GITHUB_REPO || REPO;
   const branch = env.GITHUB_BRANCH || BRANCH;
   const response = await github("https://api.github.com/repos/"+repo+"/contents/assets/images?ref="+encodeURIComponent(branch), {method:"GET"}, token);
-  if (!response.ok) return json({error:"Görsel listesi alınamadı."},502);
+  if (!response.ok) {
+    const detail = await response.json().catch(()=>({}));
+    return json({error:"Görsel listesi alınamadı.",githubStatus:response.status,githubMessage:detail.message||null},502);
+  }
   const data = await response.json();
   const files = Array.isArray(data) ? data.filter(x=>x.type==="file" && /\.(jpe?g|png|webp|avif)$/i.test(x.name)).map(x=>({name:x.name,url:x.download_url||x.html_url})) : [];
   return json({files});
@@ -72,7 +76,10 @@ async function upload(request, env) {
   let sha;
   const existing = await github(api+"?ref="+encodeURIComponent(branch), {method:"GET"}, token);
   if (existing.ok) sha = (await existing.json()).sha;
-  else if (existing.status !== 404) return json({error:"Mevcut dosya kontrol edilemedi."},502);
+  else if (existing.status !== 404) {
+    const detail = await existing.json().catch(()=>({}));
+    return json({error:"Mevcut dosya kontrol edilemedi.",githubStatus:existing.status,githubMessage:detail.message||null},502);
+  }
   const body = {message:"Admin: görsel güncelle — "+path.split("/").pop(),content:toBase64(await file.arrayBuffer()),branch};
   if (sha) body.sha = sha;
   const saved = await github(api,{method:"PUT",headers:{"content-type":"application/json"},body:JSON.stringify(body)},token);
