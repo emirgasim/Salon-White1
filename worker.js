@@ -192,7 +192,8 @@ export default {
     if (url.pathname === "/api/health" && request.method === "GET") {
       return json({ok:true, githubTokenConfigured:Boolean(githubToken(env)), githubTokenSource:githubTokenSource(env), repository:env.GITHUB_REPO || REPO, branch:env.GITHUB_BRANCH || BRANCH});
     }
-    if (url.pathname === "/api/images" && request.method === "GET") return images(request, env);\n    if (url.pathname === "/api/reels" && (request.method === "GET" || request.method === "POST")) return reels(request, env);
+    if (url.pathname === "/api/images" && request.method === "GET") return images(request, env);
+    if (url.pathname === "/api/reels" && (request.method === "GET" || request.method === "POST")) return reels(request, env);
     if (url.pathname === "/api/upload" && request.method === "POST") return upload(request, env);
     if (request.method === "GET" && url.pathname.startsWith("/assets/images/")) {
       const imageResponse = await liveImage(request, env);
