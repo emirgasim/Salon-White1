@@ -17,7 +17,9 @@ const auth = (request, env) => {
   const header = request.headers.get("Authorization") || "";
   if (!header.startsWith("Basic ")) return false;
   try {
-    const decoded = atob(header.slice(6));
+    const binary = atob(header.slice(6));
+    const bytes = Uint8Array.from(binary, char => char.charCodeAt(0));
+    const decoded = new TextDecoder().decode(bytes);
     const split = decoded.indexOf(":");
     if (split < 0) return false;
     return decoded.slice(0, split) === expectedUser && decoded.slice(split + 1) === expectedPassword;
