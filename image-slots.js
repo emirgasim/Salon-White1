@@ -4,9 +4,9 @@ window.SALON_IMAGE_SLOTS=[
  {id:"02",label:"Slider 2 · İç Mekân",file:"admin-slider-02-interior.png",section:"Ana slider",legacy:"banner-02-interior.png",target:"hero-slider-2"},
  {id:"03",label:"Slider 3 · Kolaj",file:"admin-slider-03-collage.png",section:"Ana slider",legacy:"banner-03-collage.png",target:"hero-slider-3"},
  {id:"04",label:"Salon Atmosferi",file:"admin-atmosphere-01.png",section:"Salon bölümü",legacy:"banner-02-interior.png",target:"atmosphere"},
- {id:"05",label:"Galeri · Kolaj",file:"admin-gallery-01-collage.png",section:"Galeri",legacy:"banner-03-collage.png",target:"gallery-1"},
- {id:"06",label:"Galeri · Dış Cephe",file:"admin-gallery-02-exterior.png",section:"Galeri",legacy:"banner-01-exterior.png",target:"gallery-2"},
- {id:"07",label:"Galeri · İç Mekân",file:"admin-gallery-03-interior.png",section:"Galeri",legacy:"banner-02-interior.png",target:"gallery-3"},
+ {id:"05",label:"Galeri 01 · Kolaj",file:"admin-gallery-01-collage.png",section:"Galeri",legacy:"banner-03-collage.png",target:"gallery-1"},
+ {id:"06",label:"Galeri 02 · Dış Cephe",file:"admin-gallery-02-exterior.png",section:"Galeri",legacy:"banner-01-exterior.png",target:"gallery-2"},
+ {id:"07",label:"Galeri 03 · İç Mekân",file:"admin-gallery-03-interior.png",section:"Galeri",legacy:"banner-02-interior.png",target:"gallery-3"},
  {id:"08",label:"İstanbul Bölümü",file:"admin-istanbul-01.png",section:"İstanbul",legacy:"istanbul-section-web.png",target:"istanbul"},
  {id:"09",label:"Kadın · Saç & Şekillendirme",file:"hizmet-01-kadin-sac-kesimi.png",section:"Hizmet · Kadın",target:"service-woman-1"},
  {id:"10",label:"Kadın · Saç Renklendirme",file:"hizmet-02-kadin-balayage.png",section:"Hizmet · Kadın",target:"service-woman-2"},
@@ -18,4 +18,10 @@ window.SALON_IMAGE_SLOTS=[
  {id:"16",label:"Erkek · Saç Bakım & Onarım",file:"hizmet-11-erkek-treatment.png",section:"Hizmet · Erkek",target:"service-man-3"},
  {id:"17",label:"Erkek · Erkek Bakım",file:"hizmet-12-erkek-grooming.png",section:"Hizmet · Erkek",target:"service-man-4"},
  {id:"18",label:"Erkek · Cilt & Güzellik",file:"hizmet-10-erkek-styling.png",section:"Hizmet · Erkek",target:"service-man-5"}
+ {id:"19",label:"Galeri 04 · Fotoğraf",file:"admin-gallery-04.png",section:"Galeri",target:"gallery-4"},
+ {id:"20",label:"Galeri 05 · Fotoğraf",file:"admin-gallery-05.png",section:"Galeri",target:"gallery-5"},
+ {id:"21",label:"Galeri 06 · Fotoğraf",file:"admin-gallery-06.png",section:"Galeri",target:"gallery-6"},
+ {id:"22",label:"Galeri 07 · Fotoğraf",file:"admin-gallery-07.png",section:"Galeri",target:"gallery-7"},
+ {id:"23",label:"Galeri 08 · Fotoğraf",file:"admin-gallery-08.png",section:"Galeri",target:"gallery-8"},
+ {id:"24",label:"Galeri 09 · Fotoğraf",file:"admin-gallery-09.png",section:"Galeri",target:"gallery-9"},
 ];
