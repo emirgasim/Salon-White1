@@ -366,12 +366,18 @@ function setupGalleryLightbox(){
   const modal=document.getElementById("galleryLightbox"),image=document.getElementById("galleryLightboxImage");
   if(!modal||!image||modal.dataset.bound==="1")return;
   modal.dataset.bound="1";
+  let closeTimer=null;
   const close=()=>{
-    modal.classList.remove("is-closing");
+    if(modal.hidden||modal.classList.contains("is-closing"))return;
+    modal.classList.add("is-closing");
     document.body.classList.remove("gallery-lightbox-open");
-    modal.hidden=true;
     modal.setAttribute("aria-hidden","true");
-    image.removeAttribute("src");
+    clearTimeout(closeTimer);
+    closeTimer=setTimeout(()=>{
+      modal.hidden=true;
+      modal.classList.remove("is-closing");
+      image.removeAttribute("src");
+    },280);
   };
   document.querySelectorAll("[data-gallery-target]").forEach(trigger=>{
     trigger.addEventListener("click",()=>{
