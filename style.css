@@ -955,7 +955,7 @@ img[src*="/assets/images/"]{object-fit:cover;object-position:center center}
 }
 @media(max-width:560px){
  .instagram-reels{padding:54px 0 70px}
- .reels-intro{padding:0 7vw;gap:14px;margin-bottom:24px}
+ .reels-intro{padding:0;gap:14px;margin-bottom:24px}
  .reels-intro-title h2{font-size:42px}
  .reels-intro>p{font-size:13px;line-height:1.45}
  .reels-artboard{width:calc(100% - 28px);padding:20px 12px;border-radius:23px}
