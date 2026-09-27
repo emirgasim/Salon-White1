@@ -83,7 +83,7 @@ async function liveImage(request, env) {
   if (!response.ok) return null;
   const data = await response.json().catch(()=>null);
   if (!data?.content || data.encoding !== "base64") return null;
-  const clean = String(data.content).replace(/\\s/g,"");
+  const clean = String(data.content).replace(/\s/g,"");
   const binary = atob(clean);
   const bytes = new Uint8Array(binary.length);
   for(let i=0;i<binary.length;i++) bytes[i]=binary.charCodeAt(i);
