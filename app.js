@@ -268,14 +268,14 @@ async function renderInstagramReels(){
   if(!stage)return;
   const fallback="https://www.instagram.com/reel/DdydkBaqr0s/?stkn=cHowem1icTBidGJl";
   const labels={
-    tr:{kicker:"05 / INSTAGRAM REELS",title:"Son çalışmalarımızı<br><em>Instagram'da keşfedin.</em>"},
-    en:{kicker:"05 / INSTAGRAM REELS",title:"Discover our latest work<br><em>on Instagram.</em>"},
-    de:{kicker:"05 / INSTAGRAM REELS",title:"Entdecken Sie unsere neuesten Arbeiten<br><em>auf Instagram.</em>"},
-    fr:{kicker:"05 / INSTAGRAM REELS",title:"Découvrez nos dernières réalisations<br><em>sur Instagram.</em>"},
-    es:{kicker:"05 / INSTAGRAM REELS",title:"Descubre nuestros últimos trabajos<br><em>en Instagram.</em>"},
-    ru:{kicker:"05 / INSTAGRAM REELS",title:"Смотрите наши последние работы<br><em>в Instagram.</em>"},
-    ar:{kicker:"05 / INSTAGRAM REELS",title:"اكتشفوا أحدث أعمالنا<br><em>على Instagram.</em>"},
-    az:{kicker:"05 / INSTAGRAM REELS",title:"Son işlərimizi kəşf edin<br><em>Instagram-da.</em>"}
+    tr:{kicker:"05 / INSTAGRAM REELS",introTitle:"Son çalışmalarımızı<br><em>keşfedin.</em>",introText:"Salon White Sirkeci'nin en yeni saç tasarımlarını, dönüşümlerini ve salon anlarını Instagram Reels'te keşfedin.",panelCopy:"Salon White Sirkeci'den seçtiğimiz en yeni çalışmalar ve ilham veren saç stilleri.",panelTitle:"OUR REELS"},
+    en:{kicker:"05 / INSTAGRAM REELS",introTitle:"View our<br><em>latest works.</em>",introText:"Discover Salon White Sirkeci's latest hair looks, transformations and salon moments on Instagram Reels.",panelCopy:"A selection of our latest work and inspiring hair styles from Salon White Sirkeci.",panelTitle:"OUR REELS"},
+    de:{kicker:"05 / INSTAGRAM REELS",introTitle:"Entdecken Sie unsere<br><em>neuesten Arbeiten.</em>",introText:"Entdecken Sie die neuesten Looks, Transformationen und Salonmomente von Salon White Sirkeci auf Instagram Reels.",panelCopy:"Eine Auswahl unserer neuesten Arbeiten und inspirierender Haarstile von Salon White Sirkeci.",panelTitle:"OUR REELS"},
+    fr:{kicker:"05 / INSTAGRAM REELS",introTitle:"Découvrez nos<br><em>dernières réalisations.</em>",introText:"Découvrez les dernières créations, transformations et moments de Salon White Sirkeci sur Instagram Reels.",panelCopy:"Une sélection de nos dernières créations et inspirations coiffure signées Salon White Sirkeci.",panelTitle:"OUR REELS"},
+    es:{kicker:"05 / INSTAGRAM REELS",introTitle:"Descubre nuestros<br><em>últimos trabajos.</em>",introText:"Descubre los últimos looks, transformaciones y momentos de Salon White Sirkeci en Instagram Reels.",panelCopy:"Una selección de nuestros últimos trabajos e inspiraciones de estilo de Salon White Sirkeci.",panelTitle:"OUR REELS"},
+    ru:{kicker:"05 / INSTAGRAM REELS",introTitle:"Откройте наши<br><em>новые работы.</em>",introText:"Смотрите новые образы, преображения и моменты Salon White Sirkeci в Instagram Reels.",panelCopy:"Подборка наших последних работ и вдохновляющих образов Salon White Sirkeci.",panelTitle:"OUR REELS"},
+    ar:{kicker:"05 / INSTAGRAM REELS",introTitle:"اكتشفوا أحدث<br><em>أعمالنا.</em>",introText:"اكتشفوا أحدث إطلالات وتحولات ولحظات Salon White Sirkeci على Instagram Reels.",panelCopy:"مختارات من أحدث أعمالنا وإطلالات الشعر الملهمة من Salon White Sirkeci.",panelTitle:"OUR REELS"},
+    az:{kicker:"05 / INSTAGRAM REELS",introTitle:"Son işlərimizi<br><em>kəşf edin.</em>",introText:"Salon White Sirkeci-nin ən yeni saç üslublarını, dəyişikliklərini və salon anlarını Instagram Reels-də kəşf edin.",panelCopy:"Salon White Sirkeci-dən seçilmiş ən yeni işlər və ilhamverici saç üslubları.",panelTitle:"OUR REELS"}
   };
   const t=labels[lang]||labels.en;
   document.querySelectorAll("[data-reel-i18n]").forEach(el=>{const key=el.dataset.reelI18n;if(t[key]!==undefined)el.innerHTML=t[key]});
