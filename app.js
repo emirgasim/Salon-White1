@@ -338,7 +338,7 @@ async function syncManagedImages(){
       if(el.tagName==="IMG")el.src=live;
       else el.style.backgroundImage="url('"+live+"')";
     }
-    slots.filter(s=>/^gallery-\\d+$/.test(s.target||"")).forEach(slot=>{
+    slots.filter(s=>/^gallery-\d+$/.test(s.target||"")).forEach(slot=>{
       const file=files.get(slot.file);
       const baseUrl="/assets/images/"+encodeURIComponent(slot.file);
       const source=(file?.url||baseUrl);
