@@ -340,8 +340,8 @@ async function syncManagedImages(){
     }
     slots.filter(s=>/^gallery-\d+$/.test(s.target||"")).forEach(slot=>{
       const file=files.get(slot.file);
-      const baseUrl="/assets/images/"+encodeURIComponent(slot.file);
-      const source=(file?.url||baseUrl);
+      if(!file?.url)return;
+      const source=file.url;
       const live=source+(source.includes("?")?"&":"?")+"live="+Date.now();
       const el=document.querySelector('[data-gallery-target="'+slot.target+'"] img');
       if(el)el.src=live;
