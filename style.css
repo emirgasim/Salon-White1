@@ -1193,3 +1193,11 @@ body.gallery-lightbox-open{overflow:hidden}
   .gallery-grid-featured .gallery-featured-trigger img{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
   .gallery-section-spacer{}
 }
+
+@media(max-width:560px){
+  /* 3x3 gallery: keep the visual rhythm balanced against the sections around it. */
+  .gallery.section-shell{padding-bottom:30px}
+  .gallery-instagram-note{margin:18px auto}
+  .gallery-grid.gallery-grid-9{margin-top:0;margin-bottom:0}
+  .gallery + .istanbul.section-shell{padding-top:30px}
+}
