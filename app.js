@@ -296,13 +296,19 @@ async function renderInstagramReels(){
   const nav=stage.parentElement?.querySelector(".reels-nav");
   if(nav){
     const prev=nav.children[0],next=nav.children[1];
+    const positions=["reel-card-outer-left","reel-card-left","reel-card-center","reel-card-right","reel-card-outer-right"];
+    let order=cards.map((card,i)=>({card,url:card.dataset.reelUrl||fallback}));
     const rotate=(dir)=>{
-      const values=cards.map(x=>x.dataset.reelUrl||fallback);
-      if(dir<0)values.unshift(values.pop());else values.push(values.shift());
-      cards.forEach((card,i)=>{card.dataset.reelUrl=values[i];card.href=values[i]});
+      if(dir<0)order=[order[order.length-1],...order.slice(0,-1)];
+      else order=[...order.slice(1),order[0]];
+      order.forEach((item,i)=>{
+        item.card.classList.remove(...positions);
+        item.card.classList.add(positions[i]);
+        item.card.href=item.url;
+      });
     };
-    prev?.addEventListener("click",()=>rotate(-1));
-    next?.addEventListener("click",()=>rotate(1));
+    prev?.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();rotate(-1)});
+    next?.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();rotate(1)});
   }
 }
 function applyLanguage(){renderInstagramReels();renderServicePreview();const servicePageTitles={tr:"Hizmetler | Salon White Sirkeci",en:"Services | Salon White Sirkeci",de:"Leistungen | Salon White Sirkeci",fr:"Services | Salon White Sirkeci",es:"Servicios | Salon White Sirkeci",ru:"Услуги | Salon White Sirkeci",ar:"الخدمات | Salon White Sirkeci",az:"Xidmətlər | Salon White Sirkeci"};const t=translations[lang]||translations.en;if(document.body?.dataset.servicePage==="true")document.title=servicePageTitles[lang]||servicePageTitles.en;const serviceTitle=document.querySelector("[data-i18n=\"services.title\"]");if(serviceTitle)serviceTitle.innerHTML=serviceTitles[lang]?.[mode]||serviceTitles.en[mode];const modeTitle=document.querySelector("[data-i18n=\"services.modeTitle\"]");if(modeTitle)modeTitle.textContent=serviceTitles[lang]?.[mode]||serviceTitles.en[mode];const ht=hoursTranslations[lang]||hoursTranslations.en;document.querySelector("[data-hours-kicker]")&&(document.querySelector("[data-hours-kicker]").textContent=ht.kicker);document.querySelector("[data-hours-title]")&&(document.querySelector("[data-hours-title]").textContent=ht.title);document.querySelector("[data-hours-note]")&&(document.querySelector("[data-hours-note]").textContent=ht.note);document.querySelectorAll("[data-day]").forEach(el=>{el.textContent=ht.days[el.dataset.day]||el.textContent});document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";document.querySelectorAll("[data-i18n]").forEach(el=>{const v=getPath(t,el.dataset.i18n);if(v)el.innerHTML=v;});const lb=document.getElementById("langButton");if(lb)lb.textContent=lang.toUpperCase();localStorage.setItem("salonWhiteLang",lang);const subtitle=document.getElementById("heroSubtitle");if(subtitle)subtitle.textContent=t.hero.subtitle;const title=document.getElementById("heroTitle");if(title){const heroLocations={tr:"SİRKECİ",en:"SIRKECI",de:"SIRKECI",fr:"SIRKECI",es:"SIRKECI",ru:"SIRKECI",ar:"SIRKECI",az:"SIRKECI"};title.innerHTML='<span>Salon</span> White<br><em class="hero-location-main"><span class="hero-location-word hero-location-first">'+(heroLocations[lang]||"SIRKECI")+'</span></em>';}document.querySelectorAll("[data-mode-switch]").forEach(btn=>{btn.textContent=modeWords[lang]?.[btn.dataset.modeSwitch]||btn.dataset.modeSwitch.toUpperCase();});const nearby=document.getElementById("nearbyList");if(nearby){const names=nearbyTranslations[lang]||nearbyTranslations.en;const keys=["ayasofya","kapalicarsi","topkapi","misircarsisi"];nearby.innerHTML=names.map((x,i)=>`<button type="button" class="nearby-place" data-landmark="${keys[i]}">${x}</button>`).join("");}}
