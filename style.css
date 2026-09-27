@@ -1130,7 +1130,8 @@ body.gallery-lightbox-open{overflow:hidden}
   .gallery-lightbox-close{top:-10px;right:-6px;width:40px;height:40px;font-size:25px}
 }
 
-.gallery-grid.gallery-grid-9{gap:10px}
+@media(min-width:561px){
+  .gallery-grid.gallery-grid-9{gap:10px}
   .gallery-grid-9 .gallery-card{border-radius:18px}
 }
 @media(max-width:560px){
