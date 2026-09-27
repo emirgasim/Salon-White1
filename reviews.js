@@ -1,0 +1,18 @@
+(()=>{const track=document.getElementById("reviewsTrack");if(!track)return;const reviews=[
+"Bugün arkadaşlarımla saçlarımızı yaptırdık ve çok memnun kaldık. Çok hijyenik ve çok sıcakkanlılar, herkese tavsiye ederiz.",
+"Profesyonel hizmet ve güler yüz. Cidden çok profesyoneller ve saçlarım artık emin ellerde.",
+"İstanbul'a geldiğimde vazgeçilmez adres. Saç ve bakım hizmetinden çok memnun kaldım.",
+"Almanya'dan tatile geldik, tesadüfen keşfettik. Her şey olması gerektiği gibi, çok memnun kaldık.",
+"Ailece gittik; samimi, güler yüzlü karşılama ve güzel ilgi. Çok memnun kaldık.",
+"Çalışmaları çok güzel. Saç bakımı, saç kesimi ve fön için düzenli olarak tercih ediyorum.",
+"Sehr empfehlenswert, freundlich, sehr zufrieden mit dem Haarschnitt, der Keratinbehandlung und der Föhnfrisur.",
+"Çok memnun kaldım, saçım tam istediğim gibi oldu. Güler yüzlü personellere teşekkür ederim.",
+"Hizmet çok iyi. Temiz, ilgili ve özenli bir salon deneyimi.",
+"Temizlik seviyesi çok iyi. Güler yüzlü hizmet ve güzel bir deneyim.",
+"Çok iyi saç kesimi ve özenli hizmet. Memnun kaldım.",
+"Saç bakımı için kaliteli ürünler kullanılıyor, sonuçtan çok memnun kaldım."
+];const labels={tr:{kicker:"GOOGLE YORUMLARI",title:"Misafirlerimizin<br><em>deneyimi.</em>",score:"Google puanı",hint:"Parmağınızla sağa veya sola kaydırın"},en:{kicker:"GOOGLE REVIEWS",title:"Our guests'<br><em>experience.</em>",score:"Google rating",hint:"Swipe left or right"},de:{kicker:"GOOGLE-BEWERTUNGEN",title:"Die Erfahrung<br><em>unserer Gäste.</em>",score:"Google-Bewertung",hint:"Nach links oder rechts wischen"},fr:{kicker:"AVIS GOOGLE",title:"L'expérience de<br><em>nos clients.</em>",score:"Note Google",hint:"Faites glisser à gauche ou à droite"},es:{kicker:"RESEÑAS DE GOOGLE",title:"La experiencia de<br><em>nuestros clientes.</em>",score:"Valoración Google",hint:"Desliza a izquierda o derecha"},ru:{kicker:"ОТЗЫВЫ GOOGLE",title:"Опыт<br><em>наших гостей.</em>",score:"Оценка Google",hint:"Свайпайте влево или вправо"},ar:{kicker:"تقييمات GOOGLE",title:"تجربة<br><em>ضيوفنا.</em>",score:"تقييم Google",hint:"اسحب يميناً أو يساراً"},az:{kicker:"GOOGLE RƏYLƏRİ",title:"Qonaqlarımızın<br><em>təcrübəsi.</em>",score:"Google reytinqi",hint:"Sağa və ya sola sürüşdürün"}};let lastLang=null,pos=0,timer=null;
+function lang(){return localStorage.getItem("salonWhiteLang")||"tr"}function render(){const l=lang(),t=labels[l]||labels.tr;if(l===lastLang&&track.children.length)return;lastLang=l;document.querySelectorAll("[data-review-i18n]").forEach(el=>{const k=el.dataset.reviewI18n;if(t[k])el.innerHTML=t[k]});track.innerHTML=reviews.map((r,i)=>'<article class="review-card"><div><div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div><p class="review-text">'+r+'</p></div><span class="review-source">Google · 5/5</span></article>').join("");pos=0;track.scrollLeft=0}
+function start(){clearInterval(timer);timer=setInterval(()=>{if(document.hidden||track.matches(":hover"))return;const card=track.querySelector(".review-card");if(!card)return;const step=card.getBoundingClientRect().width+16;pos=(pos+1)%reviews.length;track.scrollTo({left:pos*step,behavior:"smooth"})},5000)}
+render();start();setInterval(()=>{if(lang()!==lastLang){render();start()}},700);track.addEventListener("touchstart",()=>clearInterval(timer),{passive:true});track.addEventListener("touchend",start,{passive:true});track.addEventListener("pointerdown",()=>clearInterval(timer),{passive:true});track.addEventListener("pointerup",start,{passive:true});
+})();
