@@ -394,7 +394,7 @@ body.experience-switching .service-card{opacity:.55;transform:translateY(6px) sc
     background:rgba(255,255,255,.10)!important;
     box-shadow:inset 0 1px 0 rgba(255,255,255,.30)!important;
   }
-  .mobile-action-bar a:first-child::before{background:rgba(255,255,255,.18)!important}
+  .mobile-action-bar a:first-child::before{background:rgba(255,255,255,.10)!important}
   .mobile-action-bar .action-icon,
   .mobile-action-bar .action-icon svg{
     color:var(--text)!important;
@@ -417,4 +417,14 @@ body[data-mode=man] .mobile-action-bar b,
 body[data-mode=man] .mobile-action-bar .action-icon,
 body[data-mode=man] .mobile-action-bar .action-icon svg{color:#f7f7f5!important}
 body[data-mode=man] .mobile-action-bar a::before{background:rgba(255,255,255,.08)!important}
-body[data-mode=man] .mobile-action-bar a:first-child::before{background:rgba(255,255,255,.14)!important}
+body[data-mode=man] .mobile-action-bar a:first-child::before{background:rgba(255,255,255,.08)!important}
+
+/* Single-layer action buttons + draggable mode thumb */
+@media(max-width:900px){
+  .mobile-action-bar a::before{inset:3px 7px!important;background:rgba(255,255,255,.08)!important}
+  .mobile-action-bar a:first-child::before{background:rgba(255,255,255,.08)!important}
+  .mode-switch{touch-action:none!important;user-select:none;-webkit-user-select:none}
+  .mode-switch .mode-indicator{z-index:0;cursor:grab;touch-action:none}
+  .mode-switch.dragging .mode-indicator{cursor:grabbing;transition:none!important}
+  .mode-switch .mode-option{position:relative;z-index:2;touch-action:none}
+}
