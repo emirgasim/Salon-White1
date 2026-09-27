@@ -326,6 +326,15 @@ async function syncManagedImages(){
       "atmosphere":".feature-image-inner",
       "istanbul":".istanbul-bg"
     };
+    ["gallery-1","gallery-2","gallery-3"].forEach((target,i)=>{
+      const slot=byTarget[target];
+      const el=document.querySelector('[data-gallery-featured="'+(i+1)+'"]');
+      if(!slot||!el)return;
+      const file=files.get(slot.file);
+      const baseUrl="/assets/images/"+encodeURIComponent(slot.file);
+      const source=file?.url||baseUrl;
+      el.src=source+(source.includes("?")?"&":"?")+"live="+Date.now();
+    });
     for(const [target,selector] of Object.entries(targets)){
       const slot=byTarget[target];
       if(!slot)continue;
