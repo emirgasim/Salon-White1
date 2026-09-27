@@ -296,7 +296,7 @@ async function syncManagedImages(){
       const el=document.querySelector(selector);
       if(!el)continue;
       if(el.tagName==="IMG")el.src=file.url+(file.url.includes("?")?"&":"?")+"live="+Date.now();
-      else el.style.backgroundImage="url('"+file.url+"')";
+      else el.style.backgroundImage="url('"+file.url+(file.url.includes("?")?"&":"?")+"live="+Date.now()+"')";
     }
     document.querySelectorAll("[data-managed-service-image]").forEach(img=>{
       const name=img.getAttribute("data-managed-service-image"),file=name&&files.get(name);
