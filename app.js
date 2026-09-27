@@ -91,8 +91,8 @@ az:{kicker:"İŞ SAATLARI",title:"İş Saatları",note:"Sizi hər gün qarşıla
 function renderServicePreview(){
  const root=document.getElementById("servicePreviewGrid");if(!root)return;
  const catalog=serviceCatalog[lang]||serviceCatalog.en,group=catalog[mode]||catalog.woman;
- const title=document.querySelector("[data-i18n="servicePreview.title"]");if(title)title.textContent=group.title;
- const lead=document.querySelector("[data-i18n="servicePreview.lead"]");if(lead)lead.textContent=group.lead;
+ const title=document.querySelector('[data-i18n="servicePreview.title"]');if(title)title.textContent=group.title;
+ const lead=document.querySelector('[data-i18n="servicePreview.lead"]');if(lead)lead.textContent=group.lead;
  const prefix=mode==="woman"?"service-woman":"service-man";
  const slotFiles=(window.SALON_IMAGE_SLOTS||[]).filter(s=>s.target&&s.target.startsWith(prefix+"-")).map(s=>s.file);
  root.innerHTML=group.categories.map((cat,i)=>{
