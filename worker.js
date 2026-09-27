@@ -8,6 +8,7 @@ const json = (data, status = 200) => new Response(JSON.stringify(data), {
   headers: {"content-type":"application/json;charset=UTF-8","cache-control":"no-store"}
 });
 
+// Admin intentionally uses passwordless access. GitHub authorization stays server-side in the Cloudflare secret.
 const auth = () => true;
 
 const ext = (name) => (String(name).split(".").pop() || "").toLowerCase();
@@ -80,6 +81,9 @@ async function upload(request, env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.pathname === "/api/health" && request.method === "GET") {
+      return json({ok:true, githubTokenConfigured:Boolean(env.GITHUB_TOKEN)});
+    }
     if (url.pathname === "/api/images" && request.method === "GET") return images(request, env);
     if (url.pathname === "/api/upload" && request.method === "POST") return upload(request, env);
     if (url.pathname === "/admin" || url.pathname === "/admin/" || url.pathname === "/admin.html") {
