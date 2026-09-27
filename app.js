@@ -294,12 +294,9 @@ async function renderInstagramReels(){
     const img=card.querySelector("img");
     if(img){
       img.dataset.reelUrl=url;
+      img.dataset.fallback="assets/images/admin-slider-03-collage.png";
       img.src="/api/reel-cover?url="+encodeURIComponent(url)+"&ts="+Date.now();
-      img.onerror=()=>{
-        img.onerror=null;
-        img.src=img.dataset.fallback||"assets/images/admin-slider-03-collage.png";
-      };
-      img.dataset.fallback=img.getAttribute("src")||"assets/images/admin-slider-03-collage.png";
+      img.onerror=()=>{img.onerror=null;img.src=img.dataset.fallback;};
     }
   });
   if(stage.dataset.bound==="1")return;
@@ -308,15 +305,24 @@ async function renderInstagramReels(){
   if(nav){
     const prev=nav.children[0],next=nav.children[1];
     const positions=["reel-card-outer-left","reel-card-left","reel-card-center","reel-card-right","reel-card-outer-right"];
-    let order=cards.map((card,i)=>({card,url:card.dataset.reelUrl||fallback}));
-    const rotate=(dir)=>{
-      if(dir<0)order=[order[order.length-1],...order.slice(0,-1)];
-      else order=[...order.slice(1),order[0]];
+    let order=cards.map((card)=>({card,url:card.dataset.reelUrl||fallback}));
+    const applyOrder=()=>{
       order.forEach((item,i)=>{
         item.card.classList.remove(...positions);
         item.card.classList.add(positions[i]);
         item.card.href=item.url;
+        const img=item.card.querySelector("img");
+        if(img){
+          img.dataset.reelUrl=item.url;
+          img.dataset.fallback="assets/images/admin-slider-03-collage.png";
+          img.src="/api/reel-cover?url="+encodeURIComponent(item.url)+"&ts="+Date.now();
+        }
       });
+    };
+    const rotate=(dir)=>{
+      if(dir<0)order=[order[order.length-1],...order.slice(0,-1)];
+      else order=[...order.slice(1),order[0]];
+      applyOrder();
     };
     prev?.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();rotate(-1)});
     next?.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();rotate(1)});
