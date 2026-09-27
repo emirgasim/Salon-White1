@@ -69,13 +69,24 @@ async function liveImage(request, env) {
   const url = new URL(request.url);
   const path = cleanPath(decodeURIComponent(url.pathname));
   if (!path || !ALLOWED.has(ext(path))) return null;
-  const api = "https://api.github.com/repos/"+repo+"/contents/"+path.split("/").map(encodeURIComponent).join("/");
-  const response = await github(api+"?ref="+encodeURIComponent(branch)+"&v="+Date.now(), {method:"GET",headers:{"Accept":"application/vnd.github.raw","Cache-Control":"no-cache"}}, token);
+  // Görselleri Cloudflare Static Assets'ten değil, doğrudan GitHub main branch'ten oku.
+  // Böylece admin panelinden yüklenen son PNG anında yayınlanır ve eski asset/cache gösterilmez.
+  const rawUrl = "https://raw.githubusercontent.com/"+repo+"/"+encodeURIComponent(branch)+"/"+path.split("/").map(encodeURIComponent).join("/")+"?v="+Date.now();
+  const response = await fetch(rawUrl, {
+    method:"GET",
+    headers:{
+      "Authorization":"Bearer "+token,
+      "Cache-Control":"no-cache, no-store",
+      "Pragma":"no-cache"
+    }
+  });
   if (!response.ok) return null;
   const headers = new Headers(response.headers);
+  headers.set("content-type", response.headers.get("content-type") || "image/png");
   headers.set("cache-control","no-store, no-cache, must-revalidate, max-age=0");
   headers.set("pragma","no-cache");
   headers.set("expires","0");
+  headers.set("x-salon-image-source","github-main-live");
   return new Response(response.body,{status:200,headers});
 }
 async function upload(request, env) {
