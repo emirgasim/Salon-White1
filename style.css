@@ -530,7 +530,8 @@ body[data-mode=man] .mode-indicator{transform:translateX(calc(100% + 16px))!impo
 /* Mobile exterior hero: use the dedicated portrait banner without desktop cropping */
 @media(max-width:900px){
   .hero-slide:nth-child(1){
-    background-image:url('assets/images/banner-01-exterior-mobile.jpg') !important;
+    /* Temporary safe fallback until the replacement mobile binary is deployed correctly */
+    background-image:url('assets/images/banner-01-exterior.png') !important;
     background-size:cover;
     background-position:center center;
   }
