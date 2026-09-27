@@ -527,15 +527,9 @@ body[data-mode=man] .mode-indicator{transform:translateX(calc(100% + 16px))!impo
 .mode-switch>span{left:50%!important;transform:translate(-50%,-50%)!important}
 
 
-/* Mobile exterior hero: use the dedicated portrait banner without desktop cropping */
-@media(max-width:900px){
-  .hero-slide:nth-child(1){
-    background-image:url('assets/images/banner-01-exterior-mobile.jpg') !important;
-    background-size:cover;
-    background-position:center center;
-  }
-}
-
+/* Slider 1 artık tüm ekranlarda admin-panel tarafından yönetilen görseli kullanır.
+   Eski banner-01-exterior-mobile.jpg override'ı kaldırıldı; aksi halde mobilde
+   admin-slider-01-exterior.png yerine eski fotoğraf geri geliyordu. */
 /* Service image slots managed from /admin.html */
 .service-visual{height:150px;border-radius:18px;overflow:hidden;position:relative;margin:-3px -3px 18px;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(0,0,0,.16));border:1px solid rgba(255,255,255,.1)}
 .service-visual img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .7s var(--ease),opacity .35s var(--ease)}
