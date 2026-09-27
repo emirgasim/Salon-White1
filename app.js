@@ -291,12 +291,18 @@ async async function syncManagedImages(){
       "istanbul":".istanbul-bg"
     };
     for(const [target,selector] of Object.entries(targets)){
-      const slot=byTarget[target],file=slot&&files.get(slot.file);
-      if(!file?.url)continue;
+      const slot=byTarget[target];
+      if(!slot)continue;
+      const file=files.get(slot.file);
+      // Use the managed filename directly as a fallback. This keeps the
+      // homepage image visible even if the GitHub image-list API is delayed.
+      const baseUrl="/assets/images/"+encodeURIComponent(slot.file);
+      const source=(file?.url||baseUrl);
+      const live=source+(source.includes("?")?"&":"?")+"live="+Date.now();
       const el=document.querySelector(selector);
       if(!el)continue;
-      if(el.tagName==="IMG")el.src=file.url+(file.url.includes("?")?"&":"?")+"live="+Date.now();
-      else el.style.backgroundImage="url('"+file.url+(file.url.includes("?")?"&":"?")+"live="+Date.now()+"')";
+      if(el.tagName==="IMG")el.src=live;
+      else el.style.backgroundImage="url('"+live+"')";
     }
     document.querySelectorAll("[data-managed-service-image]").forEach(img=>{
       const name=img.getAttribute("data-managed-service-image"),file=name&&files.get(name);
