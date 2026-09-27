@@ -188,7 +188,7 @@ az:{
 }};
 const serviceUi={tr:{detail:"HİZMET DETAYI",close:"Kapat"},en:{detail:"SERVICE DETAILS",close:"Close"},de:{detail:"LEISTUNGSDETAILS",close:"Schließen"},fr:{detail:"DÉTAILS DU SERVICE",close:"Fermer"},es:{detail:"DETALLES DEL SERVICIO",close:"Cerrar"},ru:{detail:"ПОДРОБНОСТИ УСЛУГ",close:"Закрыть"},ar:{detail:"تفاصيل الخدمة",close:"إغلاق"},az:{detail:"XİDMƏT DETALLARI",close:"Bağla"}};
 function renderServices(){
- const root=document.getElementById("serviceGrid"),detail=document.getElementById("serviceDetailPanel");if(!root)return;
+ const root=document.getElementById("serviceGrid"),detail=document.getElementById("serviceDetailPanel");if(!root)return;if(detail){detail.hidden=true;detail.classList.remove("is-open");}
  const catalog=serviceCatalog[lang]||serviceCatalog.en,group=catalog[mode]||catalog.woman;
  const lead=document.querySelector("[data-i18n=\"services.lead\"]");if(lead)lead.textContent=group.lead;
  const title=document.querySelector("[data-i18n=\"services.title\"]");if(title)title.innerHTML=group.title;
