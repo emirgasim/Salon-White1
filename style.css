@@ -958,8 +958,8 @@ img[src*="/assets/images/"]{object-fit:cover;object-position:center center}
  .reels-intro{padding:0;gap:14px;margin-bottom:24px}
  .reels-intro-title h2{font-size:42px}
  .reels-intro>p{font-size:13px;line-height:1.45}
- .reels-artboard{width:calc(100% - 28px);padding:20px 12px;border-radius:23px}
- .reels-stage{height:205px;gap:10px;justify-content:center;overflow:hidden;padding:0}
+ .reels-artboard{width:calc(100% - 28px);padding:12px 7px;border-radius:23px}
+ .reels-stage{height:220px;gap:10px;justify-content:center;overflow:hidden;padding:0}
  .reel-card{flex:0 0 104px;width:104px;border-radius:13px}
  .reel-card .reel-play{width:32px;height:32px}
  .reel-card .reel-play svg{width:13px;height:13px}
