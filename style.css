@@ -501,3 +501,7 @@ body[data-mode=man] .hero::after{
 .lang-menu.open button:nth-child(5){transition-delay:.20s!important}
 .lang-menu.open button:nth-child(6){transition-delay:.24s!important}
 .lang-menu.open button:nth-child(7){transition-delay:.28s!important}
+
+
+/* Eighth language stagger: Azerbaijani */
+.lang-menu.open button:nth-child(8){transition-delay:.32s!important}
