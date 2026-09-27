@@ -12,7 +12,7 @@ window.SALON_IMAGE_SLOTS=[
  {id:"10",label:"Kadın · Saç Renklendirme",file:"hizmet-02-kadin-balayage.png",section:"Hizmet · Kadın",target:"service-woman-2"},
  {id:"11",label:"Kadın · Saç Kaynak & Extensions",file:"hizmet-04-kadin-extensions.png",section:"Hizmet · Kadın",target:"service-woman-3"},
  {id:"12",label:"Kadın · Saç Bakımı",file:"hizmet-06-kadin-treatment.png",section:"Hizmet · Kadın",target:"service-woman-4"},
- {id:"13",label:"Kadın · Güzellik & Bakım",file:"hizmet-05-kadin-keratin.png",section:"Hizmet · Kadın",target:"service-woman-5"},
+ {id:"13",label:"Kadın · Güzellik & Bakım",file:"hizmet-05-kadin-guzellik-bakim.png",section:"Hizmet · Kadın",target:"service-woman-5"},
  {id:"14",label:"Erkek · Saç & Sakal",file:"hizmet-08-erkek-sac-sakal.png",section:"Hizmet · Erkek",target:"service-man-1"},
  {id:"15",label:"Erkek · Saç Renklendirme",file:"hizmet-07-erkek-sac-kesimi.png",section:"Hizmet · Erkek",target:"service-man-2"},
  {id:"16",label:"Erkek · Saç Bakım & Onarım",file:"hizmet-11-erkek-treatment.png",section:"Hizmet · Erkek",target:"service-man-3"},
