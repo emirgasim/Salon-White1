@@ -1018,3 +1018,9 @@ body[data-mode="man"] .reel-card{border-color:rgba(255,255,255,.18);box-shadow:0
   .reels-stage::-webkit-scrollbar{display:none}
   .reel-card{scroll-snap-align:center;flex-shrink:0}
 }
+
+
+/* Reels mobile size boost */
+@media(max-width:560px){
+  .reels-stage .reel-card{flex-basis:118px;width:118px}
+}
