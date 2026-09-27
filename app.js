@@ -267,50 +267,33 @@ async function syncManagedImages(){
     if(!r.ok)return;
     const d=await r.json();
     const files=new Map((d.files||[]).map(x=>[x.name,x]));
-    const fallback={
-      "admin-slider-01-exterior.png":"banner-01-exterior.png",
-      "admin-slider-02-interior.png":"banner-02-interior.png",
-      "admin-slider-03-collage.png":"banner-03-collage.png",
-      "admin-atmosphere-01.png":"banner-02-interior.png",
-      "admin-gallery-01-collage.png":"banner-03-collage.png",
-      "admin-gallery-02-exterior.png":"banner-01-exterior.png",
-      "admin-gallery-03-interior.png":"banner-02-interior.png",
-      "admin-istanbul-01.png":"istanbul-section-web.webp"
-    };
-    const managedNames=Object.keys(fallback);
+    const slots=[
+      "admin-slider-01-exterior.png",
+      "admin-slider-02-interior.png",
+      "admin-slider-03-collage.png",
+      "admin-atmosphere-01.png",
+      "admin-gallery-01-collage.png",
+      "admin-gallery-02-exterior.png",
+      "admin-gallery-03-interior.png",
+      "admin-istanbul-01.png"
+    ];
     const resolve=(name)=>{
       const file=files.get(name);
-      if(file?.url)return file.url;
-      const legacy=files.get(fallback[name]);
-      return legacy?.url||("assets/images/"+fallback[name]);
+      return file?.url||null;
     };
-    document.querySelectorAll("[style*='assets/images/']").forEach(el=>{
-      const style=el.getAttribute("style")||"";
-      const m=style.match(/assets\/images\/([^'")?#]+)/);
-      if(!m)return;
-      const current=decodeURIComponent(m[1]);
-      const managed=managedNames.find(n=>fallback[n]===current);
-      if(!managed)return;
-      const file=files.get(managed);
-      if(!file)return;
-      el.style.backgroundImage="url('"+file.url+"')";
+    document.querySelectorAll("[data-managed-image]").forEach(el=>{
+      const slot=el.getAttribute("data-managed-image");
+      const file=files.get(slot);
+      if(!file?.url)return;
+      if(el.tagName==="IMG") el.src=file.url;
+      else el.style.backgroundImage="url('"+file.url+"')";
     });
     const istanbulFile=files.get("admin-istanbul-01.png");
     if(istanbulFile?.url){
       const bg=document.querySelector(".istanbul-bg");
       if(bg)bg.style.backgroundImage="url('"+istanbulFile.url+"')";
     }
-    document.querySelectorAll("img[src*='assets/images/']").forEach(img=>{
-      const m=(img.getAttribute("src")||"").match(/assets\/images\/([^?#]+)/);
-      if(!m)return;
-      const current=decodeURIComponent(m[1]);
-      const managed=managedNames.find(n=>fallback[n]===current);
-      if(!managed)return;
-      const file=files.get(managed);
-      if(!file)return;
-      img.src=file.url;
-    });
-    window.SALON_WHITE_MANAGED_IMAGES={files,fallback,resolve};
+    window.SALON_WHITE_MANAGED_IMAGES={files,slots,resolve};
   }catch(e){}
 }
 function observeReveals(){if(!revealObserver)revealObserver=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");revealObserver.unobserve(e.target);}}),{threshold:.12});document.querySelectorAll(".reveal:not(.visible)").forEach(e=>revealObserver.observe(e));}
