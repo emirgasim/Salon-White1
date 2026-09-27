@@ -20,3 +20,10 @@ body.experience-switching .service-card{filter:none!important}
  body.experience-switching .hero-slider{opacity:1!important;transform:scale(1.006)!important}
  body.experience-switching .hero-content{opacity:.78!important;transform:translateY(calc(-42% - 1px))!important}
 }
+
+/* Floating Woman / Man control after leaving the hero */
+.mode-switch{transition:background .28s var(--sw-ease),box-shadow .28s var(--sw-ease),transform .28s var(--sw-ease),opacity .28s var(--sw-ease)!important}
+body.mode-scrolled .mode-switch{position:fixed!important;right:5vw!important;bottom:28px!important;top:auto!important;z-index:160!important}
+body.mode-scrolled .mode-switch{background:var(--surface-strong)!important;box-shadow:0 18px 45px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.18)}
+@media(max-width:900px){body.mode-scrolled .mode-switch{right:14px!important;bottom:88px!important;z-index:160!important}}
+@media(max-width:560px){body.mode-scrolled .mode-switch{right:12px!important;bottom:88px!important;transform:none!important}}
