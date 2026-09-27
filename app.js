@@ -267,33 +267,27 @@ async function syncManagedImages(){
     if(!r.ok)return;
     const d=await r.json();
     const files=new Map((d.files||[]).map(x=>[x.name,x]));
-    const slots=[
-      "admin-slider-01-exterior.png",
-      "admin-slider-02-interior.png",
-      "admin-slider-03-collage.png",
-      "admin-atmosphere-01.png",
-      "admin-gallery-01-collage.png",
-      "admin-gallery-02-exterior.png",
-      "admin-gallery-03-interior.png",
-      "admin-istanbul-01.png"
-    ];
-    const resolve=(name)=>{
-      const file=files.get(name);
-      return file?.url||null;
+    const targets={
+      "admin-slider-01-exterior.png":".hero-slider .hero-slide:nth-child(1)",
+      "admin-slider-02-interior.png":".hero-slider .hero-slide:nth-child(2)",
+      "admin-slider-03-collage.png":".hero-slider .hero-slide:nth-child(3)",
+      "admin-atmosphere-01.png":".feature-image-inner",
+      "admin-gallery-01-collage.png":".gallery-grid .gallery-card:nth-child(1) img",
+      "admin-gallery-02-exterior.png":".gallery-grid .gallery-card:nth-child(2) img",
+      "admin-gallery-03-interior.png":".gallery-grid .gallery-card:nth-child(3) img",
+      "admin-istanbul-01.png":".istanbul-bg"
     };
-    document.querySelectorAll("[data-managed-image]").forEach(el=>{
-      const slot=el.getAttribute("data-managed-image");
+    const slots=Object.keys(targets);
+    const resolve=(name)=>files.get(name)?.url||null;
+    for(const [slot,selector] of Object.entries(targets)){
       const file=files.get(slot);
-      if(!file?.url)return;
-      if(el.tagName==="IMG") el.src=file.url;
+      if(!file?.url)continue;
+      const el=document.querySelector(selector);
+      if(!el)continue;
+      if(el.tagName==="IMG")el.src=file.url;
       else el.style.backgroundImage="url('"+file.url+"')";
-    });
-    const istanbulFile=files.get("admin-istanbul-01.png");
-    if(istanbulFile?.url){
-      const bg=document.querySelector(".istanbul-bg");
-      if(bg)bg.style.backgroundImage="url('"+istanbulFile.url+"')";
     }
-    window.SALON_WHITE_MANAGED_IMAGES={files,slots,resolve};
+    window.SALON_WHITE_MANAGED_IMAGES={files,targets,resolve};
   }catch(e){}
 }
 function observeReveals(){if(!revealObserver)revealObserver=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");revealObserver.unobserve(e.target);}}),{threshold:.12});document.querySelectorAll(".reveal:not(.visible)").forEach(e=>revealObserver.observe(e));}
