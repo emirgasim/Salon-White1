@@ -324,17 +324,12 @@ async function syncManagedImages(){
       "hero-slider-2":".hero-slider .hero-slide:nth-child(2)",
       "hero-slider-3":".hero-slider .hero-slide:nth-child(3)",
       "atmosphere":".feature-image-inner",
-      "gallery-1":".gallery-grid .gallery-card:nth-child(1) img",
-      "gallery-2":".gallery-grid .gallery-card:nth-child(2) img",
-      "gallery-3":".gallery-grid .gallery-card:nth-child(3) img",
       "istanbul":".istanbul-bg"
     };
     for(const [target,selector] of Object.entries(targets)){
       const slot=byTarget[target];
       if(!slot)continue;
       const file=files.get(slot.file);
-      // Use the managed filename directly as a fallback. This keeps the
-      // homepage image visible even if the GitHub image-list API is delayed.
       const baseUrl="/assets/images/"+encodeURIComponent(slot.file);
       const source=(file?.url||baseUrl);
       const live=source+(source.includes("?")?"&":"?")+"live="+Date.now();
@@ -343,6 +338,14 @@ async function syncManagedImages(){
       if(el.tagName==="IMG")el.src=live;
       else el.style.backgroundImage="url('"+live+"')";
     }
+    slots.filter(s=>/^gallery-\\d+$/.test(s.target||"")).forEach(slot=>{
+      const file=files.get(slot.file);
+      const baseUrl="/assets/images/"+encodeURIComponent(slot.file);
+      const source=(file?.url||baseUrl);
+      const live=source+(source.includes("?")?"&":"?")+"live="+Date.now();
+      const el=document.querySelector('[data-gallery-target="'+slot.target+'"] img');
+      if(el)el.src=live;
+    });
     document.querySelectorAll("[data-managed-service-image]").forEach(img=>{
       const name=img.getAttribute("data-managed-service-image"),file=name&&files.get(name);
       if(file?.url)img.src=file.url+(file.url.includes("?")?"&":"?")+"live="+Date.now();
@@ -350,13 +353,40 @@ async function syncManagedImages(){
     window.SALON_WHITE_MANAGED_IMAGES={files,slots,resolve};
   }catch(e){}
 }
+function setupGalleryLightbox(){
+  const modal=document.getElementById("galleryLightbox"),image=document.getElementById("galleryLightboxImage");
+  if(!modal||!image||modal.dataset.bound==="1")return;
+  modal.dataset.bound="1";
+  const close=()=>{
+    modal.classList.remove("is-closing");
+    document.body.classList.remove("gallery-lightbox-open");
+    modal.hidden=true;
+    modal.setAttribute("aria-hidden","true");
+    image.removeAttribute("src");
+  };
+  document.querySelectorAll("[data-gallery-target]").forEach(trigger=>{
+    trigger.addEventListener("click",()=>{
+      const source=trigger.querySelector("img");
+      if(!source)return;
+      image.src=source.currentSrc||source.src;
+      image.alt=source.alt||"Salon White galeri fotoğrafı";
+      modal.hidden=false;
+      modal.setAttribute("aria-hidden","false");
+      document.body.classList.add("gallery-lightbox-open");
+    });
+  });
+  modal.querySelectorAll("[data-gallery-close]").forEach(el=>el.addEventListener("click",close));
+  document.addEventListener("keydown",e=>{
+    if(e.key==="Escape"&&!modal.hidden)close();
+  });
+}
 function observeReveals(){if(!revealObserver)revealObserver=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");revealObserver.unobserve(e.target);}}),{threshold:.12});document.querySelectorAll(".reveal:not(.visible)").forEach(e=>revealObserver.observe(e));}
 function updateSlide(n){const slides=[...document.querySelectorAll(".hero-slide")];if(!slides.length)return;slides[slide]?.classList.remove("active");slide=(n+slides.length)%slides.length;slides[slide].classList.add("active");const c=document.getElementById("slideCounter");if(c)c.textContent=`0${slide+1} — 03`;}
 function stopSlider(){if(slideTimer){clearInterval(slideTimer);slideTimer=null;}}
 function startSlider(){stopSlider();if(document.hidden)return;slideTimer=setInterval(()=>{if(!document.hidden)updateSlide(slide+1);},6500);}
 document.addEventListener("visibilitychange",()=>{if(document.hidden)stopSlider();else startSlider();});
 function forceTopOnEntry(){if(location.hash&&location.hash!=="#top")return;requestAnimationFrame(()=>scrollTo({top:0,left:0,behavior:"auto"}));setTimeout(()=>scrollTo({top:0,left:0,behavior:"auto"}),80);}
-function init(){syncManagedImages();renderInstagramReels();const y=document.getElementById("year");if(y)y.textContent=new Date().getFullYear();forceTopOnEntry();document.body.dataset.mode=mode;document.querySelectorAll(".mode-option").forEach(b=>{const active=b.dataset.modeSwitch===mode;b.classList.toggle("active",active);b.setAttribute("aria-pressed",active?"true":"false");});setupModeSwitch();setupLandmarkModal();setupMobileMenu();setupLanguage();setupHeroActionBar();applyLanguage();renderServices();observeReveals();startSlider();}
+function init(){syncManagedImages();renderInstagramReels();const y=document.getElementById("year");if(y)y.textContent=new Date().getFullYear();forceTopOnEntry();document.body.dataset.mode=mode;document.querySelectorAll(".mode-option").forEach(b=>{const active=b.dataset.modeSwitch===mode;b.classList.toggle("active",active);b.setAttribute("aria-pressed",active?"true":"false");});setupModeSwitch();setupLandmarkModal();setupGalleryLightbox();setupMobileMenu();setupLanguage();setupHeroActionBar();applyLanguage();renderServices();observeReveals();startSlider();}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 
 window.addEventListener("pageshow",()=>{if(!location.hash||location.hash==="#top")scrollTo({top:0,left:0,behavior:"auto"});});
