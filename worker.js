@@ -118,8 +118,9 @@ async function liveImage(request, env) {
   const binary = atob(clean);
   const bytes = new Uint8Array(binary.length);
   for(let i=0;i<binary.length;i++) bytes[i]=binary.charCodeAt(i);
+  const mimeByExt = {png:"image/png",jpg:"image/jpeg",jpeg:"image/jpeg",webp:"image/webp",avif:"image/avif"};
   const headers = new Headers({
-    "content-type": "image/png",
+    "content-type": mimeByExt[ext(path)] || "application/octet-stream",
     "cache-control": "no-store, no-cache, must-revalidate, max-age=0",
     "pragma": "no-cache",
     "expires": "0",
