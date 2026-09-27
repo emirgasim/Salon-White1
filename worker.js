@@ -129,21 +129,20 @@ async function readRepoJson(env, path) {
 }
 
 async function reels(request, env) {
-  if (!auth(request, env)) return json({error:"Yetkisiz erişim."},401);
-  const token = githubToken(env);
-  if (!token) return json({error:"GitHub token bulunamadı."},500);
   const path = "data/instagram-reels.json";
   if (request.method === "GET") {
     const data = await readRepoJson(env,path);
     return json({reels:Array.isArray(data?.value)?data.value:[]});
   }
-  if (request.method !== "POST") return json({error:"Yalnızca GET veya POST desteklenir."},405);
+  if (!auth(request, env)) return json({error:"Yetkisiz erişim."},401);
+  const token = githubToken(env);
+  if (!token) return json({error:"GitHub token bulunamadı."},500);
   let payload;
   try { payload = await request.json(); } catch { return json({error:"Geçersiz JSON."},400); }
   const incoming = Array.isArray(payload?.reels) ? payload.reels : [];
   if (incoming.length !== 5) return json({error:"Tam olarak 5 Reel bağlantısı gönderilmelidir."},400);
   const reels = incoming.map((x,i)=>({id:String(i+1).padStart(2,"0"),url:String(x?.url||"").trim(),title:String(x?.title||("Instagram Reel "+(i+1))).trim()}));
-  if (reels.some(x=>!/^https:\/\/www\\.instagram\\.com\/(reel|p)\\//i.test(x.url))) return json({error:"Yalnızca Instagram Reel bağlantıları kabul edilir."},400);
+  if (reels.some(x=>!/^https:\/\/(?:www\.)?instagram\.com\/(?:reel|p)\/[A-Za-z0-9_-]+/i.test(x.url))) return json({error:"Geçerli Instagram Reel bağlantısı girin."},400);
   const repo = env.GITHUB_REPO || REPO;
   const branch = env.GITHUB_BRANCH || BRANCH;
   const api = "https://api.github.com/repos/"+repo+"/contents/"+path.split("/").map(encodeURIComponent).join("/");
@@ -158,6 +157,23 @@ async function reels(request, env) {
   return json({ok:true,reels});
 }
 
+async function reelCover(request, env) {
+  const url = new URL(request.url).searchParams.get("url");
+  if (!url || !/^https:\/\/(?:www\.)?instagram\.com\/(?:reel|p)\/[A-Za-z0-9_-]+/i.test(url)) return json({error:"Geçerli Instagram Reel URL'si gerekli."},400);
+  try {
+    const response = await fetch(url,{headers:{
+      "User-Agent":"Mozilla/5.0 (compatible; SalonWhiteBot/1.0)",
+      "Accept":"text/html,application/xhtml+xml"
+    },redirect:"follow"});
+    if (!response.ok) return json({error:"Instagram Reel kapağı alınamadı.",status:response.status},502);
+    const html = await response.text();
+    const match = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i) || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i);
+    if (!match?.[1]) return json({error:"Reel kapak görseli bulunamadı."},404);
+    return Response.redirect(match[1].replace(/&amp;/g,"&"),302);
+  } catch {
+    return json({error:"Instagram Reel bağlantısına erişilemedi."},502);
+  }
+}
 async function upload(request, env) {
   if (!auth(request, env)) return json({error:"Yetkisiz erişim."},401);
   const token = githubToken(env);
@@ -194,6 +210,7 @@ export default {
     }
     if (url.pathname === "/api/images" && request.method === "GET") return images(request, env);
     if (url.pathname === "/api/reels" && (request.method === "GET" || request.method === "POST")) return reels(request, env);
+    if (url.pathname === "/api/reel-cover" && request.method === "GET") return reelCover(request, env);
     if (url.pathname === "/api/upload" && request.method === "POST") return upload(request, env);
     if (request.method === "GET" && url.pathname.startsWith("/assets/images/")) {
       const imageResponse = await liveImage(request, env);
