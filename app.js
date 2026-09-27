@@ -41,8 +41,164 @@ az:{kicker:"İŞ SAATLARI",title:"İş Saatları",note:"Sizi hər gün qarşıla
 };
 const serviceTitles={tr:{woman:"Kadınlara Özel Hizmetlerimiz",man:"Erkeklere Özel Hizmetlerimiz"},en:{woman:"Our Services for Women",man:"Our Services for Men"},de:{woman:"Unsere Leistungen für Frauen",man:"Unsere Leistungen für Männer"},fr:{woman:"Nos services pour femmes",man:"Nos services pour hommes"},es:{woman:"Nuestros servicios para mujeres",man:"Nuestros servicios para hombres"},ru:{woman:"Наши услуги для женщин",man:"Наши услуги для мужчин"},ar:{woman:"خدماتنا الخاصة للنساء",man:"خدماتنا الخاصة للرجال"},az:{woman:"Qadınlar üçün xüsusi xidmətlərimiz",man:"Kişilər üçün xüsusi xidmətlərimiz"}};
 const modeWords={tr:{woman:"KADIN",man:"ERKEK"},en:{woman:"WOMAN",man:"MAN"},de:{woman:"FRAU",man:"MANN"},fr:{woman:"FEMME",man:"HOMME"},es:{woman:"MUJER",man:"HOMBRE"},ru:{woman:"ЖЕНЩИНА",man:"МУЖЧИНА"},ar:{woman:"امرأة",man:"رجل"},az:{woman:"QADIN",man:"KİŞİ"}};const getPath=(o,k)=>k.split(".").reduce((v,x)=>v?.[x],o);
-function renderServices(){const grid=document.getElementById("serviceGrid");if(!grid)return;const items=serviceCopy[mode][lang]||serviceCopy[mode].en;const images=mode==="woman"?["hizmet-01-kadin-sac-kesimi.jpg","hizmet-02-kadin-balayage.jpg","hizmet-03-kadin-ombre.jpg","hizmet-04-kadin-extensions.jpg","hizmet-05-kadin-keratin.jpg","hizmet-06-kadin-treatment.jpg"]:["hizmet-07-erkek-sac-kesimi.jpg","hizmet-08-erkek-sac-sakal.jpg","hizmet-09-erkek-sakal.jpg","hizmet-10-erkek-styling.jpg","hizmet-11-erkek-treatment.jpg","hizmet-12-erkek-grooming.jpg"];grid.innerHTML=items.map((x,i)=>`<article class="service-card reveal"><div class="service-visual"><img src="assets/images/${images[i%images.length]}" loading="lazy" decoding="async" alt="${x[1]}" onerror="this.parentElement.classList.add('missing')"></div><span class="service-index">${x[0]}</span><div><h3>${x[1]}</h3><p>${x[2]}</p></div></article>`).join("");const label=document.getElementById("modeLabel");if(label)label.textContent=serviceTitles[lang]?.[mode]||serviceTitles.en[mode];observeReveals();}
-function applyLanguage(){const t=translations[lang]||translations.en;const serviceTitle=document.querySelector("[data-i18n=\"services.title\"]");if(serviceTitle)serviceTitle.innerHTML=serviceTitles[lang]?.[mode]||serviceTitles.en[mode];const modeTitle=document.querySelector("[data-i18n=\"services.modeTitle\"]");if(modeTitle)modeTitle.textContent=serviceTitles[lang]?.[mode]||serviceTitles.en[mode];const ht=hoursTranslations[lang]||hoursTranslations.en;document.querySelector("[data-hours-kicker]")&&(document.querySelector("[data-hours-kicker]").textContent=ht.kicker);document.querySelector("[data-hours-title]")&&(document.querySelector("[data-hours-title]").textContent=ht.title);document.querySelector("[data-hours-note]")&&(document.querySelector("[data-hours-note]").textContent=ht.note);document.querySelectorAll("[data-day]").forEach(el=>{el.textContent=ht.days[el.dataset.day]||el.textContent});document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";document.querySelectorAll("[data-i18n]").forEach(el=>{const v=getPath(t,el.dataset.i18n);if(v)el.innerHTML=v;});const lb=document.getElementById("langButton");if(lb)lb.textContent=lang.toUpperCase();localStorage.setItem("salonWhiteLang",lang);const subtitle=document.getElementById("heroSubtitle");if(subtitle)subtitle.textContent=t.hero.subtitle;const title=document.getElementById("heroTitle");if(title)title.innerHTML=lang==="tr"?'<span>Salon</span> White<br><em class="hero-location-main">EMİNÖNÜ–SİRKECİ</em>':'<span>Salon</span> White<br><em class="hero-location-main">EMINONU–SIRKECI</em>';document.querySelectorAll("[data-mode-switch]").forEach(btn=>{btn.textContent=modeWords[lang]?.[btn.dataset.modeSwitch]||btn.dataset.modeSwitch.toUpperCase();});const nearby=document.getElementById("nearbyList");if(nearby)nearby.innerHTML=(nearbyTranslations[lang]||nearbyTranslations.en).map(x=>`<span>${x}</span>`).join("");}
+const serviceCatalog={
+tr:{
+ woman:{title:"Kadın Kuaför Hizmetleri",lead:"Saç, renk, kaynak, bakım ve güzellik hizmetlerimizi keşfedin.",categories:[
+  {key:"hair",title:"Saç & Şekillendirme",image:"hizmet-01-kadin-sac-kesimi.jpg",items:["Saç Kesimi","Düz Fön","Dalgalı Fön","Maşa","Örgü"]},
+  {key:"colour",title:"Saç Renk",image:"hizmet-02-kadin-balayage.jpg",items:["Dip Boya","Komple Boya","Ombre","Balayage","Renk Açma & Boyama"]},
+  {key:"extensions",title:"Saç Kaynak & Extensions",image:"hizmet-04-kadin-extensions.jpg",items:[
+   {name:"Mikro Kaynak",desc:"Doğal görünüm ve hacim için ince bağlantılı saç kaynak uygulaması."},
+   {name:"Boncuk Kaynak",desc:"Saça mekanik bağlantı yöntemiyle uygulanan, pratik ve doğal görünümlü kaynak sistemi."},
+   {name:"Bant Kaynak",desc:"İnce bantlarla uygulanan, hafif ve doğal görünüm sağlayan kaynak yöntemi."},
+   {name:"Tres Kaynak",desc:"Saç yoğunluğunu ve uzunluğunu artırmaya yönelik klasik kaynak uygulaması."}]},
+  {key:"care",title:"Saç Bakımı",image:"hizmet-05-kadin-keratin.jpg",items:["Keratin Bakımı","Botox Bakımı","Saç Tedavisi","Saç Maskesi","Perma"]},
+  {key:"beauty",title:"Güzellik & Bakım",image:"hizmet-06-kadin-treatment.jpg",items:["Manikür","Pedikür","Makyaj","Kaş Tasarımı","Yüz & Kaş Ağda","Cilt Bakımı"]}]},
+ man:{title:"Erkek Kuaför & Bakım Hizmetleri",lead:"Saç, sakal, renk, bakım ve kişisel bakım hizmetlerimizi keşfedin.",categories:[
+  {key:"hair",title:"Saç & Sakal",image:"hizmet-07-erkek-sac-kesimi.jpg",items:["Saç Kesimi","Sakal Tıraşı","Sakal Tasarımı","Yıkama & Fön","Saç & Sakal Yıkama"]},
+  {key:"colour",title:"Saç Renk",image:"hizmet-08-erkek-sac-sakal.jpg",items:["Saç Boyama","Keratin"]},
+  {key:"care",title:"Saç Bakımı",image:"hizmet-11-erkek-treatment.jpg",items:["Keratin","Saç Bakımı","Saç Tedavisi"]},
+  {key:"grooming",title:"Erkek Bakım",image:"hizmet-12-erkek-grooming.jpg",items:["Kaş Alma","Ağda","Manikür","Pedikür"]},
+  {key:"skin",title:"Cilt & Güzellik",image:"hizmet-11-erkek-treatment.jpg",items:["Cilt Temizleme","Full Cilt Bakımı"]}]}
+},
+en:{
+ woman:{title:"Women's Hair & Beauty Services",lead:"Discover our hair, colour, extensions, care and beauty services.",categories:[
+  {key:"hair",title:"Hair & Styling",image:"hizmet-01-kadin-sac-kesimi.jpg",items:["Haircut","Blow Dry","Wavy Blow Dry","Curling","Braids"]},
+  {key:"colour",title:"Hair Colour",image:"hizmet-02-kadin-balayage.jpg",items:["Root Colour","Complete Colour","Ombre","Balayage","Colour Lightening & Dyeing"]},
+  {key:"extensions",title:"Hair Extensions",image:"hizmet-04-kadin-extensions.jpg",items:[
+   {name:"Micro Hair Extensions",desc:"Fine-bonded extensions designed for natural-looking length and volume."},
+   {name:"Beaded Hair Extensions",desc:"A practical extension method attached mechanically with small beads for a natural finish."},
+   {name:"Tape Hair Extensions",desc:"Lightweight extensions applied with slim tape sections for a natural look."},
+   {name:"Weft / Tres Extensions",desc:"A classic extension method designed to add hair density and length."}]},
+  {key:"care",title:"Hair Care",image:"hizmet-05-kadin-keratin.jpg",items:["Keratin Care","Hair Botox Care","Hair Treatment","Restorative Hair Mask","Permanent Wave"]},
+  {key:"beauty",title:"Beauty & Care",image:"hizmet-06-kadin-treatment.jpg",items:["Manicure","Pedicure","Make-up","Eyebrow Design","Face & Eyebrow Wax","Skin Care"]}]},
+ man:{title:"Men's Hair & Grooming Services",lead:"Discover our hair, beard, colour, care and grooming services.",categories:[
+  {key:"hair",title:"Hair & Beard",image:"hizmet-07-erkek-sac-kesimi.jpg",items:["Haircut","Shave","Beard Styling","Wash + Blow Dry","Hair & Beard Wash"]},
+  {key:"colour",title:"Hair Colour",image:"hizmet-08-erkek-sac-sakal.jpg",items:["Hair Colour","Keratin"]},
+  {key:"care",title:"Hair Care",image:"hizmet-11-erkek-treatment.jpg",items:["Keratin","Hair Care","Hair Treatment"]},
+  {key:"grooming",title:"Men's Grooming",image:"hizmet-12-erkek-grooming.jpg",items:["Eyebrow Plucking","Waxing","Manicure","Pedicure"]},
+  {key:"skin",title:"Skin & Beauty",image:"hizmet-11-erkek-treatment.jpg",items:["Skin Cleansing","Full Skin Care"]}]}
+},
+de:{
+ woman:{title:"Damen – Haare & Beauty",lead:"Entdecken Sie unsere Leistungen für Haare, Farbe, Extensions, Pflege und Beauty.",categories:[
+  {key:"hair",title:"Haare & Styling",image:"hizmet-01-kadin-sac-kesimi.jpg",items:["Haarschnitt","Föhnen","Wellen-Föhnen","Lockenstab","Flechten"]},
+  {key:"colour",title:"Haarfarbe",image:"hizmet-02-kadin-balayage.jpg",items:["Ansatzfärbung","Komplettfärbung","Ombré","Balayage","Aufhellen & Färben"]},
+  {key:"extensions",title:"Haarverlängerung",image:"hizmet-04-kadin-extensions.jpg",items:[
+   {name:"Mikro-Haarverlängerung",desc:"Feine Verbindungen für eine natürliche Verlängerung und mehr Haarfülle."},
+   {name:"Bonding mit Perlen",desc:"Mechanisch befestigte Extensions mit kleinen Perlen für einen natürlichen Look."},
+   {name:"Tape-Extensions",desc:"Leichte Extensions mit schmalen Klebestreifen für ein natürliches Ergebnis."},
+   {name:"Weft / Tres Extensions",desc:"Klassische Methode für mehr Haarfülle und Länge."}]},
+  {key:"care",title:"Haarpflege",image:"hizmet-05-kadin-keratin.jpg",items:["Keratinpflege","Haar-Botox-Pflege","Haarbehandlung","Aufbauende Haarmaske","Dauerwelle"]},
+  {key:"beauty",title:"Beauty & Pflege",image:"hizmet-06-kadin-treatment.jpg",items:["Maniküre","Pediküre","Make-up","Augenbrauen-Design","Gesichts- & Augenbrauenwax","Hautpflege"]}]},
+ man:{title:"Herren – Haare & Pflege",lead:"Entdecken Sie unsere Leistungen für Haare, Bart, Farbe, Pflege und Grooming.",categories:[
+  {key:"hair",title:"Haare & Bart",image:"hizmet-07-erkek-sac-kesimi.jpg",items:["Haarschnitt","Rasur","Bartstyling","Waschen & Föhnen","Haar- & Bartwäsche"]},
+  {key:"colour",title:"Haarfarbe",image:"hizmet-08-erkek-sac-sakal.jpg",items:["Haarfarbe","Keratin"]},
+  {key:"care",title:"Haarpflege",image:"hizmet-11-erkek-treatment.jpg",items:["Keratin","Haarpflege","Haarbehandlung"]},
+  {key:"grooming",title:"Herrenpflege",image:"hizmet-12-erkek-grooming.jpg",items:["Augenbrauen zupfen","Waxing","Maniküre","Pediküre"]},
+  {key:"skin",title:"Haut & Beauty",image:"hizmet-11-erkek-treatment.jpg",items:["Hautreinigung","Ganzheitliche Gesichtspflege"]}]}
+},
+fr:{
+ woman:{title:"Services Coiffure & Beauté Femme",lead:"Découvrez nos services de coiffure, couleur, extensions, soins et beauté.",categories:[
+  {key:"hair",title:"Cheveux & Coiffage",image:"hizmet-01-kadin-sac-kesimi.jpg",items:["Coupe de Cheveux","Brushing","Brushing Ondulé","Boucles au Fer","Tresses"]},
+  {key:"colour",title:"Couleur des Cheveux",image:"hizmet-02-kadin-balayage.jpg",items:["Coloration des Racines","Coloration Complète","Ombré","Balayage","Éclaircissement & Coloration"]},
+  {key:"extensions",title:"Extensions de Cheveux",image:"hizmet-04-kadin-extensions.jpg",items:[
+   {name:"Extensions Micro",desc:"Des extensions à fixation fine pour un résultat naturel et plus de volume."},
+   {name:"Extensions à Anneaux",desc:"Une méthode de fixation mécanique avec de petits anneaux pour un résultat naturel."},
+   {name:"Extensions Adhésives",desc:"Des extensions légères posées avec de fines bandes adhésives."},
+   {name:"Extensions Weft / Tres",desc:"Une méthode classique pour augmenter la densité et la longueur des cheveux."}]},
+  {key:"care",title:"Soins des Cheveux",image:"hizmet-05-kadin-keratin.jpg",items:["Soin à la Kératine","Soin Botox Capillaire","Traitement Capillaire","Masque Réparateur","Permanente"]},
+  {key:"beauty",title:"Beauté & Soins",image:"hizmet-06-kadin-treatment.jpg",items:["Manucure","Pédicure","Maquillage","Design des Sourcils","Épilation Visage & Sourcils","Soin de la Peau"]}]},
+ man:{title:"Services Coiffure & Soins Homme",lead:"Découvrez nos services pour cheveux, barbe, couleur, soins et grooming.",categories:[
+  {key:"hair",title:"Cheveux & Barbe",image:"hizmet-07-erkek-sac-kesimi.jpg",items:["Coupe Homme","Rasage","Taille & Styling de Barbe","Shampoing & Brushing","Lavage Cheveux & Barbe"]},
+  {key:"colour",title:"Couleur Homme",image:"hizmet-08-erkek-sac-sakal.jpg",items:["Couleur Homme","Kératine"]},
+  {key:"care",title:"Soins des Cheveux",image:"hizmet-11-erkek-treatment.jpg",items:["Kératine","Soin des Cheveux","Traitement Capillaire"]},
+  {key:"grooming",title:"Soins Homme",image:"hizmet-12-erkek-grooming.jpg",items:["Épilation des Sourcils","Épilation","Manucure","Pédicure"]},
+  {key:"skin",title:"Peau & Beauté",image:"hizmet-11-erkek-treatment.jpg",items:["Nettoyage de la Peau","Soin Complet de la Peau"]}]}
+},
+es:{
+ woman:{title:"Servicios de Peluquería y Belleza para Mujer",lead:"Descubre nuestros servicios de cabello, color, extensiones, cuidado y belleza.",categories:[
+  {key:"hair",title:"Cabello & Peinado",image:"hizmet-01-kadin-sac-kesimi.jpg",items:["Corte de Pelo","Secado con Cepillo","Brushing Ondulado","Ondulado con Tenacilla","Trenzas"]},
+  {key:"colour",title:"Coloración",image:"hizmet-02-kadin-balayage.jpg",items:["Coloración de Raíces","Coloración Completa","Ombré","Balayage","Decoloración & Coloración"]},
+  {key:"extensions",title:"Extensiones de Cabello",image:"hizmet-04-kadin-extensions.jpg",items:[
+   {name:"Extensiones Micro",desc:"Extensiones de fijación fina para aportar longitud y volumen con un resultado natural."},
+   {name:"Extensiones con Microperlas",desc:"Sistema de fijación mecánica con pequeñas perlas para un acabado natural."},
+   {name:"Extensiones de Cinta",desc:"Extensiones ligeras aplicadas con finas bandas adhesivas para un resultado natural."},
+   {name:"Extensiones Weft / Tres",desc:"Método clásico para aumentar la densidad y longitud del cabello."}]},
+  {key:"care",title:"Cuidado Capilar",image:"hizmet-05-kadin-keratin.jpg",items:["Tratamiento de Queratina","Botox Capilar","Tratamiento Capilar","Mascarilla Reparadora","Permanente"]},
+  {key:"beauty",title:"Belleza & Cuidado",image:"hizmet-06-kadin-treatment.jpg",items:["Manicura","Pedicura","Maquillaje","Diseño de Cejas","Depilación de Rostro & Cejas","Cuidado de la Piel"]}]},
+ man:{title:"Servicios de Peluquería y Cuidado Masculino",lead:"Descubre nuestros servicios de cabello, barba, color, cuidado y grooming.",categories:[
+  {key:"hair",title:"Cabello & Barba",image:"hizmet-07-erkek-sac-kesimi.jpg",items:["Corte de Hombre","Afeitado","Diseño y Styling de Barba","Lavado & Secado","Lavado de Cabello & Barba"]},
+  {key:"colour",title:"Color Masculino",image:"hizmet-08-erkek-sac-sakal.jpg",items:["Coloración Masculina","Queratina"]},
+  {key:"care",title:"Cuidado Capilar",image:"hizmet-11-erkek-treatment.jpg",items:["Queratina","Cuidado Capilar","Tratamiento Capilar"]},
+  {key:"grooming",title:"Cuidado Masculino",image:"hizmet-12-erkek-grooming.jpg",items:["Perfilado de Cejas","Depilación","Manicura","Pedicura"]},
+  {key:"skin",title:"Piel & Belleza",image:"hizmet-11-erkek-treatment.jpg",items:["Limpieza Facial","Cuidado Facial Completo"]}]}
+},
+ru:{
+ woman:{title:"Женские услуги красоты и волос",lead:"Ознакомьтесь с услугами по волосам, окрашиванию, наращиванию, уходу и красоте.",categories:[
+  {key:"hair",title:"Стрижка и укладка",image:"hizmet-01-kadin-sac-kesimi.jpg",items:["Стрижка","Укладка феном","Волнистая укладка","Укладка плойкой","Косы"]},
+  {key:"colour",title:"Окрашивание",image:"hizmet-02-kadin-balayage.jpg",items:["Окрашивание корней","Полное окрашивание","Омбре","Балаяж","Осветление и окрашивание"]},
+  {key:"extensions",title:"Наращивание волос",image:"hizmet-04-kadin-extensions.jpg",items:[
+   {name:"Микро-наращивание",desc:"Тонкое наращивание для естественного вида, длины и объёма."},
+   {name:"Наращивание на микрокольца",desc:"Механическая система крепления с маленькими кольцами для естественного результата."},
+   {name:"Ленточное наращивание",desc:"Лёгкие пряди на тонкой ленте для естественного и комфортного результата."},
+   {name:"Тресс / Weft-наращивание",desc:"Классическая техника для увеличения густоты и длины волос."}]},
+  {key:"care",title:"Уход за волосами",image:"hizmet-05-kadin-keratin.jpg",items:["Кератиновый уход","Ботокс-уход для волос","Лечение волос","Восстанавливающая маска","Химическая завивка"]},
+  {key:"beauty",title:"Красота и уход",image:"hizmet-06-kadin-treatment.jpg",items:["Маникюр","Педикюр","Макияж","Оформление бровей","Воск для лица и бровей","Уход за кожей"]}]},
+ man:{title:"Мужские услуги и уход",lead:"Ознакомьтесь с услугами для волос, бороды, окрашивания, ухода и grooming.",categories:[
+  {key:"hair",title:"Волосы и борода",image:"hizmet-07-erkek-sac-kesimi.jpg",items:["Мужская стрижка","Бритьё","Моделирование бороды","Мытьё и укладка","Мытьё волос и бороды"]},
+  {key:"colour",title:"Мужское окрашивание",image:"hizmet-08-erkek-sac-sakal.jpg",items:["Мужское окрашивание","Кератин"]},
+  {key:"care",title:"Уход за волосами",image:"hizmet-11-erkek-treatment.jpg",items:["Кератин","Уход за волосами","Лечение волос"]},
+  {key:"grooming",title:"Мужской уход",image:"hizmet-12-erkek-grooming.jpg",items:["Коррекция бровей","Воск","Маникюр","Педикюр"]},
+  {key:"skin",title:"Кожа и красота",image:"hizmet-11-erkek-treatment.jpg",items:["Очищение кожи","Комплексный уход за кожей"]}]}
+},
+ar:{
+ woman:{title:"خدمات الشعر والجمال للنساء",lead:"اكتشفوا خدمات الشعر واللون والوصلات والعناية والجمال لدينا.",categories:[
+  {key:"hair",title:"الشعر والتصفيف",image:"hizmet-01-kadin-sac-kesimi.jpg",items:["قص الشعر","تصفيف بالسشوار","تصفيف مموج","تصفيف بالفير","ضفائر"]},
+  {key:"colour",title:"صبغة ولون الشعر",image:"hizmet-02-kadin-balayage.jpg",items:["صبغة الجذور","صبغة كاملة","أومبريه","بالياج","تفتيح وصبغ الشعر"]},
+  {key:"extensions",title:"وصلات الشعر",image:"hizmet-04-kadin-extensions.jpg",items:[
+   {name:"وصلات ميكرو",desc:"وصلات دقيقة للحصول على طول وكثافة بمظهر طبيعي."},
+   {name:"وصلات بالخرز",desc:"نظام وصل ميكانيكي باستخدام خرز صغير لمظهر طبيعي."},
+   {name:"وصلات شريطية",desc:"وصلات خفيفة باستخدام شرائط رفيعة لمظهر طبيعي ومريح."},
+   {name:"وصلات تريس / Weft",desc:"طريقة كلاسيكية لزيادة كثافة الشعر وطوله."}]},
+  {key:"care",title:"العناية بالشعر",image:"hizmet-05-kadin-keratin.jpg",items:["عناية بالكيراتين","بوتوكس الشعر","علاج الشعر","ماسك ترميم الشعر","بيرم"]},
+  {key:"beauty",title:"الجمال والعناية",image:"hizmet-06-kadin-treatment.jpg",items:["مانيكير","باديكير","مكياج","تصميم الحواجب","واكس للوجه والحواجب","العناية بالبشرة"]}]},
+ man:{title:"خدمات الشعر والعناية للرجال",lead:"اكتشفوا خدمات الشعر واللحية واللون والعناية الشخصية لدينا.",categories:[
+  {key:"hair",title:"الشعر واللحية",image:"hizmet-07-erkek-sac-kesimi.jpg",items:["قص شعر للرجال","حلاقة","تشكيل وتصفيف اللحية","غسيل وتصفيف","غسيل الشعر واللحية"]},
+  {key:"colour",title:"صبغة شعر للرجال",image:"hizmet-08-erkek-sac-sakal.jpg",items:["صبغة شعر للرجال","كيراتين"]},
+  {key:"care",title:"العناية بالشعر",image:"hizmet-11-erkek-treatment.jpg",items:["كيراتين","العناية بالشعر","علاج الشعر"]},
+  {key:"grooming",title:"العناية الرجالية",image:"hizmet-12-erkek-grooming.jpg",items:["تنظيف الحواجب","واكس","مانيكير","باديكير"]},
+  {key:"skin",title:"البشرة والجمال",image:"hizmet-11-erkek-treatment.jpg",items:["تنظيف البشرة","العناية الكاملة بالبشرة"]}]}
+},
+az:{
+ woman:{title:"Qadın saç və gözəllik xidmətləri",lead:"Saç, rəng, qaynaq, baxım və gözəllik xidmətlərimizi kəşf edin.",categories:[
+  {key:"hair",title:"Saç və düzüm",image:"hizmet-01-kadin-sac-kesimi.jpg",items:["Saç kəsimi","Düz fen","Dalğalı fen","Maşa","Hörük"]},
+  {key:"colour",title:"Saç rəngi",image:"hizmet-02-kadin-balayage.jpg",items:["Dip boyası","Tam saç boyası","Ombre","Balayaj","Rəng açma və boyama"]},
+  {key:"extensions",title:"Saç qaynağı & Extensions",image:"hizmet-04-kadin-extensions.jpg",items:[
+   {name:"Mikro qaynaq",desc:"Təbii görünüş, uzunluq və həcm üçün incə bağlantılı saç qaynağı."},
+   {name:"Muncuqlu qaynaq",desc:"Kiçik muncuqlarla mexaniki bərkidilən, təbii görünüşlü qaynaq sistemi."},
+   {name:"Lent qaynaq",desc:"Nazik lentlərlə tətbiq olunan, yüngül və təbii görünüşlü qaynaq üsulu."},
+   {name:"Tres qaynaq",desc:"Saçın sıxlığını və uzunluğunu artırmaq üçün klassik qaynaq üsulu."}]},
+  {key:"care",title:"Saç baxımı",image:"hizmet-05-kadin-keratin.jpg",items:["Keratin baxımı","Saç botoksu baxımı","Saç müalicəsi","Bərpaedici saç maskası","Permanent"]},
+  {key:"beauty",title:"Gözəllik və baxım",image:"hizmet-06-kadin-treatment.jpg",items:["Manikür","Pedikür","Makiyaj","Qaş dizaynı","Üz və qaş ağdası","Dəri baxımı"]}]},
+ man:{title:"Kişi saç və baxım xidmətləri",lead:"Saç, saqqal, rəng, baxım və şəxsi qulluq xidmətlərimizi kəşf edin.",categories:[
+  {key:"hair",title:"Saç və saqqal",image:"hizmet-07-erkek-sac-kesimi.jpg",items:["Kişi saç kəsimi","Saqqal qırxımı","Model saqqal və düzüm","Yuma və fen","Saç və saqqal yuma"]},
+  {key:"colour",title:"Saç rəngi",image:"hizmet-08-erkek-sac-sakal.jpg",items:["Saç boyası","Keratin"]},
+  {key:"care",title:"Saç baxımı",image:"hizmet-11-erkek-treatment.jpg",items:["Keratin","Saç baxımı","Saç müalicəsi"]},
+  {key:"grooming",title:"Kişi baxımı",image:"hizmet-12-erkek-grooming.jpg",items:["Qaş alma","Ağda","Manikür","Pedikür"]},
+  {key:"skin",title:"Dəri və gözəllik",image:"hizmet-11-erkek-treatment.jpg",items:["Dəri təmizlənməsi","Tam dəri baxımı"]}]}
+}};
+const serviceUi={tr:{detail:"HİZMET DETAYI",close:"Kapat"},en:{detail:"SERVICE DETAILS",close:"Close"},de:{detail:"LEISTUNGSDETAILS",close:"Schließen"},fr:{detail:"DÉTAILS DU SERVICE",close:"Fermer"},es:{detail:"DETALLES DEL SERVICIO",close:"Cerrar"},ru:{detail:"ПОДРОБНОСТИ УСЛУГ",close:"Закрыть"},ar:{detail:"تفاصيل الخدمة",close:"إغلاق"},az:{detail:"XİDMƏT DETALLARI",close:"Bağla"}};
+function renderServices(){
+ const root=document.getElementById("serviceGrid"),detail=document.getElementById("serviceDetailPanel");if(!root)return;
+ const catalog=serviceCatalog[lang]||serviceCatalog.en,group=catalog[mode]||catalog.woman;
+ const lead=document.querySelector("[data-i18n=\"services.lead\"]");if(lead)lead.textContent=group.lead;
+ const title=document.querySelector("[data-i18n=\"services.title\"]");if(title)title.innerHTML=group.title;
+ const label=document.getElementById("modeLabel");if(label)label.textContent=modeWords[lang]?.[mode]||mode.toUpperCase();
+ root.innerHTML=group.categories.map((cat,i)=>`<article class="service-card service-category-card reveal" data-service-category="${cat.key}" tabindex="0" role="button" aria-label="${cat.title}"><div class="service-visual"><img src="assets/images/${cat.image}" loading="lazy" decoding="async" alt="${cat.title}" onerror="this.parentElement.classList.add('missing')"></div><span class="service-index">0${i+1}</span><div class="service-card-copy"><h3>${cat.title}</h3><p>${cat.items.length} ${lang==="tr"?"hizmet":lang==="en"?"services":lang==="de"?"Leistungen":lang==="fr"?"services":lang==="es"?"servicios":lang==="ru"?"услуг":lang==="ar"?"خدمات":"xidmət"} <span aria-hidden="true">↗</span></p></div></article>`).join("");
+ const openCategory=key=>{const cat=group.categories.find(x=>x.key===key);if(!cat||!detail)return;document.getElementById("serviceDetailKicker").textContent=serviceUi[lang]?.detail||serviceUi.en.detail;document.getElementById("serviceDetailTitle").textContent=cat.title;document.getElementById("serviceDetailSubtitle").textContent=group.lead;document.getElementById("serviceDetailList").innerHTML=cat.items.map(item=>typeof item==="string"?`<div class="service-detail-item"><span>${item}</span></div>`:`<div class="service-detail-item service-detail-item-rich"><strong>${item.name}</strong><small>${item.desc}</small></div>`).join("");detail.hidden=false;detail.classList.add("is-open");detail.scrollIntoView({behavior:"smooth",block:"nearest"});};
+ root.querySelectorAll("[data-service-category]").forEach(card=>{card.addEventListener("click",()=>openCategory(card.dataset.serviceCategory));card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openCategory(card.dataset.serviceCategory);}});});
+ if(detail&&!detail.dataset.bound){detail.dataset.bound="1";const close=()=>{detail.classList.remove("is-open");detail.hidden=true};document.getElementById("serviceDetailClose")?.addEventListener("click",close);detail.addEventListener("click",e=>{if(e.target===detail)close();});document.addEventListener("keydown",e=>{if(e.key==="Escape")close();});}
+ observeReveals();
+}function applyLanguage(){const t=translations[lang]||translations.en;const serviceTitle=document.querySelector("[data-i18n=\"services.title\"]");if(serviceTitle)serviceTitle.innerHTML=serviceTitles[lang]?.[mode]||serviceTitles.en[mode];const modeTitle=document.querySelector("[data-i18n=\"services.modeTitle\"]");if(modeTitle)modeTitle.textContent=serviceTitles[lang]?.[mode]||serviceTitles.en[mode];const ht=hoursTranslations[lang]||hoursTranslations.en;document.querySelector("[data-hours-kicker]")&&(document.querySelector("[data-hours-kicker]").textContent=ht.kicker);document.querySelector("[data-hours-title]")&&(document.querySelector("[data-hours-title]").textContent=ht.title);document.querySelector("[data-hours-note]")&&(document.querySelector("[data-hours-note]").textContent=ht.note);document.querySelectorAll("[data-day]").forEach(el=>{el.textContent=ht.days[el.dataset.day]||el.textContent});document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";document.querySelectorAll("[data-i18n]").forEach(el=>{const v=getPath(t,el.dataset.i18n);if(v)el.innerHTML=v;});const lb=document.getElementById("langButton");if(lb)lb.textContent=lang.toUpperCase();localStorage.setItem("salonWhiteLang",lang);const subtitle=document.getElementById("heroSubtitle");if(subtitle)subtitle.textContent=t.hero.subtitle;const title=document.getElementById("heroTitle");if(title)title.innerHTML=lang==="tr"?'<span>Salon</span> White<br><em class="hero-location-main">EMİNÖNÜ–SİRKECİ</em>':'<span>Salon</span> White<br><em class="hero-location-main">EMINONU–SIRKECI</em>';document.querySelectorAll("[data-mode-switch]").forEach(btn=>{btn.textContent=modeWords[lang]?.[btn.dataset.modeSwitch]||btn.dataset.modeSwitch.toUpperCase();});const nearby=document.getElementById("nearbyList");if(nearby)nearby.innerHTML=(nearbyTranslations[lang]||nearbyTranslations.en).map(x=>`<span>${x}</span>`).join("");}
 function setMode(next){if(!["woman","man"].includes(next))return;mode=next;document.body.dataset.mode=mode;document.querySelectorAll(".mode-option").forEach(b=>{const active=b.dataset.modeSwitch===mode;b.classList.toggle("active",active);b.setAttribute("aria-pressed",active?"true":"false");});localStorage.setItem("salonWhiteMode",mode);applyLanguage();renderServices();}
 window.setMode=setMode;
 function setupMobileMenu(){const button=document.getElementById("menuButton"),menu=document.getElementById("mobileMenu"),langMenu=document.getElementById("langMenu"),langButton=document.getElementById("langButton");if(!button||!menu)return;const close=()=>{menu.classList.remove("open");menu.hidden=true;button.setAttribute("aria-expanded","false");document.body.classList.remove("menu-open");};button.addEventListener("click",e=>{e.stopPropagation();if(langMenu){langMenu.classList.remove("open");}if(langButton){langButton.setAttribute("aria-expanded","false");}const open=!menu.classList.contains("open");if(open){menu.hidden=false;menu.classList.remove("open");requestAnimationFrame(()=>requestAnimationFrame(()=>menu.classList.add("open")));}else{menu.classList.remove("open");setTimeout(()=>{if(!menu.classList.contains("open"))menu.hidden=true},360);}button.setAttribute("aria-expanded",open?"true":"false");document.body.classList.toggle("menu-open",open);});menu.querySelectorAll("a").forEach(a=>a.addEventListener("click",close));document.addEventListener("click",e=>{if(!e.target.closest("#mobileMenu")&&!e.target.closest("#menuButton"))close();});document.addEventListener("keydown",e=>{if(e.key==="Escape")close();});}
