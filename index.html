@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/images/banner-01-exterior.png" fetchpriority="high">
-  <link rel="stylesheet" href="style.css?v=20260927-1320">
+  <link rel="stylesheet" href="style.css?v=20260927-1323">
   <link rel="stylesheet" href="experience-2.css">
   <script type="application/ld+json">
   {
@@ -139,13 +139,19 @@
       <div class="section-head services-head">
         <div>
           <div class="section-kicker">02 / <span data-i18n="services.kicker">HİZMETLER</span></div>
-          <h2 data-i18n="services.title">Kadınlara Özel Hizmetlerimiz</h2>
-          <p class="services-lead" data-i18n="services.lead">Fiyatlandırma göstermeden, kadın ve erkek hizmetlerimizi kategori bazında inceleyin.</p>
+          <h2 data-i18n="services.title">Kadın & Erkek Kuaför Hizmetleri</h2>
+          <p class="services-lead" data-i18n="services.lead">Saç, renk, kaynak, bakım ve güzellik hizmetlerimizi keşfedin.</p>
         </div>
-        <div class="service-note glass-panel"><span class="mode-dot"></span><b id="modeLabel" data-i18n="services.modeTitle">Kadınlara Özel Hizmetlerimiz</b></div>
+        <div class="service-note glass-panel"><span class="mode-dot"></span><b id="modeLabel">KADIN</b></div>
       </div>
-      <nav class="service-category-nav" id="serviceCategoryNav" aria-label="Service categories"></nav>
-      <div class="service-grid" id="serviceGrid"></div>
+      <div class="service-grid service-feature-grid" id="serviceGrid"></div>
+      <div class="service-detail-panel glass-panel" id="serviceDetailPanel" hidden aria-live="polite">
+        <div class="service-detail-head">
+          <div><span class="section-kicker" id="serviceDetailKicker">HİZMET DETAYI</span><h3 id="serviceDetailTitle"></h3><p id="serviceDetailSubtitle"></p></div>
+          <button class="service-detail-close" id="serviceDetailClose" type="button" aria-label="Close">×</button>
+        </div>
+        <div class="service-detail-list" id="serviceDetailList"></div>
+      </div>
     </section>
 
     <section class="feature-image" id="salon">
@@ -234,7 +240,7 @@
     <div class="footer-bottom"><span>© <span id="year"></span> Salon White Sirkeci</span><span data-i18n="footer.right">Man & Woman Coiffeur · Istanbul</span></div>
   </footer>
 
-  <script src="app.js?v=20260927-1322"></script><script src="about-preview.js?v=20260927-1301"></script><script src="reviews.js?v=20260927-1301"></script>
+  <script src="app.js?v=20260927-1323"></script><script src="about-preview.js?v=20260927-1301"></script><script src="reviews.js?v=20260927-1301"></script>
   <script src="experience-2.js?v=20260927-0702"></script>
 </body>
 </html>
