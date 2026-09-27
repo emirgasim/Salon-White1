@@ -263,6 +263,48 @@ function renderServices(){
   root.innerHTML=group.categories.map(cat=>`<article class="service-directory-card glass-panel reveal" id="service-${cat.key}"><div class="service-directory-top"><span></span><a class="service-arrow-link service-directory-arrow" href="#service-${cat.key}" aria-label="${cat.title}"><img src="assets/icons/service-arrow-circle.svg" alt="" aria-hidden="true"></a></div><h3>${cat.title}</h3><ul class="service-category-list">${cat.items.map(item=>typeof item==="string"?`<li>${item}</li>`:`<li class="service-rich-item"><strong>${item.name}</strong><small>${item.desc}</small></li>`).join("")}</ul></article>`).join("");
  observeReveals();
 }
+async function renderInstagramReels(){
+  const stage=document.getElementById("instagramReelsStage");
+  if(!stage)return;
+  const fallback="https://www.instagram.com/reel/DdydkBaqr0s/?stkn=cHowem1icTBidGJl";
+  const labels={
+    tr:{kicker:"05 / INSTAGRAM REELS",title:"Son çalışmalarımızı<br><em>Instagram'da keşfedin.</em>"},
+    en:{kicker:"05 / INSTAGRAM REELS",title:"Discover our latest work<br><em>on Instagram.</em>"},
+    de:{kicker:"05 / INSTAGRAM REELS",title:"Entdecken Sie unsere neuesten Arbeiten<br><em>auf Instagram.</em>"},
+    fr:{kicker:"05 / INSTAGRAM REELS",title:"Découvrez nos dernières réalisations<br><em>sur Instagram.</em>"},
+    es:{kicker:"05 / INSTAGRAM REELS",title:"Descubre nuestros últimos trabajos<br><em>en Instagram.</em>"},
+    ru:{kicker:"05 / INSTAGRAM REELS",title:"Смотрите наши последние работы<br><em>в Instagram.</em>"},
+    ar:{kicker:"05 / INSTAGRAM REELS",title:"اكتشفوا أحدث أعمالنا<br><em>على Instagram.</em>"},
+    az:{kicker:"05 / INSTAGRAM REELS",title:"Son işlərimizi kəşf edin<br><em>Instagram-da.</em>"}
+  };
+  const t=labels[lang]||labels.en;
+  document.querySelectorAll("[data-reel-i18n]").forEach(el=>{const key=el.dataset.reelI18n;if(t[key]!==undefined)el.innerHTML=t[key]});
+  let reels=[];
+  try{
+    const r=await fetch("/api/reels?ts="+Date.now(),{cache:"no-store"});
+    const d=await r.json();
+    if(Array.isArray(d.reels))reels=d.reels;
+  }catch(e){}
+  const cards=[...stage.querySelectorAll("[data-reel-card]")];
+  cards.forEach((card,i)=>{
+    const item=reels[i]||{url:fallback};
+    card.href=item.url||fallback;
+    card.dataset.reelUrl=item.url||fallback;
+  });
+  if(stage.dataset.bound==="1")return;
+  stage.dataset.bound="1";
+  const nav=stage.parentElement?.querySelector(".reels-nav");
+  if(nav){
+    const prev=nav.children[0],next=nav.children[1];
+    const rotate=(dir)=>{
+      const values=cards.map(x=>x.dataset.reelUrl||fallback);
+      if(dir<0)values.unshift(values.pop());else values.push(values.shift());
+      cards.forEach((card,i)=>{card.dataset.reelUrl=values[i];card.href=values[i]});
+    };
+    prev?.addEventListener("click",()=>rotate(-1));
+    next?.addEventListener("click",()=>rotate(1));
+  }
+}
 function applyLanguage(){renderServicePreview();const servicePageTitles={tr:"Hizmetler | Salon White Sirkeci",en:"Services | Salon White Sirkeci",de:"Leistungen | Salon White Sirkeci",fr:"Services | Salon White Sirkeci",es:"Servicios | Salon White Sirkeci",ru:"Услуги | Salon White Sirkeci",ar:"الخدمات | Salon White Sirkeci",az:"Xidmətlər | Salon White Sirkeci"};const t=translations[lang]||translations.en;if(document.body?.dataset.servicePage==="true")document.title=servicePageTitles[lang]||servicePageTitles.en;const serviceTitle=document.querySelector("[data-i18n=\"services.title\"]");if(serviceTitle)serviceTitle.innerHTML=serviceTitles[lang]?.[mode]||serviceTitles.en[mode];const modeTitle=document.querySelector("[data-i18n=\"services.modeTitle\"]");if(modeTitle)modeTitle.textContent=serviceTitles[lang]?.[mode]||serviceTitles.en[mode];const ht=hoursTranslations[lang]||hoursTranslations.en;document.querySelector("[data-hours-kicker]")&&(document.querySelector("[data-hours-kicker]").textContent=ht.kicker);document.querySelector("[data-hours-title]")&&(document.querySelector("[data-hours-title]").textContent=ht.title);document.querySelector("[data-hours-note]")&&(document.querySelector("[data-hours-note]").textContent=ht.note);document.querySelectorAll("[data-day]").forEach(el=>{el.textContent=ht.days[el.dataset.day]||el.textContent});document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";document.querySelectorAll("[data-i18n]").forEach(el=>{const v=getPath(t,el.dataset.i18n);if(v)el.innerHTML=v;});const lb=document.getElementById("langButton");if(lb)lb.textContent=lang.toUpperCase();localStorage.setItem("salonWhiteLang",lang);const subtitle=document.getElementById("heroSubtitle");if(subtitle)subtitle.textContent=t.hero.subtitle;const title=document.getElementById("heroTitle");if(title){const heroLocations={tr:"SİRKECİ",en:"SIRKECI",de:"SIRKECI",fr:"SIRKECI",es:"SIRKECI",ru:"SIRKECI",ar:"SIRKECI",az:"SIRKECI"};title.innerHTML='<span>Salon</span> White<br><em class="hero-location-main"><span class="hero-location-word hero-location-first">'+(heroLocations[lang]||"SIRKECI")+'</span></em>';}document.querySelectorAll("[data-mode-switch]").forEach(btn=>{btn.textContent=modeWords[lang]?.[btn.dataset.modeSwitch]||btn.dataset.modeSwitch.toUpperCase();});const nearby=document.getElementById("nearbyList");if(nearby){const names=nearbyTranslations[lang]||nearbyTranslations.en;const keys=["ayasofya","kapalicarsi","topkapi","misircarsisi"];nearby.innerHTML=names.map((x,i)=>`<button type="button" class="nearby-place" data-landmark="${keys[i]}">${x}</button>`).join("");}}
 function setMode(next){if(!["woman","man"].includes(next))return;mode=next;document.body.dataset.mode=mode;document.querySelectorAll(".mode-option").forEach(b=>{const active=b.dataset.modeSwitch===mode;b.classList.toggle("active",active);b.setAttribute("aria-pressed",active?"true":"false");});localStorage.setItem("salonWhiteMode",mode);applyLanguage();renderServices();}
 window.setMode=setMode;
@@ -317,7 +359,7 @@ function stopSlider(){if(slideTimer){clearInterval(slideTimer);slideTimer=null;}
 function startSlider(){stopSlider();if(document.hidden)return;slideTimer=setInterval(()=>{if(!document.hidden)updateSlide(slide+1);},6500);}
 document.addEventListener("visibilitychange",()=>{if(document.hidden)stopSlider();else startSlider();});
 function forceTopOnEntry(){if(location.hash&&location.hash!=="#top")return;requestAnimationFrame(()=>scrollTo({top:0,left:0,behavior:"auto"}));setTimeout(()=>scrollTo({top:0,left:0,behavior:"auto"}),80);}
-function init(){syncManagedImages();const y=document.getElementById("year");if(y)y.textContent=new Date().getFullYear();forceTopOnEntry();document.body.dataset.mode=mode;document.querySelectorAll(".mode-option").forEach(b=>{const active=b.dataset.modeSwitch===mode;b.classList.toggle("active",active);b.setAttribute("aria-pressed",active?"true":"false");});setupModeSwitch();setupLandmarkModal();setupMobileMenu();setupLanguage();setupHeroActionBar();applyLanguage();renderServices();observeReveals();startSlider();}
+function init(){syncManagedImages();renderInstagramReels();const y=document.getElementById("year");if(y)y.textContent=new Date().getFullYear();forceTopOnEntry();document.body.dataset.mode=mode;document.querySelectorAll(".mode-option").forEach(b=>{const active=b.dataset.modeSwitch===mode;b.classList.toggle("active",active);b.setAttribute("aria-pressed",active?"true":"false");});setupModeSwitch();setupLandmarkModal();setupMobileMenu();setupLanguage();setupHeroActionBar();applyLanguage();renderServices();observeReveals();startSlider();}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 
 window.addEventListener("pageshow",()=>{if(!location.hash||location.hash==="#top")scrollTo({top:0,left:0,behavior:"auto"});});
