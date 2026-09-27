@@ -66,7 +66,7 @@ async function loadReelLinks(){
 async function saveReelLinks(){
   const statusEl=$("#reelStatus"),button=$("#saveReels");
   const reels=Array.from({length:5},(_,i)=>({url:$("#reelLink"+i).value.trim(),title:"Instagram Reel "+(i+1)}));
-  if(reels.some(x=>!/^https:\/\/www\\.instagram\\.com\/(reel|p)\\//i.test(x.url))){
+  if(reels.some(x=>!/^https:\/\/(?:www\.)?instagram\.com\/(?:reel|p)\/[A-Za-z0-9_-]+/i.test(x.url))){
     statusEl.textContent="✕ Yalnızca Instagram Reel bağlantısı gir.";statusEl.className="status bad";return;
   }
   button.disabled=true;statusEl.textContent="Kaydediliyor… GitHub'a gönderiliyor.";statusEl.className="status busy";
