@@ -371,6 +371,10 @@ function setupGalleryLightbox(){
   if(!modal||!image||modal.dataset.bound==="1")return;
   modal.dataset.bound="1";
 
+  // Modalı herhangi bir section/overflow/transform katmanından çıkar.
+  // Böylece 3x3 fotoğraflar özellikle mobilde her zaman gerçek viewport üzerinde açılır.
+  if(modal.parentElement!==document.body)document.body.appendChild(modal);
+
   const close=()=>{
     modal.hidden=true;
     modal.setAttribute("aria-hidden","true");
@@ -378,20 +382,34 @@ function setupGalleryLightbox(){
     image.removeAttribute("src");
   };
 
-  document.addEventListener("click",e=>{
-    const trigger=e.target.closest("[data-gallery-target]");
-    if(trigger){
-      const source=trigger.querySelector("img");
-      if(!source)return;
+  const open=(trigger)=>{
+    const source=trigger?.querySelector("img");
+    if(!source)return;
+    image.src=source.currentSrc||source.src;
+    image.alt=source.alt||((accessibilityLabels[lang]||accessibilityLabels.en).galleryPhoto);
+    modal.hidden=false;
+    modal.setAttribute("aria-hidden","false");
+    document.body.classList.add("gallery-lightbox-open");
+  };
+
+  document.querySelectorAll("[data-gallery-target]").forEach(trigger=>{
+    if(trigger.dataset.galleryBound==="1")return;
+    trigger.dataset.galleryBound="1";
+    trigger.addEventListener("click",e=>{
       e.preventDefault();
-      image.src=source.currentSrc||source.src;
-      image.alt=source.alt||((accessibilityLabels[lang]||accessibilityLabels.en).galleryPhoto);
-      modal.hidden=false;
-      modal.setAttribute("aria-hidden","false");
-      document.body.classList.add("gallery-lightbox-open");
-      return;
-    }
-    if(e.target.closest("[data-gallery-close]"))close();
+      e.stopPropagation();
+      open(trigger);
+    });
+  });
+
+  modal.querySelectorAll("[data-gallery-close]").forEach(el=>{
+    if(el.dataset.galleryCloseBound==="1")return;
+    el.dataset.galleryCloseBound="1";
+    el.addEventListener("click",e=>{
+      e.preventDefault();
+      e.stopPropagation();
+      close();
+    });
   });
 
   document.addEventListener("keydown",e=>{
