@@ -58,8 +58,8 @@ async function images(request, env) {
 
 async function upload(request, env) {
   if (!auth(request, env)) return json({error:"Yetkisiz erişim."},401);
-  const token = env.GITHUB_TOKEN;
-  if (!token) return json({error:"GITHUB_TOKEN Cloudflare secret olarak tanımlanmamış."},500);
+  const token = githubToken(env);
+  if (!token) return json({error:"GitHub token bulunamadı. Cloudflare Worker secret adı GITHUB_TOKEN olmalı (alternatif: GITHUB_PAT, GH_TOKEN, GITHUB_ADMIN_TOKEN)."},500);
   const form = await request.formData();
   const file = form.get("file");
   const path = cleanPath(form.get("path"));
