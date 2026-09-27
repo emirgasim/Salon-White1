@@ -17,7 +17,7 @@ window.SALON_IMAGE_SLOTS=[
  {id:"15",label:"Erkek · Saç Renklendirme",file:"hizmet-07-erkek-sac-kesimi.png",section:"Hizmet · Erkek",target:"service-man-2"},
  {id:"16",label:"Erkek · Saç Bakım & Onarım",file:"hizmet-11-erkek-treatment.png",section:"Hizmet · Erkek",target:"service-man-3"},
  {id:"17",label:"Erkek · Erkek Bakım",file:"hizmet-12-erkek-grooming.png",section:"Hizmet · Erkek",target:"service-man-4"},
- {id:"18",label:"Erkek · Cilt & Güzellik",file:"hizmet-10-erkek-styling.png",section:"Hizmet · Erkek",target:"service-man-5"}
+ {id:"18",label:"Erkek · Cilt & Güzellik",file:"hizmet-10-erkek-styling.png",section:"Hizmet · Erkek",target:"service-man-5"},
  {id:"19",label:"Galeri 04 · Fotoğraf",file:"admin-gallery-04.png",section:"Galeri",target:"gallery-4"},
  {id:"20",label:"Galeri 05 · Fotoğraf",file:"admin-gallery-05.png",section:"Galeri",target:"gallery-5"},
  {id:"21",label:"Galeri 06 · Fotoğraf",file:"admin-gallery-06.png",section:"Galeri",target:"gallery-6"},
