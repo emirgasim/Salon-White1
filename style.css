@@ -535,3 +535,12 @@ body[data-mode=man] .mode-indicator{transform:translateX(calc(100% + 16px))!impo
     background-position:center center;
   }
 }
+
+/* Service image slots managed from /admin.html */
+.service-visual{height:150px;border-radius:18px;overflow:hidden;position:relative;margin:-3px -3px 18px;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(0,0,0,.16));border:1px solid rgba(255,255,255,.1)}
+.service-visual img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .7s var(--ease),opacity .35s var(--ease)}
+.service-card:hover .service-visual img{transform:scale(1.045)}
+.service-visual.missing{background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.025))}
+.service-visual.missing img{display:none}
+@media(max-width:900px){.service-visual{height:170px}}
+@media(max-width:620px){.service-visual{height:190px}}
