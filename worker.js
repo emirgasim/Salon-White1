@@ -158,20 +158,87 @@ async function reels(request, env) {
 }
 
 async function reelCover(request, env) {
-  const url = new URL(request.url).searchParams.get("url");
-  if (!url || !/^https:\/\/(?:www\.)?instagram\.com\/(?:reel|p)\/[A-Za-z0-9_-]+/i.test(url)) return json({error:"Geçerli Instagram Reel URL'si gerekli."},400);
+  const reelUrl = new URL(request.url).searchParams.get("url");
+  if (!reelUrl || !/^https:\/\/(?:www\.)?instagram\.com\/(?:reel|p)\/[A-Za-z0-9_-]+/i.test(reelUrl)) {
+    return json({error:"Geçerli Instagram Reel URL'si gerekli."},400);
+  }
+
+  const fallback = async () => {
+    try {
+      const fallbackUrl = new URL("/assets/images/admin-slider-03-collage.png", request.url);
+      const response = await fetch(fallbackUrl.toString(), {headers:{"Accept":"image/avif,image/webp,image/png,image/*"}});
+      if (response.ok) {
+        const headers = new Headers(response.headers);
+        headers.set("cache-control","public, max-age=300");
+        return new Response(response.body,{status:200,headers});
+      }
+    } catch {}
+    return new Response(null,{status:404});
+  };
+
   try {
-    const response = await fetch(url,{headers:{
-      "User-Agent":"Mozilla/5.0 (compatible; SalonWhiteBot/1.0)",
-      "Accept":"text/html,application/xhtml+xml"
-    },redirect:"follow"});
-    if (!response.ok) return json({error:"Instagram Reel kapağı alınamadı.",status:response.status},502);
+    const response = await fetch(reelUrl,{
+      headers:{
+        "User-Agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 Version/17.0 Mobile/15E148 Safari/604.1",
+        "Accept":"text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8",
+        "Accept-Language":"tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7"
+      },
+      redirect:"follow"
+    });
+    if (!response.ok) return fallback();
+
     const html = await response.text();
-    const match = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i) || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i);
-    if (!match?.[1]) return json({error:"Reel kapak görseli bulunamadı."},404);
-    return Response.redirect(match[1].replace(/&amp;/g,"&"),302);
+    const candidates = [];
+    const add = value => {
+      if (!value) return;
+      let v = String(value).trim()
+        .replace(/&amp;/g,"&")
+        .replace(/\\u0026/g,"&")
+        .replace(/\\u003D/g,"=")
+        .replace(/\\\//g,"/");
+      if (/^https?:\\/\\//i.test(v)) candidates.push(v);
+    };
+
+    const metaPatterns = [
+      /<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i,
+      /<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i,
+      /<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)["']/i,
+      /<meta[^>]+content=["']([^"']+)["'][^>]+name=["']twitter:image["']/i
+    ];
+    for (const re of metaPatterns) add(html.match(re)?.[1]);
+
+    const dataPatterns = [
+      /"display_url"\\s*:\\s*"([^"]+)"/i,
+      /"thumbnail_src"\\s*:\\s*"([^"]+)"/i,
+      /"image_url"\\s*:\\s*"([^"]+)"/i
+    ];
+    for (const re of dataPatterns) add(html.match(re)?.[1]);
+
+    if (!candidates.length) return fallback();
+
+    for (const imageUrl of candidates) {
+      try {
+        const imageResponse = await fetch(imageUrl,{
+          headers:{
+            "User-Agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 Safari/605.1.15",
+            "Accept":"image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+            "Referer":"https://www.instagram.com/"
+          },
+          redirect:"follow"
+        });
+        if (!imageResponse.ok) continue;
+        const contentType=imageResponse.headers.get("content-type")||"";
+        if (!contentType.startsWith("image/")) continue;
+        const headers=new Headers(imageResponse.headers);
+        headers.set("cache-control","public, max-age=900, s-maxage=3600");
+        headers.delete("set-cookie");
+        return new Response(imageResponse.body,{status:200,headers});
+      } catch {}
+    }
+
+    return fallback();
   } catch {
-    return json({error:"Instagram Reel bağlantısına erişilemedi."},502);
+    return fallback();
   }
 }
 async function upload(request, env) {
