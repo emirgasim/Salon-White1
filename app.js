@@ -268,14 +268,14 @@ async function renderInstagramReels(){
   if(!stage)return;
   const fallback="https://www.instagram.com/reel/DdydkBaqr0s/?stkn=cHowem1icTBidGJl";
   const labels={
-    tr:{kicker:"05 / INSTAGRAM REELS",introTitle:"Son çalışmalarımızı<br><em>keşfedin.</em>",introText:"Salon White Sirkeci'nin en yeni saç tasarımlarını, dönüşümlerini ve salon anlarını Instagram Reels'te keşfedin.",panelCopy:"Salon White Sirkeci'den seçtiğimiz en yeni çalışmalar ve ilham veren saç stilleri.",panelTitle:"OUR REELS"},
-    en:{kicker:"05 / INSTAGRAM REELS",introTitle:"View our<br><em>latest works.</em>",introText:"Discover Salon White Sirkeci's latest hair looks, transformations and salon moments on Instagram Reels.",panelCopy:"A selection of our latest work and inspiring hair styles from Salon White Sirkeci.",panelTitle:"OUR REELS"},
-    de:{kicker:"05 / INSTAGRAM REELS",introTitle:"Entdecken Sie unsere<br><em>neuesten Arbeiten.</em>",introText:"Entdecken Sie die neuesten Looks, Transformationen und Salonmomente von Salon White Sirkeci auf Instagram Reels.",panelCopy:"Eine Auswahl unserer neuesten Arbeiten und inspirierender Haarstile von Salon White Sirkeci.",panelTitle:"OUR REELS"},
-    fr:{kicker:"05 / INSTAGRAM REELS",introTitle:"Découvrez nos<br><em>dernières réalisations.</em>",introText:"Découvrez les dernières créations, transformations et moments de Salon White Sirkeci sur Instagram Reels.",panelCopy:"Une sélection de nos dernières créations et inspirations coiffure signées Salon White Sirkeci.",panelTitle:"OUR REELS"},
-    es:{kicker:"05 / INSTAGRAM REELS",introTitle:"Descubre nuestros<br><em>últimos trabajos.</em>",introText:"Descubre los últimos looks, transformaciones y momentos de Salon White Sirkeci en Instagram Reels.",panelCopy:"Una selección de nuestros últimos trabajos e inspiraciones de estilo de Salon White Sirkeci.",panelTitle:"OUR REELS"},
-    ru:{kicker:"05 / INSTAGRAM REELS",introTitle:"Откройте наши<br><em>новые работы.</em>",introText:"Смотрите новые образы, преображения и моменты Salon White Sirkeci в Instagram Reels.",panelCopy:"Подборка наших последних работ и вдохновляющих образов Salon White Sirkeci.",panelTitle:"OUR REELS"},
-    ar:{kicker:"05 / INSTAGRAM REELS",introTitle:"اكتشفوا أحدث<br><em>أعمالنا.</em>",introText:"اكتشفوا أحدث إطلالات وتحولات ولحظات Salon White Sirkeci على Instagram Reels.",panelCopy:"مختارات من أحدث أعمالنا وإطلالات الشعر الملهمة من Salon White Sirkeci.",panelTitle:"OUR REELS"},
-    az:{kicker:"05 / INSTAGRAM REELS",introTitle:"Son işlərimizi<br><em>kəşf edin.</em>",introText:"Salon White Sirkeci-nin ən yeni saç üslublarını, dəyişikliklərini və salon anlarını Instagram Reels-də kəşf edin.",panelCopy:"Salon White Sirkeci-dən seçilmiş ən yeni işlər və ilhamverici saç üslubları.",panelTitle:"OUR REELS"}
+    tr:{kicker:"06 / INSTAGRAM REELS",introTitle:"Son çalışmalarımızı<br><em>keşfedin.</em>",introText:"Salon White Sirkeci'nin en yeni saç tasarımlarını, dönüşümlerini ve salon anlarını Instagram Reels'te keşfedin.",panelCopy:"Salon White Sirkeci'den seçtiğimiz en yeni çalışmalar ve ilham veren saç stilleri.",panelTitle:"OUR REELS"},
+    en:{kicker:"06 / INSTAGRAM REELS",introTitle:"View our<br><em>latest works.</em>",introText:"Discover Salon White Sirkeci's latest hair looks, transformations and salon moments on Instagram Reels.",panelCopy:"A selection of our latest work and inspiring hair styles from Salon White Sirkeci.",panelTitle:"OUR REELS"},
+    de:{kicker:"06 / INSTAGRAM REELS",introTitle:"Entdecken Sie unsere<br><em>neuesten Arbeiten.</em>",introText:"Entdecken Sie die neuesten Looks, Transformationen und Salonmomente von Salon White Sirkeci auf Instagram Reels.",panelCopy:"Eine Auswahl unserer neuesten Arbeiten und inspirierender Haarstile von Salon White Sirkeci.",panelTitle:"OUR REELS"},
+    fr:{kicker:"06 / INSTAGRAM REELS",introTitle:"Découvrez nos<br><em>dernières réalisations.</em>",introText:"Découvrez les dernières créations, transformations et moments de Salon White Sirkeci sur Instagram Reels.",panelCopy:"Une sélection de nos dernières créations et inspirations coiffure signées Salon White Sirkeci.",panelTitle:"OUR REELS"},
+    es:{kicker:"06 / INSTAGRAM REELS",introTitle:"Descubre nuestros<br><em>últimos trabajos.</em>",introText:"Descubre los últimos looks, transformaciones y momentos de Salon White Sirkeci en Instagram Reels.",panelCopy:"Una selección de nuestros últimos trabajos e inspiraciones de estilo de Salon White Sirkeci.",panelTitle:"OUR REELS"},
+    ru:{kicker:"06 / INSTAGRAM REELS",introTitle:"Откройте наши<br><em>новые работы.</em>",introText:"Смотрите новые образы, преображения и моменты Salon White Sirkeci в Instagram Reels.",panelCopy:"Подборка наших последних работ и вдохновляющих образов Salon White Sirkeci.",panelTitle:"OUR REELS"},
+    ar:{kicker:"06 / INSTAGRAM REELS",introTitle:"اكتشفوا أحدث<br><em>أعمالنا.</em>",introText:"اكتشفوا أحدث إطلالات وتحولات ولحظات Salon White Sirkeci على Instagram Reels.",panelCopy:"مختارات من أحدث أعمالنا وإطلالات الشعر الملهمة من Salon White Sirkeci.",panelTitle:"OUR REELS"},
+    az:{kicker:"06 / INSTAGRAM REELS",introTitle:"Son işlərimizi<br><em>kəşf edin.</em>",introText:"Salon White Sirkeci-nin ən yeni saç üslublarını, dəyişikliklərini və salon anlarını Instagram Reels-də kəşf edin.",panelCopy:"Salon White Sirkeci-dən seçilmiş ən yeni işlər və ilhamverici saç üslubları.",panelTitle:"OUR REELS"}
   };
   const t=labels[lang]||labels.en;
   document.querySelectorAll("[data-reel-i18n]").forEach(el=>{const key=el.dataset.reelI18n;if(t[key]!==undefined)el.innerHTML=t[key]});
@@ -301,32 +301,6 @@ async function renderInstagramReels(){
   });
   if(stage.dataset.bound==="1")return;
   stage.dataset.bound="1";
-  const nav=stage.parentElement?.querySelector(".reels-nav");
-  if(nav){
-    const prev=nav.children[0],next=nav.children[1];
-    const positions=["reel-card-outer-left","reel-card-left","reel-card-center","reel-card-right","reel-card-outer-right"];
-    let order=cards.map((card)=>({card,url:card.dataset.reelUrl||fallback}));
-    const applyOrder=()=>{
-      order.forEach((item,i)=>{
-        item.card.classList.remove(...positions);
-        item.card.classList.add(positions[i]);
-        item.card.href=item.url;
-        const img=item.card.querySelector("img");
-        if(img){
-          img.dataset.reelUrl=item.url;
-          img.dataset.fallback="assets/images/admin-slider-03-collage.png";
-          img.src="/api/reel-cover?url="+encodeURIComponent(item.url)+"&ts="+Date.now();
-        }
-      });
-    };
-    const rotate=(dir)=>{
-      if(dir<0)order=[order[order.length-1],...order.slice(0,-1)];
-      else order=[...order.slice(1),order[0]];
-      applyOrder();
-    };
-    prev?.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();rotate(-1)});
-    next?.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();rotate(1)});
-  }
 }
 function applyLanguage(){renderInstagramReels();renderServicePreview();const servicePageTitles={tr:"Hizmetler | Salon White Sirkeci",en:"Services | Salon White Sirkeci",de:"Leistungen | Salon White Sirkeci",fr:"Services | Salon White Sirkeci",es:"Servicios | Salon White Sirkeci",ru:"Услуги | Salon White Sirkeci",ar:"الخدمات | Salon White Sirkeci",az:"Xidmətlər | Salon White Sirkeci"};const t=translations[lang]||translations.en;if(document.body?.dataset.servicePage==="true")document.title=servicePageTitles[lang]||servicePageTitles.en;const serviceTitle=document.querySelector("[data-i18n=\"services.title\"]");if(serviceTitle)serviceTitle.innerHTML=serviceTitles[lang]?.[mode]||serviceTitles.en[mode];const modeTitle=document.querySelector("[data-i18n=\"services.modeTitle\"]");if(modeTitle)modeTitle.textContent=serviceTitles[lang]?.[mode]||serviceTitles.en[mode];const ht=hoursTranslations[lang]||hoursTranslations.en;document.querySelector("[data-hours-kicker]")&&(document.querySelector("[data-hours-kicker]").textContent=ht.kicker);document.querySelector("[data-hours-title]")&&(document.querySelector("[data-hours-title]").textContent=ht.title);document.querySelector("[data-hours-note]")&&(document.querySelector("[data-hours-note]").textContent=ht.note);document.querySelectorAll("[data-day]").forEach(el=>{el.textContent=ht.days[el.dataset.day]||el.textContent});document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";document.querySelectorAll("[data-i18n]").forEach(el=>{const v=getPath(t,el.dataset.i18n);if(v)el.innerHTML=v;});const lb=document.getElementById("langButton");if(lb)lb.textContent=lang.toUpperCase();localStorage.setItem("salonWhiteLang",lang);const subtitle=document.getElementById("heroSubtitle");if(subtitle)subtitle.textContent=t.hero.subtitle;const title=document.getElementById("heroTitle");if(title){const heroLocations={tr:"SİRKECİ",en:"SIRKECI",de:"SIRKECI",fr:"SIRKECI",es:"SIRKECI",ru:"SIRKECI",ar:"SIRKECI",az:"SIRKECI"};title.innerHTML='<span>Salon</span> White<br><em class="hero-location-main"><span class="hero-location-word hero-location-first">'+(heroLocations[lang]||"SIRKECI")+'</span></em>';}document.querySelectorAll("[data-mode-switch]").forEach(btn=>{btn.textContent=modeWords[lang]?.[btn.dataset.modeSwitch]||btn.dataset.modeSwitch.toUpperCase();});const nearby=document.getElementById("nearbyList");if(nearby){const names=nearbyTranslations[lang]||nearbyTranslations.en;const keys=["ayasofya","kapalicarsi","topkapi","misircarsisi"];nearby.innerHTML=names.map((x,i)=>`<button type="button" class="nearby-place" data-landmark="${keys[i]}">${x}</button>`).join("");}}
 function setMode(next){if(!["woman","man"].includes(next))return;mode=next;document.body.dataset.mode=mode;document.querySelectorAll(".mode-option").forEach(b=>{const active=b.dataset.modeSwitch===mode;b.classList.toggle("active",active);b.setAttribute("aria-pressed",active?"true":"false");});localStorage.setItem("salonWhiteMode",mode);applyLanguage();renderServices();}
