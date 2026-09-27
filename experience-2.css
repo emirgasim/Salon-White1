@@ -46,3 +46,6 @@ body[data-mode=man].mode-scrolled .mode-switch .mode-option{color:#f5f5f3!import
 body[data-mode=man].mode-scrolled .mode-switch>span{background:rgba(255,255,255,.3)!important}
 body[data-mode=man].mode-scrolled .mode-switch .mode-indicator{background:rgba(255,255,255,.94)!important}
 body[data-mode=man].mode-scrolled .mode-switch .mode-option.active{color:#111!important;text-shadow:none!important}
+
+/* Reliable horizontal mode swipe on touch devices; vertical page scrolling remains native. */
+html,body{touch-action:pan-y;}
