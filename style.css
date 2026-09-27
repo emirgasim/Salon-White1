@@ -872,3 +872,13 @@ body[data-mode=man] .about-preview-card>.preview-icon img{filter:brightness(0) i
 }
 body[data-mode=man] .landmark-modal-card{background:linear-gradient(145deg,rgba(35,38,43,.72),rgba(18,20,24,.58));border-color:rgba(255,255,255,.24)}body[data-mode=man] .landmark-modal-card p{color:rgba(255,255,255,.88)}
 @media(max-width:560px){.landmark-modal{padding:0}.landmark-modal-card{left:50%;top:var(--landmark-top,47svh);width:min(390px,calc(100vw - 64px));max-height:min(36svh,320px);padding:20px 18px 18px;border-radius:23px}.landmark-modal-card h3{margin-right:42px;font-size:clamp(28px,8vw,38px)}.landmark-modal-card p{font-size:13px;line-height:1.62}.landmark-fact{margin-top:14px;padding:9px 11px;font-size:9px}.landmark-close{right:11px;top:11px;width:34px;height:34px;font-size:20px}.nearby-place{font-size:11px;padding:9px 13px}}
+
+/* Hero location hierarchy: SIRKECI slightly smaller, with safe line spacing */
+.hero h1 .hero-location-main{display:inline-flex;flex-direction:column;align-items:flex-start;line-height:1.02;letter-spacing:-.04em;}
+.hero h1 .hero-location-word{display:block;white-space:nowrap;}
+.hero h1 .hero-location-first{font-size:1em;}
+.hero h1 .hero-location-second{font-size:.78em;margin-top:.035em;}
+@media (max-width:560px){
+  .hero h1 .hero-location-main{line-height:1.03;}
+  .hero h1 .hero-location-second{font-size:.76em;margin-top:.04em;}
+}
