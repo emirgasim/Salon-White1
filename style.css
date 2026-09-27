@@ -525,3 +525,13 @@ body[data-mode=man] .mode-indicator{transform:translateX(calc(100% + 16px))!impo
 .mode-switch{display:flex!important;align-items:stretch!important}
 .mode-switch .mode-option{flex:1 1 0!important;min-width:0!important;text-align:center!important;padding-left:10px!important;padding-right:10px!important;display:flex!important;align-items:center!important;justify-content:center!important}
 .mode-switch>span{left:50%!important;transform:translate(-50%,-50%)!important}
+
+
+/* Mobile exterior hero: use the dedicated portrait banner without desktop cropping */
+@media(max-width:900px){
+  .hero-slide:nth-child(1){
+    background-image:url('assets/images/banner-01-exterior-mobile.jpg') !important;
+    background-size:cover;
+    background-position:center center;
+  }
+}
