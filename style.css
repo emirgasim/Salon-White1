@@ -428,3 +428,26 @@ body[data-mode=man] .mobile-action-bar a:first-child::before{background:rgba(255
   .mode-switch.dragging .mode-indicator{cursor:grabbing;transition:none!important}
   .mode-switch .mode-option{position:relative;z-index:2;touch-action:none}
 }
+
+
+/* Final polish: dark-mode logo + true single-layer WhatsApp + smoother mode thumb */
+body[data-mode=man] .brand img{
+  filter:invert(1);
+  background:#fff;
+}
+@media(max-width:900px){
+  .mobile-action-bar a:first-child,
+  .mobile-action-bar a:first-child:active{
+    background:transparent!important;
+  }
+  .mobile-action-bar a:first-child::before{
+    background:rgba(255,255,255,.08)!important;
+  }
+  .mode-indicator{
+    transition:transform .28s cubic-bezier(.22,1,.36,1),background .24s ease,box-shadow .24s ease!important;
+    will-change:transform;
+  }
+  .mode-switch.dragging .mode-indicator{
+    transition:none!important;
+  }
+}
