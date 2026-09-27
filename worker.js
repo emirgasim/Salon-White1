@@ -8,8 +8,22 @@ const json = (data, status = 200) => new Response(JSON.stringify(data), {
   headers: {"content-type":"application/json;charset=UTF-8","cache-control":"no-store"}
 });
 
-// Admin intentionally uses passwordless access. GitHub authorization stays server-side in the Cloudflare secret.
-const auth = () => true;
+// Admin API is protected with HTTP Basic Auth. Credentials are kept only in
+// Cloudflare Worker secrets (ADMIN_USER / ADMIN_PASSWORD); never in the repo.
+const auth = (request, env) => {
+  const expectedUser = env.ADMIN_USER || "admin";
+  const expectedPassword = env.ADMIN_PASSWORD || "";
+  if (!expectedPassword) return false;
+  const header = request.headers.get("Authorization") || "";
+  if (!header.startsWith("Basic ")) return false;
+  try {
+    const decoded = atob(header.slice(6));
+    const split = decoded.indexOf(":");
+    if (split < 0) return false;
+    return decoded.slice(0, split) === expectedUser && decoded.slice(split + 1) === expectedPassword;
+  } catch { return false; }
+};
+const authRequired = () => json({error:"Admin authentication required.",code:"ADMIN_AUTH_REQUIRED"},401);
 
 const githubToken = (env) => env.GITHUB_TOKEN || env.GITHUB_PAT || env.GH_TOKEN || env.GITHUB_ADMIN_TOKEN || null;
 const githubTokenSource = (env) => env.GITHUB_TOKEN ? "GITHUB_TOKEN" : env.GITHUB_PAT ? "GITHUB_PAT" : env.GH_TOKEN ? "GH_TOKEN" : env.GITHUB_ADMIN_TOKEN ? "GITHUB_ADMIN_TOKEN" : null;
@@ -45,7 +59,7 @@ async function github(url, options, token) {
 }
 
 async function images(request, env) {
-  if (!auth(request, env)) return json({error:"Yetkisiz erişim."},401);
+  if (!auth(request, env)) return authRequired();
   const token = githubToken(env);
   if (!token) return json({error:"GitHub token bulunamadı. Cloudflare Worker secret adı GITHUB_TOKEN olmalı (alternatif: GITHUB_PAT, GH_TOKEN, GITHUB_ADMIN_TOKEN)."},500);
   const repo = env.GITHUB_REPO || REPO;
@@ -61,7 +75,7 @@ async function images(request, env) {
 }
 
 async function liveImage(request, env) {
-  if (!auth(request, env)) return new Response("Yetkisiz erişim.",{status:401});
+  if (!auth(request, env)) return new Response("Admin authentication required.",{status:401,headers:{"WWW-Authenticate":'Basic realm="Salon White Admin"', "content-type":"text/plain;charset=UTF-8"}});
   const token = githubToken(env);
   if (!token) return null;
   const repo = env.GITHUB_REPO || REPO;
@@ -134,7 +148,7 @@ async function reels(request, env) {
     const data = await readRepoJson(env,path);
     return json({reels:Array.isArray(data?.value)?data.value:[]});
   }
-  if (!auth(request, env)) return json({error:"Yetkisiz erişim."},401);
+  if (!auth(request, env)) return authRequired();
   const token = githubToken(env);
   if (!token) return json({error:"GitHub token bulunamadı."},500);
   let payload;
