@@ -196,7 +196,7 @@ async function reelCover(request, env) {
         .replace(/\\u0026/g,"&")
         .replace(/\\u003D/g,"=")
         .replace(/\\\//g,"/");
-      if (/^https?:\\/\\//i.test(v)) candidates.push(v);
+      if (/^https?:\/\//i.test(v)) candidates.push(v);
     };
 
     const metaPatterns = [
@@ -208,9 +208,9 @@ async function reelCover(request, env) {
     for (const re of metaPatterns) add(html.match(re)?.[1]);
 
     const dataPatterns = [
-      /"display_url"\\s*:\\s*"([^"]+)"/i,
-      /"thumbnail_src"\\s*:\\s*"([^"]+)"/i,
-      /"image_url"\\s*:\\s*"([^"]+)"/i
+      /"display_url"\s*:\s*"([^"]+)"/i,
+      /"thumbnail_src"\s*:\s*"([^"]+)"/i,
+      /"image_url"\s*:\s*"([^"]+)"/i
     ];
     for (const re of dataPatterns) add(html.match(re)?.[1]);
 
