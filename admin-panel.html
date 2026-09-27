@@ -26,11 +26,11 @@ const sections=[
 const A=window.SALON_IMAGE_SLOTS.map(s=>[s.id,s.label,s.file,s.section,s.legacy]);
 function renderAdditionalGallerySlots(){
   const root=$("#sections"); if(!root)return;
-  const items=A.map((x,i)=>({x,i})).filter(o=>o.x[0]>="19"&&o.x[0]<="24");
+  const items=A.map((x,i)=>({x,i})).filter(o=>Number(o.x[0])>=19&&Number(o.x[0])<=27);
   if(!items.length)return;
   const section=document.createElement("section");
   section.className="section";
-  section.innerHTML='<div class="section-head"><div><div class="section-kicker">SITE BÖLÜMÜ</div><h2>Galeri · 04–09</h2><p class="section-desc">3x3 galerinin 4–9 numaralı fotoğrafları. Her fotoğrafı buradan bağımsız değiştirebilirsin.</p></div></div><div class="grid">'+items.map(o=>card(o.x,o.i)).join("")+'</div>';
+  section.innerHTML='<div class="section-head"><div><div class="section-kicker">SITE BÖLÜMÜ</div><h2>Galeri · 04–12</h2><p class="section-desc">3x3 galerinin 9 fotoğrafını buradan bağımsız değiştirebilirsin.</p></div></div><div class="grid">'+items.map(o=>card(o.x,o.i)).join("")+'</div>';
   const service=[...root.querySelectorAll(".section")].find(s=>s.querySelector("h2")?.textContent.trim()==="Hizmetler");
   if(service)root.insertBefore(section,service); else root.appendChild(section);
 }
