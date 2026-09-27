@@ -11,6 +11,9 @@ const json = (data, status = 200) => new Response(JSON.stringify(data), {
 // Admin intentionally uses passwordless access. GitHub authorization stays server-side in the Cloudflare secret.
 const auth = () => true;
 
+const githubToken = (env) => env.GITHUB_TOKEN || env.GITHUB_PAT || env.GH_TOKEN || env.GITHUB_ADMIN_TOKEN || null;
+const githubTokenSource = (env) => env.GITHUB_TOKEN ? "GITHUB_TOKEN" : env.GITHUB_PAT ? "GITHUB_PAT" : env.GH_TOKEN ? "GH_TOKEN" : env.GITHUB_ADMIN_TOKEN ? "GITHUB_ADMIN_TOKEN" : null;
+
 const ext = (name) => (String(name).split(".").pop() || "").toLowerCase();
 
 const cleanPath = (value) => {
@@ -42,8 +45,8 @@ async function github(url, options, token) {
 
 async function images(request, env) {
   if (!auth(request, env)) return json({error:"Yetkisiz erişim."},401);
-  const token = env.GITHUB_TOKEN;
-  if (!token) return json({error:"GITHUB_TOKEN Cloudflare secret olarak tanımlanmamış."},500);
+  const token = githubToken(env);
+  if (!token) return json({error:"GitHub token bulunamadı. Cloudflare Worker secret adı GITHUB_TOKEN olmalı (alternatif: GITHUB_PAT, GH_TOKEN, GITHUB_ADMIN_TOKEN)."},500);
   const repo = env.GITHUB_REPO || REPO;
   const branch = env.GITHUB_BRANCH || BRANCH;
   const response = await github("https://api.github.com/repos/"+repo+"/contents/assets/images?ref="+encodeURIComponent(branch), {method:"GET"}, token);
@@ -82,7 +85,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname === "/api/health" && request.method === "GET") {
-      return json({ok:true, githubTokenConfigured:Boolean(env.GITHUB_TOKEN)});
+      return json({ok:true, githubTokenConfigured:Boolean(githubToken(env)), githubTokenSource:githubTokenSource(env), repository:env.GITHUB_REPO || REPO, branch:env.GITHUB_BRANCH || BRANCH});
     }
     if (url.pathname === "/api/images" && request.method === "GET") return images(request, env);
     if (url.pathname === "/api/upload" && request.method === "POST") return upload(request, env);
