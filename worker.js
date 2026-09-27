@@ -69,25 +69,33 @@ async function liveImage(request, env) {
   const url = new URL(request.url);
   const path = cleanPath(decodeURIComponent(url.pathname));
   if (!path || !ALLOWED.has(ext(path))) return null;
-  // Görselleri Cloudflare Static Assets'ten değil, doğrudan GitHub main branch'ten oku.
-  // Böylece admin panelinden yüklenen son PNG anında yayınlanır ve eski asset/cache gösterilmez.
-  const rawUrl = "https://raw.githubusercontent.com/"+repo+"/"+encodeURIComponent(branch)+"/"+path.split("/").map(encodeURIComponent).join("/")+"?v="+Date.now();
-  const response = await fetch(rawUrl, {
+  // Görseli GitHub Contents API'den oku. raw.githubusercontent.com CDN'i yerine
+  // doğrudan main branch'teki güncel blob okunur; böylece yüklenen yeni fotoğrafın
+  // eski CDN kopyasının geri gelmesi engellenir.
+  const apiUrl = "https://api.github.com/repos/"+repo+"/contents/"+path.split("/").map(encodeURIComponent).join("/")+"?ref="+encodeURIComponent(branch)+"&v="+Date.now();
+  const response = await github(apiUrl, {
     method:"GET",
     headers:{
-      "Authorization":"Bearer "+token,
       "Cache-Control":"no-cache, no-store",
       "Pragma":"no-cache"
     }
-  });
+  }, token);
   if (!response.ok) return null;
-  const headers = new Headers(response.headers);
-  headers.set("content-type", response.headers.get("content-type") || "image/png");
-  headers.set("cache-control","no-store, no-cache, must-revalidate, max-age=0");
-  headers.set("pragma","no-cache");
-  headers.set("expires","0");
-  headers.set("x-salon-image-source","github-main-live");
-  return new Response(response.body,{status:200,headers});
+  const data = await response.json().catch(()=>null);
+  if (!data?.content || data.encoding !== "base64") return null;
+  const clean = String(data.content).replace(/\\s/g,"");
+  const binary = atob(clean);
+  const bytes = new Uint8Array(binary.length);
+  for(let i=0;i<binary.length;i++) bytes[i]=binary.charCodeAt(i);
+  const headers = new Headers({
+    "content-type": "image/png",
+    "cache-control": "no-store, no-cache, must-revalidate, max-age=0",
+    "pragma": "no-cache",
+    "expires": "0",
+    "x-salon-image-source": "github-contents-main-live",
+    "x-salon-image-sha": data.sha || ""
+  });
+  return new Response(bytes,{status:200,headers});
 }
 async function upload(request, env) {
   if (!auth(request, env)) return json({error:"Yetkisiz erişim."},401);
