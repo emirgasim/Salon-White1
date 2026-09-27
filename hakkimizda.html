@@ -40,14 +40,23 @@
       <button class="menu-button" id="menuButton" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobileMenu">☰</button>
     </div>
     <nav class="mobile-menu glass-panel" id="mobileMenu" aria-label="Mobile navigation" hidden>
-      <a href="hizmetler.html" data-i18n="nav.services">Hizmetler</a>
-      <a href="#salon" data-i18n="nav.salon">Salon</a>
-      <a href="hakkimizda.html" data-i18n="nav.about">Hakkımızda</a>
-      <a href="#gallery" data-i18n="nav.gallery">Galeri</a>
-      <a href="#istanbul" data-i18n="nav.istanbul">İstanbul</a>
-      <a href="#contact" data-i18n="nav.contact">İletişim</a>
-      <a class="mobile-menu-whatsapp" href="https://wa.me/905441548262" target="_blank" rel="noopener" data-i18n="nav.whatsapp">WhatsApp</a>
-    </nav>
+  <div class="mobile-service-menu">
+    <button class="mobile-service-toggle" id="mobileServiceToggle" type="button" aria-expanded="false" aria-controls="mobileServicePanel">
+      <span data-i18n="nav.services">Hizmetler</span><b aria-hidden="true">+</b>
+    </button>
+    <div class="mobile-service-panel" id="mobileServicePanel" hidden>
+      <div class="mobile-service-group"><div class="mobile-service-group-title" data-mobile-service-mode="woman">KADIN</div><div class="mobile-service-list" data-mobile-service-list="woman"></div></div>
+      <div class="mobile-service-group"><div class="mobile-service-group-title" data-mobile-service-mode="man">ERKEK</div><div class="mobile-service-list" data-mobile-service-list="man"></div></div>
+      <a class="mobile-service-all" href="hizmetler.html" data-i18n="nav.services">Tüm Hizmetler →</a>
+    </div>
+  </div>
+  <a href="index.html#salon" data-i18n="nav.salon">Salon</a>
+  <a href="hakkimizda.html" data-i18n="nav.about">Hakkımızda</a>
+  <a href="index.html#gallery" data-i18n="nav.gallery">Galeri</a>
+  <a href="index.html#istanbul" data-i18n="nav.istanbul">İstanbul</a>
+  <a href="index.html#contact" data-i18n="nav.contact">İletişim</a>
+  <a class="mobile-menu-whatsapp" href="https://wa.me/905441548262" target="_blank" rel="noopener" data-i18n="nav.whatsapp">WhatsApp</a>
+</nav>
   </header>
 <main class="about-page">
 <section class="about-hero"><div class="about-wrap"><div class="about-kicker" data-i18n="hero.kicker">01 / SALON WHITE SİRKECİ</div><h1 data-i18n="hero.title">Sirkeci'nin kalbinde,<br><em>kişisel stiliniz.</em></h1><p class="about-lead" data-i18n="hero.lead">Salon White, İstanbul'un tarihi merkezinde kadın ve erkek saç bakımını; deneyim, özen, kaliteli ürünler ve samimi bir hizmet anlayışıyla bir araya getiren bir kuaför salonudur.</p><div class="about-cta"><a class="glass-cta action-glass" href="https://wa.me/905441548262" target="_blank" rel="noopener"><span class="clean-action-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 4a11.8 11.8 0 0 0-10 17.9L4.3 28l6.3-1.7A11.8 11.8 0 1 0 16 4Z"/><path d="M21.2 18.2c-.3-.2-1.6-.8-1.9-.9-.3-.1-.5-.2-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.4-.7-2.5-1.7-3.4-2.9-.3-.4-.5-.7-.7-1.1-.1-.2 0-.4.2-.5l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6s-.6-1.5-.8-2.1c-.2-.6-.4-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3.1c.2.2 2.1 3.3 5.2 4.5 1.8.7 2.6.8 3.6.6.5-.1 1.6-.7 1.8-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3Z"/></svg></span><span data-i18n="hero.book">Randevu Al</span></a><a class="glass-cta action-glass" href="tel:+902125142030"><span class="clean-action-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M9.2 5.8 12 4.7c.7-.3 1.4.1 1.7.7l2 4.8c.2.6.1 1.2-.4 1.6l-1.7 1.4c1.1 2.4 3 4.3 5.4 5.4l1.4-1.7c.4-.5 1-.6 1.6-.4l4.8 2c.6.3 1 .9.7 1.7l-1.1 2.8c-.3.8-1.1 1.3-2 1.2C13.6 23 9 18.4 8 7.8c-.1-.9.4-1.7 1.2-2Z"/></svg></span><span data-i18n="hero.call">Bizi Arayın</span></a></div></div></section>
