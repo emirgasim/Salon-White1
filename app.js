@@ -387,7 +387,7 @@ function setupGalleryLightbox(){
       const source=trigger.querySelector("img");
       if(!source)return;
       image.src=source.currentSrc||source.src;
-      image.alt=source.alt||"Salon White galeri fotoğrafı";
+      image.alt=source.alt||((accessibilityLabels[lang]||accessibilityLabels.en).galleryPhoto);
       modal.hidden=false;
       modal.setAttribute("aria-hidden","false");
       document.body.classList.add("gallery-lightbox-open");
