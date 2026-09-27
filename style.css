@@ -683,3 +683,15 @@ body[data-mode=man] .mobile-action-bar{
   .glass-nav{border-radius:0 0 26px 26px !important}
   .mobile-action-bar{border-radius:26px 26px 0 0 !important}
 }
+
+
+/* Final top navigation shape: equal rounded corners on every side */
+.glass-nav{
+  border-radius:30px !important;
+}
+@media(max-width:900px){
+  .glass-nav{border-radius:28px !important}
+}
+@media(max-width:560px){
+  .glass-nav{border-radius:26px !important}
+}
