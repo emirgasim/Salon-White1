@@ -18,13 +18,13 @@ window.SALON_IMAGE_SLOTS=[
  {id:"16",label:"Erkek · Saç Bakım & Onarım",file:"hizmet-11-erkek-treatment.png",section:"Hizmet · Erkek",target:"service-man-3"},
  {id:"17",label:"Erkek · Erkek Bakım",file:"hizmet-12-erkek-grooming.png",section:"Hizmet · Erkek",target:"service-man-4"},
  {id:"18",label:"Erkek · Cilt & Güzellik",file:"hizmet-10-erkek-styling.png",section:"Hizmet · Erkek",target:"service-man-5"},
- {id:"19",label:"Galeri 04 · Fotoğraf",file:"admin-gallery-04.png",section:"Galeri",target:"gallery-4"},
- {id:"20",label:"Galeri 05 · Fotoğraf",file:"admin-gallery-05.png",section:"Galeri",target:"gallery-5"},
- {id:"21",label:"Galeri 06 · Fotoğraf",file:"admin-gallery-06.png",section:"Galeri",target:"gallery-6"},
- {id:"22",label:"Galeri 07 · Fotoğraf",file:"admin-gallery-07.png",section:"Galeri",target:"gallery-7"},
- {id:"23",label:"Galeri 08 · Fotoğraf",file:"admin-gallery-08.png",section:"Galeri",target:"gallery-8"},
- {id:"24",label:"Galeri 09 · Fotoğraf",file:"admin-gallery-09.png",section:"Galeri",target:"gallery-9"},
- {id:"25",label:"Galeri 10 · Fotoğraf",file:"admin-gallery-10.png",section:"Galeri",target:"gallery-10"},
- {id:"26",label:"Galeri 11 · Fotoğraf",file:"admin-gallery-11.png",section:"Galeri",target:"gallery-11"},
- {id:"27",label:"Galeri 12 · Fotoğraf",file:"admin-gallery-12.png",section:"Galeri",target:"gallery-12"}
+ {id:"19",label:"3x3 Galeri 01",file:"admin-gallery-04.png",section:"Galeri",target:"gallery-4"},
+ {id:"20",label:"3x3 Galeri 02",file:"admin-gallery-05.png",section:"Galeri",target:"gallery-5"},
+ {id:"21",label:"3x3 Galeri 03",file:"admin-gallery-06.png",section:"Galeri",target:"gallery-6"},
+ {id:"22",label:"3x3 Galeri 04",file:"admin-gallery-07.png",section:"Galeri",target:"gallery-7"},
+ {id:"23",label:"3x3 Galeri 05",file:"admin-gallery-08.png",section:"Galeri",target:"gallery-8"},
+ {id:"24",label:"3x3 Galeri 06",file:"admin-gallery-09.png",section:"Galeri",target:"gallery-9"},
+ {id:"25",label:"3x3 Galeri 07",file:"admin-gallery-10.png",section:"Galeri",target:"gallery-10"},
+ {id:"26",label:"3x3 Galeri 08",file:"admin-gallery-11.png",section:"Galeri",target:"gallery-11"},
+ {id:"27",label:"3x3 Galeri 09",file:"admin-gallery-12.png",section:"Galeri",target:"gallery-12"}
 ];
