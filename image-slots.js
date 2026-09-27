@@ -24,4 +24,7 @@ window.SALON_IMAGE_SLOTS=[
  {id:"22",label:"Galeri 07 · Fotoğraf",file:"admin-gallery-07.png",section:"Galeri",target:"gallery-7"},
  {id:"23",label:"Galeri 08 · Fotoğraf",file:"admin-gallery-08.png",section:"Galeri",target:"gallery-8"},
  {id:"24",label:"Galeri 09 · Fotoğraf",file:"admin-gallery-09.png",section:"Galeri",target:"gallery-9"},
+ {id:"25",label:"Galeri 10 · Fotoğraf",file:"admin-gallery-10.png",section:"Galeri",target:"gallery-10"},
+ {id:"26",label:"Galeri 11 · Fotoğraf",file:"admin-gallery-11.png",section:"Galeri",target:"gallery-11"},
+ {id:"27",label:"Galeri 12 · Fotoğraf",file:"admin-gallery-12.png",section:"Galeri",target:"gallery-12"}
 ];
