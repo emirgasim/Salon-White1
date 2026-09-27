@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-# Add the final public site URL to the Sitemap line when the production domain is confirmed.
+Sitemap: /sitemap.xml
