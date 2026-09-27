@@ -123,7 +123,7 @@ async function readRepoJson(env, path) {
   const data = await response.json().catch(()=>null);
   if (!data?.content || data.encoding !== "base64") return null;
   try {
-    const text = atob(String(data.content).replace(/\\s/g,""));
+    const text = atob(String(data.content).replace(/\s/g,""));
     return {value:JSON.parse(text),sha:data.sha||null};
   } catch { return null; }
 }
@@ -150,7 +150,7 @@ async function reels(request, env) {
   const existing = await github(api+"?ref="+encodeURIComponent(branch),{method:"GET"},token);
   if (!existing.ok && existing.status !== 404) return json({error:"Mevcut Reel ayarı okunamadı."},502);
   const existingData = existing.ok ? await existing.json().catch(()=>null) : null;
-  const body = {message:"Admin: Instagram Reels bağlantıları güncellendi",content:toBase64(new TextEncoder().encode(JSON.stringify(reels,null,2)+"\\n").buffer),branch};
+  const body = {message:"Admin: Instagram Reels bağlantıları güncellendi",content:toBase64(new TextEncoder().encode(JSON.stringify(reels,null,2)+"\n").buffer),branch};
   if (existingData?.sha) body.sha=existingData.sha;
   const saved = await github(api,{method:"PUT",headers:{"content-type":"application/json"},body:JSON.stringify(body)},token);
   const result = await saved.json().catch(()=>({}));
