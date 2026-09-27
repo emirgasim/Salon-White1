@@ -50,16 +50,34 @@ async function images(request, env) {
   if (!token) return json({error:"GitHub token bulunamadı. Cloudflare Worker secret adı GITHUB_TOKEN olmalı (alternatif: GITHUB_PAT, GH_TOKEN, GITHUB_ADMIN_TOKEN)."},500);
   const repo = env.GITHUB_REPO || REPO;
   const branch = env.GITHUB_BRANCH || BRANCH;
-  const response = await github("https://api.github.com/repos/"+repo+"/contents/assets/images?ref="+encodeURIComponent(branch), {method:"GET"}, token);
+  const response = await github("https://api.github.com/repos/"+repo+"/contents/assets/images?ref="+encodeURIComponent(branch)+"&v="+Date.now(), {method:"GET",headers:{"Cache-Control":"no-cache"}}, token);
   if (!response.ok) {
     const detail = await response.json().catch(()=>({}));
     return json({error:"Görsel listesi alınamadı.",githubStatus:response.status,githubMessage:detail.message||null},502);
   }
   const data = await response.json();
-  const files = Array.isArray(data) ? data.filter(x=>x.type==="file" && /\.(jpe?g|png|webp|avif)$/i.test(x.name)).map(x=>({name:x.name,url:x.download_url||x.html_url})) : [];
+  const files = Array.isArray(data) ? data.filter(x=>x.type==="file" && /\.(jpe?g|png|webp|avif)$/i.test(x.name)).map(x=>({name:x.name,sha:x.sha||null,url:"/assets/images/"+encodeURIComponent(x.name)+"?v="+encodeURIComponent(x.sha||Date.now())})) : [];
   return json({files});
 }
 
+async function liveImage(request, env) {
+  if (!auth(request, env)) return new Response("Yetkisiz erişim.",{status:401});
+  const token = githubToken(env);
+  if (!token) return null;
+  const repo = env.GITHUB_REPO || REPO;
+  const branch = env.GITHUB_BRANCH || BRANCH;
+  const url = new URL(request.url);
+  const path = cleanPath(decodeURIComponent(url.pathname));
+  if (!path || !ALLOWED.has(ext(path))) return null;
+  const api = "https://api.github.com/repos/"+repo+"/contents/"+path.split("/").map(encodeURIComponent).join("/");
+  const response = await github(api+"?ref="+encodeURIComponent(branch)+"&v="+Date.now(), {method:"GET",headers:{"Accept":"application/vnd.github.raw","Cache-Control":"no-cache"}}, token);
+  if (!response.ok) return null;
+  const headers = new Headers(response.headers);
+  headers.set("cache-control","no-store, no-cache, must-revalidate, max-age=0");
+  headers.set("pragma","no-cache");
+  headers.set("expires","0");
+  return new Response(response.body,{status:200,headers});
+}
 async function upload(request, env) {
   if (!auth(request, env)) return json({error:"Yetkisiz erişim."},401);
   const token = githubToken(env);
@@ -96,6 +114,10 @@ export default {
     }
     if (url.pathname === "/api/images" && request.method === "GET") return images(request, env);
     if (url.pathname === "/api/upload" && request.method === "POST") return upload(request, env);
+    if (request.method === "GET" && url.pathname.startsWith("/assets/images/")) {
+      const imageResponse = await liveImage(request, env);
+      if (imageResponse) return imageResponse;
+    }
     if (url.pathname === "/admin" || url.pathname === "/admin/" || url.pathname === "/admin.html") {
       if (!env.ASSETS) return new Response("ASSETS binding bulunamadı.", {status:503});
       const adminUrl = new URL("/admin-panel.html", url);
