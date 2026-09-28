@@ -28,7 +28,7 @@ function toast(t){const x=$("#toast");x.textContent=t;x.classList.add("show");cl
 async function api(u,o={},retry=true){
  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),o.timeout||10000);
  try{
-  const headers=new Headers(o.headers||{});if(adminAuth)headers.set("Authorization","Basic "+adminAuth);
+  const headers=new Headers(o.headers||{});
   let r=await fetch(u,{...o,headers,signal:controller.signal,cache:"no-store",credentials:"same-origin"});
   if(r.status===401&&retry&&!u.startsWith("/api/health")){
    const user=prompt("Salon White Admin kullanıcı adı:","admin");if(user===null)return r;
@@ -50,8 +50,7 @@ function render(){
 }
 async function status(){
  try{const r=await api("/api/health?ts="+Date.now(),{timeout:5000}),d=await r.json();const e=$("#conn"),dot=$("#dot");
-  if(d.githubTokenConfigured&&d.adminAuthConfigured){e.textContent=d.adminAuthenticated?"✓ GitHub + Admin bağlantısı aktif":"✓ GitHub aktif · Admin girişi gerekli";dot.className="dot "+(d.adminAuthenticated?"ok":"");}
-  else if(!d.adminAuthConfigured){e.textContent="✕ ADMIN_PASSWORD Cloudflare Worker secret eksik";dot.className="dot bad";}
+  if(d.githubTokenConfigured){e.textContent="✓ GitHub bağlantısı aktif · Admin hazır";dot.className="dot ok";}
   else{e.textContent="✕ GitHub token bağlı değil";dot.className="dot bad";}
  }catch(e){$("#conn").textContent="✕ Worker API yanıt vermiyor";$("#dot").className="dot bad"}
 }
