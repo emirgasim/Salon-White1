@@ -429,3 +429,5 @@ function init(){renderInstagramReels();const y=document.getElementById("year");i
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 
 window.addEventListener("pageshow",()=>{if(!location.hash||location.hash==="#top")scrollTo({top:0,left:0,behavior:"auto"});});
+
+// Cloudflare deployment trigger: 2026-09-28
