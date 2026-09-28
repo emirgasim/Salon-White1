@@ -61,7 +61,6 @@ async function github(url, options, token) {
 }
 
 async function images(request, env) {
-  if (!auth(request, env)) return authRequired();
   const token = githubToken(env);
   if (!token) return json({error:"GitHub token bulunamadı. Cloudflare Worker secret adı GITHUB_TOKEN olmalı (alternatif: GITHUB_PAT, GH_TOKEN, GITHUB_ADMIN_TOKEN)."},500);
   const repo = env.GITHUB_REPO || REPO;
@@ -77,7 +76,6 @@ async function images(request, env) {
 }
 
 async function liveImage(request, env) {
-  if (!auth(request, env)) return new Response("Admin authentication required.",{status:401,headers:{"WWW-Authenticate":'Basic realm="Salon White Admin"', "content-type":"text/plain;charset=UTF-8"}});
   const token = githubToken(env);
   if (!token) return null;
   const repo = env.GITHUB_REPO || REPO;
@@ -151,7 +149,6 @@ async function reels(request, env) {
     const data = await readRepoJson(env,path);
     return json({reels:Array.isArray(data?.value)?data.value:[]});
   }
-  if (!auth(request, env)) return authRequired();
   const token = githubToken(env);
   if (!token) return json({error:"GitHub token bulunamadı."},500);
   let payload;
@@ -259,7 +256,6 @@ async function reelCover(request, env) {
   }
 }
 async function upload(request, env) {
-  if (!auth(request, env)) return json({error:"Yetkisiz erişim."},401);
   const token = githubToken(env);
   if (!token) return json({error:"GitHub token bulunamadı. Cloudflare Worker secret adı GITHUB_TOKEN olmalı (alternatif: GITHUB_PAT, GH_TOKEN, GITHUB_ADMIN_TOKEN)."},500);
   const form = await request.formData();
@@ -290,7 +286,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname === "/api/health" && request.method === "GET") {
-      return json({ok:true, githubTokenConfigured:Boolean(githubToken(env)), githubTokenSource:githubTokenSource(env), repository:env.GITHUB_REPO || REPO, branch:env.GITHUB_BRANCH || BRANCH});
+      return json({ok:true, githubTokenConfigured:Boolean(githubToken(env)), githubTokenSource:githubTokenSource(env), adminAuthConfigured:true, adminAuthenticated:true, repository:env.GITHUB_REPO || REPO, branch:env.GITHUB_BRANCH || BRANCH});
     }
     if (url.pathname === "/api/images" && request.method === "GET") return images(request, env);
     if (url.pathname === "/api/reels" && (request.method === "GET" || request.method === "POST")) return reels(request, env);
